@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        caption="msg://scenarioTechniqueEdit.caption"
+        focusComponent="form">
+    <data>
+        <instance id="scenarioTechniqueDc"
+                  class="ru.sstu.ifbs.entity.ScenarioTechnique">
+            <fetchPlan extends="_base">
+                <property name="tactics" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader/>
+            <collection id="tacticsDc" property="tactics"/>
+        </instance>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <screenSettings id="settingsFacet" auto="true"/>
+    </facets>
+    <actions>
+        <action id="windowCommitAndClose" caption="msg:///actions.Ok"
+                icon="EDITOR_OK"
+                primary="true"
+                shortcut="${COMMIT_SHORTCUT}"/>
+        <action id="windowClose"
+                caption="msg:///actions.Close"
+                icon="EDITOR_CANCEL"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout spacing="true" expand="scrollBox">
+        <scrollBox id="scrollBox" spacing="true">
+            <form id="form" dataContainer="scenarioTechniqueDc">
+                <column width="350px">
+                    <comboBox id="valueField" property="value"/>
+                </column>
+            </form>
+            <groupBox id="tacticsBox" caption="msg://ru.sstu.ifbs.entity/ScenarioTechnique.tactics">
+                <table id="tacticsTable" dataContainer="tacticsDc" width="100%" height="200px">
+                    <actions>
+                        <action id="create" type="create"/>
+                        <action id="edit" type="edit"/>
+                        <action id="remove" type="remove"/>
+                    </actions>
+                    <columns>
+                        <column id="value"/>
+                    </columns>
+                    <buttonsPanel>
+                        <button action="tacticsTable.create"/>
+                        <button action="tacticsTable.edit"/>
+                        <button action="tacticsTable.remove"/>
+                    </buttonsPanel>
+                </table>
+            </groupBox>
+        </scrollBox>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

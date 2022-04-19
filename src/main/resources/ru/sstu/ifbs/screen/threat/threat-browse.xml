@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        xmlns:c="http://jmix.io/schema/ui/jpql-condition"
+        caption="msg://threatBrowse.caption"
+        focusComponent="threatsTable">
+    <data readOnly="true">
+        <collection id="threatsDc"
+                    class="ru.sstu.ifbs.entity.Threat">
+            <fetchPlan extends="_base">
+                <property name="sources" fetchPlan="_base"/>
+                <property name="targets" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader id="threatsDl">
+                <query>
+                    <![CDATA[select e from gwf_Threat e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <screenSettings id="settingsFacet" auto="true"/>
+    </facets>
+    <actions>
+        <action id="lookupSelectAction"
+                caption="msg:///actions.Select"
+                icon="LOOKUP_OK"
+                primary="true"
+                shortcut="${COMMIT_SHORTCUT}"/>
+        <action id="lookupCancelAction"
+                caption="msg:///actions.Cancel"
+                icon="LOOKUP_CANCEL"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="threatsTable" spacing="true">
+        <filter id="filter"
+                dataLoader="threatsDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="threatsTable"
+                    width="100%"
+                    dataContainer="threatsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="name"/>
+                <column id="description"/>
+            </columns>
+            <simplePagination/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="threatsTable.create"/>
+                <button id="editBtn" action="threatsTable.edit"/>
+                <button id="removeBtn" action="threatsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

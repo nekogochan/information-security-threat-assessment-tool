@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        caption="msg://projectEdit.caption"
+        focusComponent="form">
+    <data>
+        <instance id="projectDc"
+                  class="ru.sstu.ifbs.entity.Project">
+            <fetchPlan extends="_base">
+                <property name="impactSources" fetchPlan="_base"/>
+                <property name="impactTargets" fetchPlan="_base"/>
+                <property name="group" fetchPlan="_base"/>
+                <property name="actualThreats" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader/>
+            <collection id="impactSourcesDc" property="impactSources"/>
+            <collection id="impactTargetsDc" property="impactTargets"/>
+            <collection id="actualThreatsDc" property="actualThreats"/>
+        </instance>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <screenSettings id="settingsFacet" auto="true"/>
+    </facets>
+    <actions>
+        <action id="windowCommitAndClose" caption="msg:///actions.Ok"
+                icon="EDITOR_OK"
+                primary="true"
+                shortcut="${COMMIT_SHORTCUT}"/>
+        <action id="windowClose"
+                caption="msg:///actions.Close"
+                icon="EDITOR_CANCEL"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout spacing="true" expand="scrollBox">
+        <scrollBox id="scrollBox" spacing="true">
+            <form id="form" dataContainer="projectDc">
+                <column width="350px">
+                    <entityPicker id="groupField" property="group">
+                        <actions>
+                            <action id="entityLookup" type="entity_lookup"/>
+                            <action id="entityClear" type="entity_clear"/>
+                        </actions>
+                    </entityPicker>
+                    <textField id="nameField" property="name"/>
+                    <textArea id="descriptionField" property="description" rows="5"/>
+                </column>
+            </form>
+            <groupBox id="impactSourcesBox" caption="msg://ru.sstu.ifbs.entity/Project.impactSources">
+                <table id="impactSourcesTable" dataContainer="impactSourcesDc" width="100%" height="200px">
+                    <actions>
+                        <action id="add" type="add"/>
+                        <action id="exclude" type="exclude"/>
+                    </actions>
+                    <columns>
+                        <column id="name"/>
+                        <column id="type"/>
+                        <column id="level"/>
+                        <column id="description"/>
+                    </columns>
+                    <buttonsPanel>
+                        <button action="impactSourcesTable.add"/>
+                        <button action="impactSourcesTable.exclude"/>
+                    </buttonsPanel>
+                </table>
+            </groupBox>
+            <groupBox id="impactTargetsBox" caption="msg://ru.sstu.ifbs.entity/Project.impactTargets">
+                <table id="impactTargetsTable" dataContainer="impactTargetsDc" width="100%" height="200px">
+                    <actions>
+                        <action id="add" type="add"/>
+                        <action id="exclude" type="exclude"/>
+                    </actions>
+                    <columns>
+                        <column id="name"/>
+                        <column id="description"/>
+                    </columns>
+                    <buttonsPanel>
+                        <button action="impactTargetsTable.add"/>
+                        <button action="impactTargetsTable.exclude"/>
+                    </buttonsPanel>
+                </table>
+            </groupBox>
+            <groupBox id="actualThreatsBox" caption="msg://ru.sstu.ifbs.entity/Project.actualThreats">
+                <table id="actualThreatsTable" dataContainer="actualThreatsDc" width="100%" height="200px">
+                    <actions>
+                        <action id="create" type="create"/>
+                        <action id="edit" type="edit"/>
+                        <action id="remove" type="remove"/>
+                    </actions>
+                    <columns>
+                    </columns>
+                    <buttonsPanel>
+                        <button action="actualThreatsTable.create"/>
+                        <button action="actualThreatsTable.edit"/>
+                        <button action="actualThreatsTable.remove"/>
+                    </buttonsPanel>
+                </table>
+            </groupBox>
+        </scrollBox>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

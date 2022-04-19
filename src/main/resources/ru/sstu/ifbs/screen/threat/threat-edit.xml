@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        caption="msg://threatEdit.caption"
+        focusComponent="form">
+    <data>
+        <instance id="threatDc"
+                  class="ru.sstu.ifbs.entity.Threat">
+            <fetchPlan extends="_base">
+                <property name="sources" fetchPlan="_base"/>
+                <property name="targets" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader/>
+            <collection id="sourcesDc" property="sources"/>
+            <collection id="targetsDc" property="targets"/>
+        </instance>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <screenSettings id="settingsFacet" auto="true"/>
+    </facets>
+    <actions>
+        <action id="windowCommitAndClose" caption="msg:///actions.Ok"
+                icon="EDITOR_OK"
+                primary="true"
+                shortcut="${COMMIT_SHORTCUT}"/>
+        <action id="windowClose"
+                caption="msg:///actions.Close"
+                icon="EDITOR_CANCEL"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout spacing="true" expand="scrollBox">
+        <scrollBox id="scrollBox" spacing="true">
+            <form id="form" dataContainer="threatDc">
+                <column width="350px">
+                    <textField id="nameField" property="name"/>
+                    <textArea id="descriptionField" property="description" rows="5"/>
+                </column>
+            </form>
+            <groupBox id="sourcesBox" caption="msg://ru.sstu.ifbs.entity/Threat.sources">
+                <table id="sourcesTable" dataContainer="sourcesDc" width="100%" height="200px">
+                    <actions>
+                        <action id="add" type="add"/>
+                        <action id="exclude" type="exclude"/>
+                    </actions>
+                    <columns>
+                        <column id="name"/>
+                        <column id="type"/>
+                        <column id="level"/>
+                        <column id="description"/>
+                    </columns>
+                    <buttonsPanel>
+                        <button action="sourcesTable.add"/>
+                        <button action="sourcesTable.exclude"/>
+                    </buttonsPanel>
+                </table>
+            </groupBox>
+            <groupBox id="targetsBox" caption="msg://ru.sstu.ifbs.entity/Threat.targets">
+                <table id="targetsTable" dataContainer="targetsDc" width="100%" height="200px">
+                    <actions>
+                        <action id="add" type="add"/>
+                        <action id="exclude" type="exclude"/>
+                    </actions>
+                    <columns>
+                        <column id="name"/>
+                        <column id="description"/>
+                    </columns>
+                    <buttonsPanel>
+                        <button action="targetsTable.add"/>
+                        <button action="targetsTable.exclude"/>
+                    </buttonsPanel>
+                </table>
+            </groupBox>
+        </scrollBox>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

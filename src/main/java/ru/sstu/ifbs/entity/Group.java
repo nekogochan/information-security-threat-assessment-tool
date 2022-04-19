@@ -12,6 +12,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @JmixEntity
@@ -55,6 +56,17 @@ public class Group {
     @Column(name = "DESCRIPTION", nullable = false)
     @Lob
     private String description;
+
+    @OneToMany(mappedBy = "group")
+    private List<User> users;
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
 
     public String getDescription() {
         return description;

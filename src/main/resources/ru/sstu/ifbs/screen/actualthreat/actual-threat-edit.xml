@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        caption="msg://actualThreatEdit.caption"
+        focusComponent="form">
+    <data>
+        <instance id="actualThreatDc"
+                  class="ru.sstu.ifbs.entity.ActualThreat">
+            <fetchPlan extends="_base">
+                <property name="threat" fetchPlan="_base"/>
+                <property name="scenarios" fetchPlan="_base"/>
+                <property name="project" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader/>
+            <collection id="scenariosDc" property="scenarios"/>
+        </instance>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <screenSettings id="settingsFacet" auto="true"/>
+    </facets>
+    <actions>
+        <action id="windowCommitAndClose" caption="msg:///actions.Ok"
+                icon="EDITOR_OK"
+                primary="true"
+                shortcut="${COMMIT_SHORTCUT}"/>
+        <action id="windowClose"
+                caption="msg:///actions.Close"
+                icon="EDITOR_CANCEL"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout spacing="true" expand="scrollBox">
+        <scrollBox id="scrollBox" spacing="true">
+            <form id="form" dataContainer="actualThreatDc">
+                <column width="350px">
+                    <entityPicker id="threatField" property="threat">
+                        <actions>
+                            <action id="entityLookup" type="entity_lookup"/>
+                            <action id="entityClear" type="entity_clear"/>
+                        </actions>
+                    </entityPicker>
+                    <entityPicker id="projectField" property="project">
+                        <actions>
+                            <action id="entityLookup" type="entity_lookup"/>
+                            <action id="entityClear" type="entity_clear"/>
+                        </actions>
+                    </entityPicker>
+                </column>
+            </form>
+            <groupBox id="scenariosBox" caption="msg://ru.sstu.ifbs.entity/ActualThreat.scenarios">
+                <table id="scenariosTable" dataContainer="scenariosDc" width="100%" height="200px">
+                    <actions>
+                        <action id="add" type="add"/>
+                        <action id="exclude" type="exclude"/>
+                    </actions>
+                    <columns>
+                        <column id="name"/>
+                        <column id="description"/>
+                    </columns>
+                    <buttonsPanel>
+                        <button action="scenariosTable.add"/>
+                        <button action="scenariosTable.exclude"/>
+                    </buttonsPanel>
+                </table>
+            </groupBox>
+        </scrollBox>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

@@ -20,6 +20,7 @@ import java.util.UUID;
 @Entity(name = "gwf_User")
 @Table(name = "GWF_USER", indexes = {
         @Index(name = "IDX_GWF_USER_ON_USERNAME", columnList = "USERNAME", unique = true),
+        @Index(name = "IDX_USER_GROUP_ID", columnList = "GROUP_ID"),
         @Index(name = "IDX_USER_GROUP_ID", columnList = "GROUP_ID")
 })
 public class User implements JmixUserDetails, HasTimeZone {
@@ -56,10 +57,10 @@ public class User implements JmixUserDetails, HasTimeZone {
     @Column(name = "TIME_ZONE_ID")
     protected String timeZoneId;
 
+
     @JoinColumn(name = "GROUP_ID")
     @ManyToOne(fetch = FetchType.LAZY)
     private Group group;
-
     @Transient
     protected Collection<? extends GrantedAuthority> authorities;
 
