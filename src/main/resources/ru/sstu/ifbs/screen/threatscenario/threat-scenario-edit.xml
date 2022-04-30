@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://jmix.io/schema/ui/window"
-        caption="msg://threatScenarioEdit.caption"
-        focusComponent="form">
+        caption="msg://threatScenarioEdit.caption">
     <data>
         <instance id="threatScenarioDc"
                   class="ru.sstu.ifbs.entity.ThreatScenario">
             <fetchPlan extends="_base">
                 <property name="threat" fetchPlan="_base"/>
-                <property name="techniques" fetchPlan="_base"/>
+                <property name="tactics" fetchPlan="_base"/>
             </fetchPlan>
             <loader/>
-            <collection id="techniquesDc" property="techniques"/>
+            <collection id="tacticsDc" property="tactics"/>
         </instance>
     </data>
     <facets>
@@ -30,35 +29,10 @@
                 width="800"/>
     <layout spacing="true" expand="scrollBox">
         <scrollBox id="scrollBox" spacing="true">
-            <form id="form" dataContainer="threatScenarioDc">
-                <column width="350px">
-                    <textField id="nameField" property="name"/>
-                    <textArea id="descriptionField" property="description" rows="5"/>
-                    <entityPicker id="threatField" property="threat">
-                        <actions>
-                            <action id="entityLookup" type="entity_lookup"/>
-                            <action id="entityClear" type="entity_clear"/>
-                        </actions>
-                    </entityPicker>
-                </column>
-            </form>
-            <groupBox id="techniquesBox" caption="msg://ru.sstu.ifbs.entity/ThreatScenario.techniques">
-                <table id="techniquesTable" dataContainer="techniquesDc" width="100%" height="200px">
-                    <actions>
-                        <action id="create" type="create"/>
-                        <action id="edit" type="edit"/>
-                        <action id="remove" type="remove"/>
-                    </actions>
-                    <columns>
-                        <column id="value"/>
-                    </columns>
-                    <buttonsPanel>
-                        <button action="techniquesTable.create"/>
-                        <button action="techniquesTable.edit"/>
-                        <button action="techniquesTable.remove"/>
-                    </buttonsPanel>
-                </table>
-            </groupBox>
+            <buttonsPanel>
+                <popupButton id="addTacticBtn" caption="addTacticBtn.caption" icon="ADD_ACTION"/>
+            </buttonsPanel>
+            <hbox id="tacticsContainer"/>
         </scrollBox>
         <hbox id="editActions" spacing="true">
             <button id="commitAndCloseBtn" action="windowCommitAndClose"/>

@@ -12,7 +12,8 @@ import java.util.UUID;
 
 @JmixEntity
 @Table(name = "GWF_SCENARIO_TECHNIQUE", indexes = {
-        @Index(name = "IDX_SCENARIOTECHNIQUE", columnList = "THREAT_SCENARIO_ID")
+        @Index(name = "IDX_SCENARIOTECHNIQUE", columnList = "THREAT_SCENARIO_ID"),
+        @Index(name = "IDX_SCENARIOTECHNIQUE", columnList = "TACTIC_ID")
 })
 @Entity(name = "gwf_ScenarioTechnique")
 public class ScenarioTechnique {
@@ -21,25 +22,21 @@ public class ScenarioTechnique {
     @Id
     private UUID id;
 
-    @JoinColumn(name = "THREAT_SCENARIO_ID", nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    private ThreatScenario threatScenario;
-
     @InstanceName
     @NotNull
     @Column(name = "VALUE_", nullable = false)
     private String value;
 
-    @Composition
-    @OneToMany(mappedBy = "technique")
-    private List<ScenarioTactic> tactics;
+    @JoinColumn(name = "TACTIC_ID", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    private ScenarioTactic tactic;
 
-    public List<ScenarioTactic> getTactics() {
-        return tactics;
+    public ScenarioTactic getTactic() {
+        return tactic;
     }
 
-    public void setTactics(List<ScenarioTactic> tactics) {
-        this.tactics = tactics;
+    public void setTactic(ScenarioTactic tactic) {
+        this.tactic = tactic;
     }
 
     public Technique getValue() {
@@ -48,14 +45,6 @@ public class ScenarioTechnique {
 
     public void setValue(Technique value) {
         this.value = value == null ? null : value.getId();
-    }
-
-    public ThreatScenario getThreatScenario() {
-        return threatScenario;
-    }
-
-    public void setThreatScenario(ThreatScenario threatScenario) {
-        this.threatScenario = threatScenario;
     }
 
     public UUID getId() {

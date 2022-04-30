@@ -5,14 +5,14 @@
         <item screen="gwf_User.browse" caption="msg://ru.sstu.ifbs.screen.user/UserBrowse.caption"/>
         <item screen="themeSettingsScreen" caption="msg://io.jmix.ui.app.themesettings/themeSettings.caption"/>
         <item screen="gwf_Threat.browse" caption="msg://ru.sstu.ifbs.screen.threat/threatBrowse.menu"/>
-        <item screen="gwf_ThreatScenario.browse"
-              caption="msg://ru.sstu.ifbs.screen.threatscenario/threatScenarioBrowse.menu"/>
         <item screen="gwf_Project.browse" caption="msg://ru.sstu.ifbs.screen.project/projectBrowse.menu"/>
         <item screen="gwf_ImpactTarget.browse"
               caption="msg://ru.sstu.ifbs.screen.impacttarget/impactTargetBrowse.menu"/>
         <item screen="gwf_Group.browse" caption="msg://ru.sstu.ifbs.screen.group/groupBrowse.menu"/>
         <item screen="gwf_ActualThreat.browse"
               caption="msg://ru.sstu.ifbs.screen.actualthreat/actualThreatBrowse.menu"/>
+        <item screen="gwf_ThreatScenario.browse"
+              caption="msg://ru.sstu.ifbs.screen.threatscenario/threatScenarioBrowse.menu"/>
     </menu>
 
 </menu-config>

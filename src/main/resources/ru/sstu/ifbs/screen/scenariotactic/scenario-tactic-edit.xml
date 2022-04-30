@@ -5,8 +5,11 @@
     <data>
         <instance id="scenarioTacticDc"
                   class="ru.sstu.ifbs.entity.ScenarioTactic">
-            <fetchPlan extends="_base"/>
+            <fetchPlan extends="_base">
+                <property name="techniques" fetchPlan="_base"/>
+            </fetchPlan>
             <loader/>
+            <collection id="techniqueDc" property="techniques"/>
         </instance>
     </data>
     <facets>
@@ -31,6 +34,23 @@
                     <comboBox id="valueField" property="value"/>
                 </column>
             </form>
+            <groupBox id="techniqueBox" caption="msg://techniques">
+                <table id="techniqueTable" dataContainer="techniqueDc" width="100%" height="200px">
+                    <actions>
+                        <action id="create" type="create"/>
+                        <action id="edit" type="edit"/>
+                        <action id="remove" type="remove"/>
+                    </actions>
+                    <columns>
+                        <column id="value"/>
+                    </columns>
+                    <buttonsPanel>
+                        <button action="techniqueTable.create"/>
+                        <button action="techniqueTable.edit"/>
+                        <button action="techniqueTable.remove"/>
+                    </buttonsPanel>
+                </table>
+            </groupBox>
         </scrollBox>
         <hbox id="editActions" spacing="true">
             <button id="commitAndCloseBtn" action="windowCommitAndClose"/>

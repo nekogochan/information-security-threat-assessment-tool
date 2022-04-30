@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://jmix.io/schema/ui/window"
         xmlns:c="http://jmix.io/schema/ui/jpql-condition"
-        caption="msg://threatScenarioBrowse.caption"
-        focusComponent="threatScenariosTable">
+        caption="msg://scenarioTechniqueBrowse.caption"
+        focusComponent="scenarioTechniquesTable">
     <data readOnly="true">
-        <collection id="threatScenariosDc"
-                    class="ru.sstu.ifbs.entity.ThreatScenario">
-            <fetchPlan extends="_base">
-                <property name="threat" fetchPlan="_base"/>
-                <property name="tactics" fetchPlan="_base"/>
-            </fetchPlan>
-            <loader id="threatScenariosDl">
+        <collection id="scenarioTechniquesDc"
+                    class="ru.sstu.ifbs.entity.ScenarioTechnique">
+            <fetchPlan extends="_base"/>
+            <loader id="scenarioTechniquesDl">
                 <query>
-                    <![CDATA[select e from gwf_ThreatScenario e]]>
+                    <![CDATA[select e from gwf_ScenarioTechnique e]]>
                 </query>
             </loader>
         </collection>
@@ -33,30 +30,28 @@
     </actions>
     <dialogMode height="600"
                 width="800"/>
-    <layout expand="threatScenariosTable" spacing="true">
+    <layout expand="scenarioTechniquesTable" spacing="true">
         <filter id="filter"
-                dataLoader="threatScenariosDl">
+                dataLoader="scenarioTechniquesDl">
             <properties include=".*"/>
         </filter>
-        <groupTable id="threatScenariosTable"
+        <groupTable id="scenarioTechniquesTable"
                     width="100%"
-                    dataContainer="threatScenariosDc">
+                    dataContainer="scenarioTechniquesDc">
             <actions>
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
                 <action id="remove" type="remove"/>
             </actions>
             <columns>
-                <column id="name"/>
-                <column id="description"/>
-                <column id="threat"/>
+                <column id="value"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"
                           alwaysVisible="true">
-                <button id="createBtn" action="threatScenariosTable.create"/>
-                <button id="editBtn" action="threatScenariosTable.edit"/>
-                <button id="removeBtn" action="threatScenariosTable.remove"/>
+                <button id="createBtn" action="scenarioTechniquesTable.create"/>
+                <button id="editBtn" action="scenarioTechniquesTable.edit"/>
+                <button id="removeBtn" action="scenarioTechniquesTable.remove"/>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">

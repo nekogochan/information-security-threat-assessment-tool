@@ -80,14 +80,14 @@ public class ThreatScenario {
     @OnDelete(DeletePolicy.CASCADE)
     @Composition
     @OneToMany(mappedBy = "threatScenario")
-    private List<ScenarioTechnique> techniques;
+    private List<ScenarioTactic> tactics;
 
-    public List<ScenarioTechnique> getTechniques() {
-        return techniques;
+    public List<ScenarioTactic> getTactics() {
+        return tactics;
     }
 
-    public void setTechniques(List<ScenarioTechnique> techniques) {
-        this.techniques = techniques;
+    public void setTactics(List<ScenarioTactic> tactics) {
+        this.tactics = tactics;
     }
 
     public Threat getThreat() {
