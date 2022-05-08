@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<fragment xmlns="http://jmix.io/schema/ui/fragment">
+    <data>
+        <instance id="threatScenarioDc" class="ru.sstu.ifbs.entity.ThreatScenario" provided="true">
+            <collection id="tacticsDc" property="tactics" provided="true"/>
+            <loader/>
+        </instance>
+    </data>
+    <layout>
+    </layout>
+</fragment>
