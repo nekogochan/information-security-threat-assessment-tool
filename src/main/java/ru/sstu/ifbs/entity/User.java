@@ -24,6 +24,7 @@ import java.util.UUID;
         @Index(name = "IDX_USER_GROUP_ID", columnList = "GROUP_ID")
 })
 public class User implements JmixUserDetails, HasTimeZone {
+
     @Id
     @Column(name = "ID", nullable = false)
     @JmixGeneratedValue
@@ -57,12 +58,12 @@ public class User implements JmixUserDetails, HasTimeZone {
     @Column(name = "TIME_ZONE_ID")
     protected String timeZoneId;
 
+    @Transient
 
+    protected Collection<? extends GrantedAuthority> authorities;
     @JoinColumn(name = "GROUP_ID")
     @ManyToOne(fetch = FetchType.LAZY)
     private Group group;
-    @Transient
-    protected Collection<? extends GrantedAuthority> authorities;
 
     public Group getGroup() {
         return group;

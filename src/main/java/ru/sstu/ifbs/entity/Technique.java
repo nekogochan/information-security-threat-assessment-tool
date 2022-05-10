@@ -168,9 +168,22 @@ public enum Technique implements EnumClass<String> {
         this.id = value;
     }
 
+    public String getName() {
+        return "name";
+    }
+
+    public String getCode() {
+        return "code";
+    }
+
+    public String getDescription() {
+        return "description";
+    }
+
     public String getId() {
         return id;
     }
+
     @Nullable
     public static Technique fromId(String id) {
         for (Technique at : Technique.values()) {

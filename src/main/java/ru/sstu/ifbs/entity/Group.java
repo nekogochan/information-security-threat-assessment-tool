@@ -18,44 +18,7 @@ import java.util.UUID;
 @JmixEntity
 @Table(name = "GWF_GROUP")
 @Entity(name = "gwf_Group")
-public class Group {
-
-    @JmixGeneratedValue
-    @Column(name = "ID", nullable = false)
-    @Id
-    private UUID id;
-
-    @DeletedBy
-    @Column(name = "DELETED_BY")
-    private String deletedBy;
-
-    @DeletedDate
-    @Column(name = "DELETED_DATE")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date deletedDate;
-
-    @LastModifiedBy
-    @Column(name = "LAST_MODIFIED_BY")
-    private String lastModifiedBy;
-
-    @LastModifiedDate
-    @Column(name = "LAST_MODIFIED_DATE")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date lastModifiedDate;
-
-    @CreatedBy
-    @Column(name = "CREATED_BY")
-    private String createdBy;
-
-    @CreatedDate
-    @Column(name = "CREATED_DATE")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdDate;
-
-    @NotNull
-    @Column(name = "DESCRIPTION", nullable = false)
-    @Lob
-    private String description;
+public class Group extends DefaultNamedEntity {
 
     @OneToMany(mappedBy = "group")
     private List<User> users;
@@ -66,69 +29,5 @@ public class Group {
 
     public void setUsers(List<User> users) {
         this.users = users;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
-    }
-
-    public Date getLastModifiedDate() {
-        return lastModifiedDate;
-    }
-
-    public void setLastModifiedDate(Date lastModifiedDate) {
-        this.lastModifiedDate = lastModifiedDate;
-    }
-
-    public String getLastModifiedBy() {
-        return lastModifiedBy;
-    }
-
-    public void setLastModifiedBy(String lastModifiedBy) {
-        this.lastModifiedBy = lastModifiedBy;
-    }
-
-    public Date getDeletedDate() {
-        return deletedDate;
-    }
-
-    public void setDeletedDate(Date deletedDate) {
-        this.deletedDate = deletedDate;
-    }
-
-    public String getDeletedBy() {
-        return deletedBy;
-    }
-
-    public void setDeletedBy(String deletedBy) {
-        this.deletedBy = deletedBy;
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
     }
 }

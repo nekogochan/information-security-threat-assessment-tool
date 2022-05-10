@@ -40,6 +40,18 @@ public enum Tactic implements EnumClass<String> {
         return techniques;
     }
 
+    public String getName() {
+        return "name";
+    }
+
+    public String getCode() {
+        return "code";
+    }
+
+    public String getDescription() {
+        return "description";
+    }
+
     @Nullable
     public static Tactic fromId(String id) {
         for (Tactic at : Tactic.values()) {

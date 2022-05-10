@@ -1,6 +1,5 @@
 package ru.sstu.ifbs.entity;
 
-import io.jmix.core.entity.annotation.JmixGeneratedValue;
 import io.jmix.core.metamodel.annotation.Composition;
 import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
@@ -9,7 +8,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @JmixEntity
 @Table(name = "GWF_SCENARIO_TACTIC", indexes = {
@@ -17,11 +15,7 @@ import java.util.UUID;
         @Index(name = "IDX_SCENARIOTACTIC", columnList = "THREAT_SCENARIO_ID")
 })
 @Entity(name = "gwf_ScenarioTactic")
-public class ScenarioTactic {
-    @JmixGeneratedValue
-    @Column(name = "ID", nullable = false)
-    @Id
-    private UUID id;
+public class ScenarioTactic extends DefaultEntity {
 
     @InstanceName
     @NotNull
@@ -58,14 +52,5 @@ public class ScenarioTactic {
 
     public void setValue(Tactic value) {
         this.value = value == null ? null : value.getId();
-    }
-
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
     }
 }
