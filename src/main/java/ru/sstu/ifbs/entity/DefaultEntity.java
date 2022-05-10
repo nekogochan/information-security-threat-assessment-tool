@@ -14,7 +14,9 @@ import java.util.Date;
 import java.util.UUID;
 
 @JmixEntity
-@Table(name = "GWF_DEFAULT_ENTITY")
+@Table(name = "GWF_DEFAULT_ENTITY", indexes = {
+        @Index(name = "IDX_TECHNIQUE_TACTIC_ID", columnList = "TACTIC_ID")
+})
 @Entity(name = "gwf_DefaultEntity")
 public class DefaultEntity {
 

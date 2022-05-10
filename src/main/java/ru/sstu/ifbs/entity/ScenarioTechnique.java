@@ -12,16 +12,25 @@ import javax.validation.constraints.NotNull;
         @Index(name = "IDX_SCENARIOTECHNIQUE", columnList = "TACTIC_ID")
 })
 @Entity(name = "gwf_ScenarioTechnique")
-public class ScenarioTechnique extends DefaultEntity {
+public class ScenarioTechnique extends DefaultNamedEntity {
 
-    @InstanceName
     @NotNull
-    @Column(name = "VALUE_", nullable = false)
-    private String value;
+    @JoinColumn(name = "VALUE_ID", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @InstanceName
+    private Technique value;
 
     @JoinColumn(name = "TACTIC_ID", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private ScenarioTactic tactic;
+
+    public void setValue(Technique value) {
+        this.value = value;
+    }
+
+    public Technique getValue() {
+        return value;
+    }
 
     public ScenarioTactic getTactic() {
         return tactic;
@@ -31,11 +40,4 @@ public class ScenarioTechnique extends DefaultEntity {
         this.tactic = tactic;
     }
 
-    public Technique getValue() {
-        return value == null ? null : Technique.fromId(value);
-    }
-
-    public void setValue(Technique value) {
-        this.value = value == null ? null : value.getId();
-    }
 }

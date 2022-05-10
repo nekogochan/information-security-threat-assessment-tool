@@ -1,64 +1,37 @@
 package ru.sstu.ifbs.entity;
 
-import io.jmix.core.metamodel.datatype.impl.EnumClass;
+import io.jmix.core.metamodel.annotation.JmixEntity;
 
-import javax.annotation.Nullable;
-import java.util.Arrays;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
+@JmixEntity
+@Entity(name = "gwf_Tactic")
+public class Tactic extends DefaultNamedEntity {
 
-public enum Tactic implements EnumClass<String> {
+    @Column(name = "CODE", nullable = false, unique = true)
+    @NotNull
+    private String code;
 
-    T_1("T_1"),
-    T_2("T_2"),
-    T_3("T_3"),
-    T_4("T_4"),
-    T_5("T_5"),
-    T_6("T_6"),
-    T_7("T_7"),
-    T_8("T_8"),
-    T_9("T_9"),
-    T_10("T_10");
-
-    private final String id;
-    private final List<Technique> techniques;
-
-    Tactic(String value, List<Technique> techniques) {
-        this.id = value;
-        this.techniques = techniques;
-    }
-
-    Tactic(String value) {
-        this(value, Arrays.stream(Technique.values()).filter(t -> t.getId().startsWith(value)).toList());
-    }
-
-    public String getId() {
-        return id;
-    }
+    @OneToMany(mappedBy = "tactic")
+    private List<Technique> techniques;
 
     public List<Technique> getTechniques() {
         return techniques;
     }
 
-    public String getName() {
-        return "name";
+    public void setTechniques(List<Technique> techniques) {
+        this.techniques = techniques;
     }
 
     public String getCode() {
-        return "code";
+        return code;
     }
 
-    public String getDescription() {
-        return "description";
-    }
-
-    @Nullable
-    public static Tactic fromId(String id) {
-        for (Tactic at : Tactic.values()) {
-            if (at.getId().equals(id)) {
-                return at;
-            }
-        }
-        return null;
+    public void setCode(String code) {
+        this.code = code;
     }
 }

@@ -3,6 +3,7 @@ package ru.sstu.ifbs.entity;
 import io.jmix.core.annotation.DeletedBy;
 import io.jmix.core.annotation.DeletedDate;
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
+import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -21,11 +22,12 @@ import java.util.UUID;
         @Index(name = "IDX_ACTUALTHREAT_PROJECT_ID", columnList = "PROJECT_ID")
 })
 @Entity(name = "gwf_ActualThreat")
-public class ActualThreat extends DefaultNamedEntity {
+public class ActualThreat extends DefaultEntity {
 
     @NotNull
     @JoinColumn(name = "THREAT_ID", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @InstanceName
     private Threat threat;
 
     @JoinTable(name = "GWF_ACTUAL_THREAT_SCEN_LINK",

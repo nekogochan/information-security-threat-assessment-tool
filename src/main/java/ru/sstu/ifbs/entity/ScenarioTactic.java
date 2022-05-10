@@ -15,12 +15,13 @@ import java.util.List;
         @Index(name = "IDX_SCENARIOTACTIC", columnList = "THREAT_SCENARIO_ID")
 })
 @Entity(name = "gwf_ScenarioTactic")
-public class ScenarioTactic extends DefaultEntity {
+public class ScenarioTactic extends DefaultNamedEntity {
 
-    @InstanceName
     @NotNull
-    @Column(name = "VALUE_", nullable = false)
-    private String value;
+    @JoinColumn(name = "VALUE_ID", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @InstanceName
+    private Tactic value;
 
     @Composition
     @OneToMany(mappedBy = "tactic")
@@ -29,6 +30,14 @@ public class ScenarioTactic extends DefaultEntity {
     @JoinColumn(name = "THREAT_SCENARIO_ID", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private ThreatScenario threatScenario;
+
+    public void setValue(Tactic value) {
+        this.value = value;
+    }
+
+    public Tactic getValue() {
+        return value;
+    }
 
     public ThreatScenario getThreatScenario() {
         return threatScenario;
@@ -46,11 +55,4 @@ public class ScenarioTactic extends DefaultEntity {
         this.techniques = techniques;
     }
 
-    public Tactic getValue() {
-        return value == null ? null : Tactic.fromId(value);
-    }
-
-    public void setValue(Tactic value) {
-        this.value = value == null ? null : value.getId();
-    }
 }

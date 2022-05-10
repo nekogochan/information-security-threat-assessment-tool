@@ -59,8 +59,8 @@ public class User implements JmixUserDetails, HasTimeZone {
     protected String timeZoneId;
 
     @Transient
-
     protected Collection<? extends GrantedAuthority> authorities;
+
     @JoinColumn(name = "GROUP_ID")
     @ManyToOne(fetch = FetchType.LAZY)
     private Group group;
