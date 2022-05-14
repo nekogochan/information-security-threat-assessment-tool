@@ -6,7 +6,6 @@ import io.jmix.ui.component.Button;
 import io.jmix.ui.component.HBoxLayout;
 import io.jmix.ui.component.PopupButton;
 import io.jmix.ui.model.CollectionContainer;
-import io.jmix.ui.model.CollectionPropertyContainer;
 import io.jmix.ui.model.DataContext;
 import io.jmix.ui.model.InstanceContainer;
 import io.jmix.ui.screen.*;

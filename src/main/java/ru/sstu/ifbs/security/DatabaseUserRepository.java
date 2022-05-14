@@ -1,10 +1,10 @@
 package ru.sstu.ifbs.security;
 
-import ru.sstu.ifbs.entity.User;
 import io.jmix.securitydata.user.AbstractDatabaseUserRepository;
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
+import ru.sstu.ifbs.entity.User;
 
 import java.util.Collection;
 

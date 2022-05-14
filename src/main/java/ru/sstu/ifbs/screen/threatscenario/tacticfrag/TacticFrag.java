@@ -16,7 +16,10 @@ import io.jmix.ui.screen.UiDescriptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import ru.sstu.ifbs.backoffice.collectors.VBoxCollector;
-import ru.sstu.ifbs.entity.*;
+import ru.sstu.ifbs.entity.ScenarioTactic;
+import ru.sstu.ifbs.entity.ScenarioTechnique;
+import ru.sstu.ifbs.entity.Tactic;
+import ru.sstu.ifbs.entity.Technique;
 import ru.sstu.ifbs.screen.threatscenario.tacticfrag.techniquefrag.TechniqueFrag;
 
 import static java.util.Comparator.comparing;

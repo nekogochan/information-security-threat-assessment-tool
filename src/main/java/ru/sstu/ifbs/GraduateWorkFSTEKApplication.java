@@ -1,8 +1,6 @@
 package ru.sstu.ifbs;
 
 import com.google.common.base.Strings;
-import io.jmix.core.DataManager;
-import io.jmix.core.annotation.MessageSourceBasenames;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
