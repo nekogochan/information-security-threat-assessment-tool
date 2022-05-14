@@ -1,8 +1,0 @@
-@import "gwf-defaults";
-@import "addons";
-@import "gwf";
-
-.gwf {
-  @include addons;
-  @include gwf;
-}

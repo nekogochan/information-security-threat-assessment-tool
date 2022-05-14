@@ -15,6 +15,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -35,7 +36,7 @@ public class ThreatScenario extends DefaultNamedEntity {
     @OnDelete(DeletePolicy.CASCADE)
     @Composition
     @OneToMany(mappedBy = "threatScenario")
-    private List<ScenarioTactic> tactics;
+    private List<ScenarioTactic> tactics = new ArrayList<>();
 
     public List<ScenarioTactic> getTactics() {
         return tactics;

@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 
 @JmixEntity
@@ -17,7 +18,7 @@ public class Tactic extends DefaultNamedEntity {
     private String code;
 
     @OneToMany(mappedBy = "tactic")
-    private List<Technique> techniques;
+    private List<Technique> techniques = new ArrayList<>();
 
     public List<Technique> getTechniques() {
         return techniques;

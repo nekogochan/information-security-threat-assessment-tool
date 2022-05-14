@@ -1,6 +1,7 @@
 package ru.sstu.ifbs;
 
 import com.google.common.base.Strings;
+import io.jmix.core.DataManager;
 import io.jmix.core.annotation.MessageSourceBasenames;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +18,6 @@ import org.springframework.core.env.Environment;
 import javax.sql.DataSource;
 
 @SpringBootApplication
-@MessageSourceBasenames({
-        "ru/sstu/ifbs/tactics_messages",
-        "ru/sstu/ifbs/techniques_messages",
-        "ru/sstu/ifbs/messages"
-})
 public class GraduateWorkFSTEKApplication {
 
     @Autowired
@@ -51,5 +47,9 @@ public class GraduateWorkFSTEKApplication {
                 + "http://localhost:"
                 + environment.getProperty("local.server.port")
                 + Strings.nullToEmpty(environment.getProperty("server.servlet.context-path")));
+    }
+
+    @EventListener
+    public void onApplicationStarted(ApplicationStartedEvent event) {
     }
 }

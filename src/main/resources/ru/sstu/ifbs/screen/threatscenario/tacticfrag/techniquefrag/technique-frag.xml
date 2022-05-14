@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <fragment xmlns="http://jmix.io/schema/ui/fragment">
+    <data>
+        <instance id="scenarioTechniqueDc" class="ru.sstu.ifbs.entity.ScenarioTechnique">
+            <fetchPlan extends="_local">
+                <property name="value" fetchPlan="_local"/>
+            </fetchPlan>
+        </instance>
+    </data>
     <layout>
+        <hbox stylename="technique-box">
+            <label id="header"/>
+            <popupView icon="ANGLE_DOWN">
+                <button id="deleteBtn" caption="msg://actions.Remove" icon="MINUS"/>
+                <label id="description"/>
+            </popupView>
+        </hbox>
     </layout>
 </fragment>

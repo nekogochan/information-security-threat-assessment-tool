@@ -12,6 +12,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -34,7 +35,7 @@ public class ActualThreat extends DefaultEntity {
             joinColumns = @JoinColumn(name = "ACTUAL_THREAT_ID", referencedColumnName = "ID"),
             inverseJoinColumns = @JoinColumn(name = "THREAT_SCENARIO_ID", referencedColumnName = "ID"))
     @ManyToMany
-    private List<ThreatScenario> scenarios;
+    private List<ThreatScenario> scenarios = new ArrayList<>();
 
     @JoinColumn(name = "PROJECT_ID", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

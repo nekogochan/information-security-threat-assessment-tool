@@ -2,15 +2,23 @@
 <window xmlns="http://jmix.io/schema/ui/window"
         caption="msg://threatScenarioEdit.caption">
     <data>
-        <instance id="threatScenarioDc"
-                  class="ru.sstu.ifbs.entity.ThreatScenario">
+        <instance id="threatScenarioDc" class="ru.sstu.ifbs.entity.ThreatScenario">
             <fetchPlan extends="_base">
                 <property name="threat" fetchPlan="_base"/>
-                <property name="tactics" fetchPlan="_base"/>
+                <property name="tactics" fetchPlan="_local">
+                    <property name="value" fetchPlan="_local">
+                        <property name="techniques" fetchPlan="_local"/>
+                    </property>
+                    <property name="techniques" fetchPlan="_base"/>
+                </property>
             </fetchPlan>
             <loader/>
-            <collection id="tacticsDc" property="tactics"/>
         </instance>
+        <collection id="tacticsDc" class="ru.sstu.ifbs.entity.Tactic">
+            <fetchPlan extends="_local">
+                <property name="techniques" fetchPlan="_local"/>
+            </fetchPlan>
+        </collection>
     </data>
     <facets>
         <dataLoadCoordinator auto="true"/>
@@ -32,7 +40,7 @@
             <buttonsPanel>
                 <popupButton id="addTacticBtn" caption="addTacticBtn.caption" icon="ADD_ACTION"/>
             </buttonsPanel>
-            <hbox id="tacticsContainer"/>
+            <hbox id="tacticsBox"/>
         </scrollBox>
         <hbox id="editActions" spacing="true">
             <button id="commitAndCloseBtn" action="windowCommitAndClose"/>

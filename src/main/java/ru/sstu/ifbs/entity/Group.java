@@ -11,6 +11,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -21,7 +22,7 @@ import java.util.UUID;
 public class Group extends DefaultNamedEntity {
 
     @OneToMany(mappedBy = "group")
-    private List<User> users;
+    private List<User> users = new ArrayList<>();
 
     public List<User> getUsers() {
         return users;

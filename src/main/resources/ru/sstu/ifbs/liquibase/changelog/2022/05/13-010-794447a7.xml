@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1" author="gwf">
+        <createTable tableName="GWF_DEFAULT_ENTITY">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_GWF_DEFAULT_ENTITY"/>
+            </column>
+            <column name="DTYPE" type="VARCHAR(31)"/>
+            <column name="CREATED_BY" type="VARCHAR(255)"/>
+            <column name="CREATED_DATE" type="DATETIME"/>
+            <column name="LAST_MODIFIED_BY" type="VARCHAR(255)"/>
+            <column name="LAST_MODIFIED_DATE" type="DATETIME"/>
+            <column name="DELETED_BY" type="VARCHAR(255)"/>
+            <column name="DELETED_DATE" type="DATETIME"/>
+            <column name="THREAT_ID" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PROJECT_ID" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NAME" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="CLOB">
+                <constraints nullable="false"/>
+            </column>
+            <column name="GROUP_ID" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VALUE_ID" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="THREAT_SCENARIO_ID" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TYPE_" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LEVEL_" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TACTIC_ID" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CODE" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="2" author="gwf">
+        <addColumn tableName="GWF_SCENARIO_TACTIC">
+            <column name="VALUE_ID" type="UUID"/>
+        </addColumn>
+
+        <addNotNullConstraint columnName="VALUE_ID" tableName="GWF_SCENARIO_TACTIC"/>
+    </changeSet>
+    <changeSet id="3" author="gwf">
+        <addColumn tableName="GWF_SCENARIO_TECHNIQUE">
+            <column name="VALUE_ID" type="UUID"/>
+        </addColumn>
+
+        <addNotNullConstraint columnName="VALUE_ID" tableName="GWF_SCENARIO_TECHNIQUE"/>
+    </changeSet>
+    <changeSet id="4" author="gwf">
+        <createIndex indexName="IDX_TECHNIQUE_TACTIC_ID" tableName="GWF_DEFAULT_ENTITY">
+            <column name="TACTIC_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="TACTIC_ID" baseTableName="GWF_DEFAULT_ENTITY"
+                                 constraintName="FK_GWFDEFAULTENTITY_ON_TACTIC" referencedColumnNames="ID"
+                                 referencedTableName="GWF_SCENARIO_TACTIC"/>
+
+        <addForeignKeyConstraint baseColumnNames="TACTIC_ID" baseTableName="GWF_DEFAULT_ENTITY"
+                                 constraintName="FK_GWFDEFAULTENTITY_ON_TACTIC_SPDZIN" referencedColumnNames="ID"
+                                 referencedTableName="GWF_DEFAULT_ENTITY"/>
+    </changeSet>
+    <changeSet id="5" author="gwf">
+        <createIndex indexName="IDX_UC_GWF_DEFAULT_ENTITY_CODE" tableName="GWF_DEFAULT_ENTITY" unique="true">
+            <column name="CODE"/>
+            <column name="DELETED_DATE"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="6" author="gwf">
+        <createIndex indexName="IDX_UC_GWF_DEFAULT_ENTITY_NAME" tableName="GWF_DEFAULT_ENTITY" unique="true">
+            <column name="NAME"/>
+            <column name="DELETED_DATE"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="7" author="gwf">
+        <addForeignKeyConstraint baseColumnNames="PROJECT_ID" baseTableName="GWF_DEFAULT_ENTITY"
+                                 constraintName="FK_GWFDEFAULTENTITY_ON_PROJECT" referencedColumnNames="ID"
+                                 referencedTableName="GWF_PROJECT"/>
+    </changeSet>
+    <changeSet id="8" author="gwf">
+        <addForeignKeyConstraint baseColumnNames="THREAT_ID" baseTableName="GWF_DEFAULT_ENTITY"
+                                 constraintName="FK_GWFDEFAULTENTITY_ON_THREAT" referencedColumnNames="ID"
+                                 referencedTableName="GWF_THREAT"/>
+    </changeSet>
+    <changeSet id="9" author="gwf">
+        <addForeignKeyConstraint baseColumnNames="THREAT_SCENARIO_ID" baseTableName="GWF_DEFAULT_ENTITY"
+                                 constraintName="FK_GWFDEFAULTE_ON_THREATSCENA" referencedColumnNames="ID"
+                                 referencedTableName="GWF_THREAT_SCENARIO"/>
+    </changeSet>
+    <changeSet id="10" author="gwf">
+        <addForeignKeyConstraint baseColumnNames="VALUE_ID" baseTableName="GWF_SCENARIO_TACTIC"
+                                 constraintName="FK_GWFSCENARIOTACTIC_ON_VALUE" referencedColumnNames="ID"
+                                 referencedTableName="GWF_DEFAULT_ENTITY"/>
+    </changeSet>
+    <changeSet id="11" author="gwf">
+        <addForeignKeyConstraint baseColumnNames="VALUE_ID" baseTableName="GWF_SCENARIO_TECHNIQUE"
+                                 constraintName="FK_GWFSCENARIOTECHNIQ_ON_VALUE" referencedColumnNames="ID"
+                                 referencedTableName="GWF_DEFAULT_ENTITY"/>
+    </changeSet>
+    <changeSet id="12" author="gwf">
+        <addForeignKeyConstraint baseColumnNames="GROUP_ID" baseTableName="GWF_DEFAULT_ENTITY"
+                                 constraintName="FK_GWF_DEFAULT_ENTITY_ON_GROUP" referencedColumnNames="ID"
+                                 referencedTableName="GWF_GROUP"/>
+    </changeSet>
+    <changeSet id="13" author="gwf">
+        <addForeignKeyConstraint baseColumnNames="VALUE_ID" baseTableName="GWF_DEFAULT_ENTITY"
+                                 constraintName="FK_GWF_DEFAULT_ENTITY_ON_VALUE" referencedColumnNames="ID"
+                                 referencedTableName="GWF_DEFAULT_ENTITY"/>
+    </changeSet>
+    <changeSet id="14" author="gwf">
+        <dropColumn columnName="CREATED_BY" tableName="GWF_ACTUAL_THREAT"/>
+
+        <dropColumn columnName="CREATED_DATE" tableName="GWF_ACTUAL_THREAT"/>
+
+        <dropColumn columnName="DELETED_BY" tableName="GWF_ACTUAL_THREAT"/>
+
+        <dropColumn columnName="DELETED_DATE" tableName="GWF_ACTUAL_THREAT"/>
+
+        <dropColumn columnName="LAST_MODIFIED_BY" tableName="GWF_ACTUAL_THREAT"/>
+
+        <dropColumn columnName="LAST_MODIFIED_DATE" tableName="GWF_ACTUAL_THREAT"/>
+
+        <dropColumn columnName="VERSION" tableName="GWF_ACTUAL_THREAT"/>
+    </changeSet>
+    <changeSet id="15" author="gwf">
+        <dropColumn columnName="CREATED_BY" tableName="GWF_GROUP"/>
+
+        <dropColumn columnName="CREATED_DATE" tableName="GWF_GROUP"/>
+
+        <dropColumn columnName="DELETED_BY" tableName="GWF_GROUP"/>
+
+        <dropColumn columnName="DELETED_DATE" tableName="GWF_GROUP"/>
+
+        <dropColumn columnName="DESCRIPTION" tableName="GWF_GROUP"/>
+
+        <dropColumn columnName="LAST_MODIFIED_BY" tableName="GWF_GROUP"/>
+
+        <dropColumn columnName="LAST_MODIFIED_DATE" tableName="GWF_GROUP"/>
+    </changeSet>
+    <changeSet id="16" author="gwf">
+        <dropColumn columnName="CREATED_BY" tableName="GWF_IMPACT_SOURCE"/>
+
+        <dropColumn columnName="CREATED_DATE" tableName="GWF_IMPACT_SOURCE"/>
+
+        <dropColumn columnName="DELETED_BY" tableName="GWF_IMPACT_SOURCE"/>
+
+        <dropColumn columnName="DELETED_DATE" tableName="GWF_IMPACT_SOURCE"/>
+
+        <dropColumn columnName="DESCRIPTION" tableName="GWF_IMPACT_SOURCE"/>
+
+        <dropColumn columnName="LAST_MODIFIED_BY" tableName="GWF_IMPACT_SOURCE"/>
+
+        <dropColumn columnName="LAST_MODIFIED_DATE" tableName="GWF_IMPACT_SOURCE"/>
+
+        <dropColumn columnName="NAME" tableName="GWF_IMPACT_SOURCE"/>
+
+        <dropColumn columnName="VERSION" tableName="GWF_IMPACT_SOURCE"/>
+    </changeSet>
+    <changeSet id="17" author="gwf">
+        <dropColumn columnName="CREATED_BY" tableName="GWF_IMPACT_TARGET"/>
+
+        <dropColumn columnName="CREATED_DATE" tableName="GWF_IMPACT_TARGET"/>
+
+        <dropColumn columnName="DELETED_BY" tableName="GWF_IMPACT_TARGET"/>
+
+        <dropColumn columnName="DELETED_DATE" tableName="GWF_IMPACT_TARGET"/>
+
+        <dropColumn columnName="DESCRIPTION" tableName="GWF_IMPACT_TARGET"/>
+
+        <dropColumn columnName="LAST_MODIFIED_BY" tableName="GWF_IMPACT_TARGET"/>
+
+        <dropColumn columnName="LAST_MODIFIED_DATE" tableName="GWF_IMPACT_TARGET"/>
+
+        <dropColumn columnName="NAME" tableName="GWF_IMPACT_TARGET"/>
+
+        <dropColumn columnName="VERSION" tableName="GWF_IMPACT_TARGET"/>
+    </changeSet>
+    <changeSet id="18" author="gwf">
+        <dropColumn columnName="CREATED_BY" tableName="GWF_PROJECT"/>
+
+        <dropColumn columnName="CREATED_DATE" tableName="GWF_PROJECT"/>
+
+        <dropColumn columnName="DELETED_BY" tableName="GWF_PROJECT"/>
+
+        <dropColumn columnName="DELETED_DATE" tableName="GWF_PROJECT"/>
+
+        <dropColumn columnName="DESCRIPTION" tableName="GWF_PROJECT"/>
+
+        <dropColumn columnName="LAST_MODIFIED_BY" tableName="GWF_PROJECT"/>
+
+        <dropColumn columnName="LAST_MODIFIED_DATE" tableName="GWF_PROJECT"/>
+
+        <dropColumn columnName="NAME" tableName="GWF_PROJECT"/>
+
+        <dropColumn columnName="VERSION" tableName="GWF_PROJECT"/>
+    </changeSet>
+    <changeSet id="19" author="gwf">
+        <dropColumn columnName="CREATED_BY" tableName="GWF_THREAT"/>
+
+        <dropColumn columnName="CREATED_DATE" tableName="GWF_THREAT"/>
+
+        <dropColumn columnName="DELETED_BY" tableName="GWF_THREAT"/>
+
+        <dropColumn columnName="DELETED_DATE" tableName="GWF_THREAT"/>
+
+        <dropColumn columnName="DESCRIPTION" tableName="GWF_THREAT"/>
+
+        <dropColumn columnName="LAST_MODIFIED_BY" tableName="GWF_THREAT"/>
+
+        <dropColumn columnName="LAST_MODIFIED_DATE" tableName="GWF_THREAT"/>
+
+        <dropColumn columnName="NAME" tableName="GWF_THREAT"/>
+
+        <dropColumn columnName="VERSION" tableName="GWF_THREAT"/>
+    </changeSet>
+    <changeSet id="20" author="gwf">
+        <dropColumn columnName="CREATED_BY" tableName="GWF_THREAT_SCENARIO"/>
+
+        <dropColumn columnName="CREATED_DATE" tableName="GWF_THREAT_SCENARIO"/>
+
+        <dropColumn columnName="DELETED_BY" tableName="GWF_THREAT_SCENARIO"/>
+
+        <dropColumn columnName="DELETED_DATE" tableName="GWF_THREAT_SCENARIO"/>
+
+        <dropColumn columnName="DESCRIPTION" tableName="GWF_THREAT_SCENARIO"/>
+
+        <dropColumn columnName="LAST_MODIFIED_BY" tableName="GWF_THREAT_SCENARIO"/>
+
+        <dropColumn columnName="LAST_MODIFIED_DATE" tableName="GWF_THREAT_SCENARIO"/>
+
+        <dropColumn columnName="NAME" tableName="GWF_THREAT_SCENARIO"/>
+
+        <dropColumn columnName="VERSION" tableName="GWF_THREAT_SCENARIO"/>
+    </changeSet>
+    <changeSet id="21" author="gwf">
+        <dropColumn columnName="VALUE_" tableName="GWF_SCENARIO_TACTIC"/>
+    </changeSet>
+    <changeSet id="22" author="gwf">
+        <dropColumn columnName="VALUE_" tableName="GWF_SCENARIO_TECHNIQUE"/>
+    </changeSet>
+</databaseChangeLog>

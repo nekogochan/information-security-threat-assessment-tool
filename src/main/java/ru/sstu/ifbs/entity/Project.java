@@ -15,6 +15,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -30,13 +31,13 @@ public class Project extends DefaultNamedEntity {
             joinColumns = @JoinColumn(name = "PROJECT_ID", referencedColumnName = "ID"),
             inverseJoinColumns = @JoinColumn(name = "IMPACT_SOURCE_ID", referencedColumnName = "ID"))
     @ManyToMany
-    private List<ImpactSource> impactSources;
+    private List<ImpactSource> impactSources = new ArrayList<>();
 
     @JoinTable(name = "GWF_PROJECT_IMPACT_TARGET_LINK",
             joinColumns = @JoinColumn(name = "PROJECT_ID", referencedColumnName = "ID"),
             inverseJoinColumns = @JoinColumn(name = "IMPACT_TARGET_ID", referencedColumnName = "ID"))
     @ManyToMany
-    private List<ImpactTarget> impactTargets;
+    private List<ImpactTarget> impactTargets = new ArrayList<>();
 
     @NotNull
     @JoinColumn(name = "GROUP_ID", nullable = false)
@@ -46,7 +47,7 @@ public class Project extends DefaultNamedEntity {
     @OnDelete(DeletePolicy.CASCADE)
     @Composition
     @OneToMany(mappedBy = "project")
-    private List<ActualThreat> actualThreats;
+    private List<ActualThreat> actualThreats = new ArrayList<>();
 
     public List<ImpactSource> getImpactSources() {
         return impactSources;
