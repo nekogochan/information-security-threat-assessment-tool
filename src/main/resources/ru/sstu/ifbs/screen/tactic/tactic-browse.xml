@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        xmlns:c="http://jmix.io/schema/ui/jpql-condition"
+        caption="msg://tacticBrowse.caption"
+        focusComponent="tacticsTable">
+    <data readOnly="true">
+        <collection id="tacticsDc"
+                    class="ru.sstu.ifbs.entity.Tactic">
+            <fetchPlan extends="_base">
+                <property name="techniques" fetchPlan="_instance_name"/>
+            </fetchPlan>
+            <loader id="tacticsDl">
+                <query>
+                    <![CDATA[select e from gwf_Tactic e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <screenSettings id="settingsFacet" auto="true"/>
+    </facets>
+    <actions>
+        <action id="lookupSelectAction"
+                caption="msg:///actions.Select"
+                icon="LOOKUP_OK"
+                primary="true"
+                shortcut="${COMMIT_SHORTCUT}"/>
+        <action id="lookupCancelAction"
+                caption="msg:///actions.Cancel"
+                icon="LOOKUP_CANCEL"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="tacticsTable" spacing="true">
+        <filter id="filter"
+                dataLoader="tacticsDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="tacticsTable"
+                    width="100%"
+                    dataContainer="tacticsDc"
+                    multiselect="true">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="name"/>
+                <column id="description"/>
+                <column id="code"/>
+            </columns>
+            <simplePagination/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="tacticsTable.create"/>
+                <button id="editBtn" action="tacticsTable.edit"/>
+                <button id="removeBtn" action="tacticsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

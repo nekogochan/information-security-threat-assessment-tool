@@ -13,6 +13,8 @@
               caption="msg://ru.sstu.ifbs.screen.actualthreat/actualThreatBrowse.menu"/>
         <item screen="gwf_ThreatScenario.browse"
               caption="msg://ru.sstu.ifbs.screen.threatscenario/threatScenarioBrowse.menu"/>
+        <item screen="gwf_Technique.browse" caption="msg://ru.sstu.ifbs.screen.technique/techniqueBrowse.menu"/>
+        <item screen="gwf_Tactic.browse" caption="msg://ru.sstu.ifbs.screen.tactic/tacticBrowse.menu"/>
     </menu>
 
 </menu-config>
