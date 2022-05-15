@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://jmix.io/schema/ui/window"
-        caption="msg://tacticEdit.caption"
+        caption="msg://impactSourceEdit.caption"
         focusComponent="form">
     <data>
-        <instance id="tacticDc"
-                  class="ru.sstu.ifbs.entity.Tactic">
-            <fetchPlan extends="_base">
-                <property name="techniques" fetchPlan="_local"/>
-            </fetchPlan>
+        <instance id="impactSourceDc"
+                  class="ru.sstu.ifbs.entity.ImpactSource">
+            <fetchPlan extends="_base"/>
             <loader/>
         </instance>
     </data>
@@ -28,20 +26,14 @@
                 width="800"/>
     <layout spacing="true" expand="scrollBox">
         <scrollBox id="scrollBox" spacing="true">
-            <vbox expand="techniquesTable">
-                <form id="form" dataContainer="tacticDc">
-                    <column width="350px">
-                        <textField id="nameField" property="name"/>
-                        <textArea id="descriptionField" property="description" rows="5"/>
-                        <textField id="codeField" property="code"/>
-                    </column>
-                </form>
-                <table id="techniquesTable">
-                    <columns>
-                        <column id=""></column>
-                    </columns>
-                </table>
-            </vbox>
+            <form id="form" dataContainer="impactSourceDc">
+                <column width="350px">
+                    <textField id="nameField" property="name"/>
+                    <textArea id="descriptionField" property="description" rows="5"/>
+                    <comboBox id="typeField" property="type"/>
+                    <textField id="levelField" property="level"/>
+                </column>
+            </form>
         </scrollBox>
         <hbox id="editActions" spacing="true">
             <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
