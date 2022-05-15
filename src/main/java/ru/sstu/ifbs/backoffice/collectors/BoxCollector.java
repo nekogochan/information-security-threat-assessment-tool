@@ -5,7 +5,6 @@ import io.jmix.ui.component.BoxLayout;
 import io.jmix.ui.component.Component;
 import io.jmix.ui.component.ComponentContainer;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 
 import java.util.Collections;
 import java.util.Set;
@@ -15,9 +14,7 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collector;
 
-@org.springframework.stereotype.Component
-@Scope("prototype")
-public class BoxCollector<B extends BoxLayout> implements Collector<Component, B, B> {
+public abstract class BoxCollector<B extends BoxLayout> implements Collector<Component, B, B> {
 
     @Autowired
     private UiComponents uiComponents;

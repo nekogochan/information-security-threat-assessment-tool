@@ -1,0 +1,8 @@
+@import "gpt-defaults";
+@import "addons";
+@import "gpt";
+
+.gpt {
+  @include addons;
+  @include gpt;
+}
