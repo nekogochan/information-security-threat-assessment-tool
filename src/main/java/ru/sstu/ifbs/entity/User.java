@@ -21,7 +21,6 @@ import java.util.UUID;
 @Table(name = "GWF_USER", indexes = {
         @Index(name = "IDX_GWF_USER_ON_USERNAME", columnList = "USERNAME", unique = true),
         @Index(name = "IDX_USER_GROUP_ID", columnList = "GROUP_ID"),
-        @Index(name = "IDX_USER_GROUP_ID", columnList = "GROUP_ID")
 })
 public class User implements JmixUserDetails, HasTimeZone {
 

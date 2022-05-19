@@ -10,6 +10,9 @@ import io.jmix.ui.screen.UiDescriptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.sstu.ifbs.entity.ScenarioTechnique;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static java.util.Objects.requireNonNull;
 
 @UiController("gwf_TechniqueFrag")
@@ -22,7 +25,7 @@ public class TechniqueFrag extends ScreenFragment {
     @Autowired
     private Label<String> header;
     @Autowired
-    private Label description;
+    private Label<String> description;
 
     public void init(ScenarioTechnique technique, Runnable onDelete) {
         requireNonNull(technique);

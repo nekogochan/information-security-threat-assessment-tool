@@ -4,12 +4,12 @@ import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.Lob;
+import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotNull;
 
 @JmixEntity
-@Entity(name = "gwf_DefaultNamedEntity")
+@MappedSuperclass
 public class DefaultNamedEntity extends DefaultEntity {
 
     @InstanceName

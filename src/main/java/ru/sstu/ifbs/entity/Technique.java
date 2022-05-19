@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @JmixEntity
+@Table(name = "GWF_TECHNIQUE")
 @Entity(name = "gwf_Technique")
 public class Technique extends DefaultNamedEntity {
     @Column(name = "CODE", nullable = false, unique = true)

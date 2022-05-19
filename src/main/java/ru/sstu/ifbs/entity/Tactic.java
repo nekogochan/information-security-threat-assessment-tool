@@ -5,11 +5,13 @@ import io.jmix.core.metamodel.annotation.JmixEntity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
 @JmixEntity
+@Table(name = "GWF_TACTIC")
 @Entity(name = "gwf_Tactic")
 public class Tactic extends DefaultNamedEntity {
 

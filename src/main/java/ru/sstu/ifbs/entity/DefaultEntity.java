@@ -3,6 +3,7 @@ package ru.sstu.ifbs.entity;
 import io.jmix.core.annotation.DeletedBy;
 import io.jmix.core.annotation.DeletedDate;
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
+import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -14,12 +15,10 @@ import java.util.Date;
 import java.util.UUID;
 
 @JmixEntity
-@Table(name = "GWF_DEFAULT_ENTITY", indexes = {
-        @Index(name = "IDX_TECHNIQUE_TACTIC_ID", columnList = "TACTIC_ID")
-})
-@Entity(name = "gwf_DefaultEntity")
+@MappedSuperclass
 public class DefaultEntity {
 
+    @InstanceName
     @JmixGeneratedValue
     @Column(name = "ID", nullable = false)
     @Id

@@ -12,8 +12,7 @@ import java.util.List;
 
 @JmixEntity
 @Table(name = "GWF_THREAT_SCENARIO", indexes = {
-        @Index(name = "IDX_THREATSCENARIO_THREAT_ID", columnList = "THREAT_ID"),
-        @Index(name = "IDX_THREATSCENARIO_PROJECT_ID", columnList = "PROJECT_ID")
+        @Index(name = "IDX_THREATSCENARIO_THREAT_ID", columnList = "THREAT_ID")
 })
 @Entity(name = "gwf_ThreatScenario")
 public class ThreatScenario extends DefaultNamedEntity {
