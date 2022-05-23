@@ -4,7 +4,7 @@
         focusComponent="form">
     <data>
         <instance id="groupDc"
-                  class="ru.sstu.ifbs.entity.Group">
+                  class="ru.sstu.ifbs.entity.project.Group">
             <fetchPlan extends="_base">
                 <property name="users" fetchPlan="_base"/>
             </fetchPlan>

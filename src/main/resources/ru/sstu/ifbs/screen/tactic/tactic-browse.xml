@@ -5,7 +5,7 @@
         focusComponent="tacticsTable">
     <data readOnly="true">
         <collection id="tacticsDc"
-                    class="ru.sstu.ifbs.entity.Tactic">
+                    class="ru.sstu.ifbs.entity.storage.tactic.Tactic">
             <fetchPlan extends="_base">
                 <property name="techniques" fetchPlan="_base"/>
             </fetchPlan>

@@ -1,7 +1,10 @@
-package ru.sstu.ifbs.entity;
+package ru.sstu.ifbs.entity.project;
 
 import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
+import ru.sstu.ifbs.entity.DefaultEntity;
+import ru.sstu.ifbs.entity.storage.Threat;
+import ru.sstu.ifbs.entity.storage.scenario.ThreatScenario;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

@@ -1,9 +1,12 @@
-package ru.sstu.ifbs.entity;
+package ru.sstu.ifbs.entity.project;
 
 import io.jmix.core.DeletePolicy;
 import io.jmix.core.entity.annotation.OnDelete;
 import io.jmix.core.metamodel.annotation.Composition;
 import io.jmix.core.metamodel.annotation.JmixEntity;
+import ru.sstu.ifbs.entity.DefaultNamedEntity;
+import ru.sstu.ifbs.entity.storage.ImpactSource;
+import ru.sstu.ifbs.entity.storage.ImpactTarget;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

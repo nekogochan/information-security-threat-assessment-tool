@@ -1,13 +1,11 @@
 package ru.sstu.ifbs.screen.threatscenario;
 
 import io.jmix.core.Messages;
-import io.jmix.core.Metadata;
 import io.jmix.ui.Fragments;
 import io.jmix.ui.Notifications;
 import io.jmix.ui.UiComponents;
 import io.jmix.ui.action.Action;
 import io.jmix.ui.component.Button;
-import io.jmix.ui.component.Component;
 import io.jmix.ui.component.HBoxLayout;
 import io.jmix.ui.component.PopupButton;
 import io.jmix.ui.model.CollectionContainer;
@@ -17,17 +15,15 @@ import io.jmix.ui.model.InstanceContainer;
 import io.jmix.ui.screen.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.sstu.ifbs.backoffice.collectors.VBoxCollector;
-import ru.sstu.ifbs.entity.ScenarioTactic;
-import ru.sstu.ifbs.entity.Tactic;
-import ru.sstu.ifbs.entity.ThreatScenario;
+import ru.sstu.ifbs.entity.storage.scenario.ScenarioTactic;
+import ru.sstu.ifbs.entity.storage.tactic.Tactic;
+import ru.sstu.ifbs.entity.storage.scenario.ThreatScenario;
 import ru.sstu.ifbs.screen.threatscenario.scenariotacticfrag.ScenarioTacticFrag;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.function.Consumer;
 
 import static io.jmix.ui.Notifications.NotificationType.WARNING;
-import static io.jmix.ui.component.Component.Alignment.MIDDLE_LEFT;
 import static io.jmix.ui.screen.StandardOutcome.CLOSE;
 import static java.util.Comparator.comparing;
 import static java.util.Objects.requireNonNull;
@@ -119,7 +115,7 @@ public class ThreatScenarioEdit extends Screen {
         threatScenarioDc.getItem()
                 .getTactics()
                 .stream()
-                .sorted(comparing(it -> it.getValue().getCode(), String.CASE_INSENSITIVE_ORDER))
+                .sorted()
                 .map(this::toTacticFrag)
                 .map(ScreenFragment::getFragment)
                 .forEach(tacticsBox::add);

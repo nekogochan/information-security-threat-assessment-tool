@@ -1,7 +1,7 @@
 package ru.sstu.ifbs.screen.impactsource;
 
 import io.jmix.ui.screen.*;
-import ru.sstu.ifbs.entity.ImpactSource;
+import ru.sstu.ifbs.entity.storage.ImpactSource;
 
 @UiController("gwf_ImpactSource.browse")
 @UiDescriptor("impact-source-browse.xml")

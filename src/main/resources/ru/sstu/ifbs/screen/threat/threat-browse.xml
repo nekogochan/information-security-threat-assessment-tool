@@ -5,7 +5,7 @@
         focusComponent="threatsTable">
     <data readOnly="true">
         <collection id="threatsDc"
-                    class="ru.sstu.ifbs.entity.Threat">
+                    class="ru.sstu.ifbs.entity.storage.Threat">
             <fetchPlan extends="_base">
                 <property name="sources" fetchPlan="_base"/>
                 <property name="targets" fetchPlan="_base"/>

@@ -5,7 +5,7 @@
         focusComponent="impactTargetsTable">
     <data readOnly="true">
         <collection id="impactTargetsDc"
-                    class="ru.sstu.ifbs.entity.ImpactTarget">
+                    class="ru.sstu.ifbs.entity.storage.ImpactTarget">
             <fetchPlan extends="_base"/>
             <loader id="impactTargetsDl">
                 <query>

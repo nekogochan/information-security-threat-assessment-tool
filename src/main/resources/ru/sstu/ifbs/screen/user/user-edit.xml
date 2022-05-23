@@ -4,7 +4,7 @@
         focusComponent="form">
     <data>
         <instance id="userDc"
-                  class="ru.sstu.ifbs.entity.User">
+                  class="ru.sstu.ifbs.entity.project.User">
             <fetchPlan extends="_base"/>
             <loader/>
         </instance>
@@ -29,7 +29,7 @@
             <column width="350px">
                 <textField id="usernameField" property="username" editable="false"/>
                 <passwordField id="passwordField"
-                               caption="msg://ru.sstu.ifbs.entity/User.password"
+                               caption="msg://ru.sstu.ifbs.entity.project/User.password"
                                required="true"
                                visible="false"/>
                 <passwordField id="confirmPasswordField"

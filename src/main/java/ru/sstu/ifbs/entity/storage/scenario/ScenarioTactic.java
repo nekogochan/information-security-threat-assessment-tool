@@ -1,8 +1,10 @@
-package ru.sstu.ifbs.entity;
+package ru.sstu.ifbs.entity.storage.scenario;
 
 import io.jmix.core.metamodel.annotation.Composition;
 import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
+import ru.sstu.ifbs.entity.DefaultEntity;
+import ru.sstu.ifbs.entity.storage.tactic.Tactic;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

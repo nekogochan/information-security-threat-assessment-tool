@@ -1,6 +1,8 @@
-package ru.sstu.ifbs.entity;
+package ru.sstu.ifbs.entity.storage;
 
 import io.jmix.core.metamodel.annotation.JmixEntity;
+import ru.sstu.ifbs.entity.DefaultNamedEntity;
+import ru.sstu.ifbs.entity.storage.scenario.ThreatScenario;
 
 import javax.persistence.*;
 import java.util.ArrayList;

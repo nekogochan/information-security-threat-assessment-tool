@@ -1,24 +1,18 @@
 package ru.sstu.ifbs.screen.threatscenario.scenariotacticfrag;
 
-import io.jmix.core.Metadata;
 import io.jmix.ui.Fragments;
 import io.jmix.ui.UiComponents;
 import io.jmix.ui.component.*;
-import io.jmix.ui.icon.JmixIcon;
-import io.jmix.ui.model.CollectionContainer;
 import io.jmix.ui.model.DataContext;
-import io.jmix.ui.model.InstanceContainer;
 import io.jmix.ui.screen.ScreenFragment;
 import io.jmix.ui.screen.Subscribe;
 import io.jmix.ui.screen.UiController;
 import io.jmix.ui.screen.UiDescriptor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import ru.sstu.ifbs.backoffice.collectors.VBoxCollector;
-import ru.sstu.ifbs.entity.ScenarioTactic;
-import ru.sstu.ifbs.entity.ScenarioTechnique;
-import ru.sstu.ifbs.entity.Tactic;
-import ru.sstu.ifbs.entity.Technique;
+import ru.sstu.ifbs.entity.storage.scenario.ScenarioTactic;
+import ru.sstu.ifbs.entity.storage.scenario.ScenarioTechnique;
+import ru.sstu.ifbs.entity.storage.tactic.Technique;
 import ru.sstu.ifbs.screen.threatscenario.scenariotacticfrag.scenariotechniquefrag.ScenarioTechniqueFrag;
 
 import static java.util.Comparator.comparing;
@@ -82,7 +76,7 @@ public class ScenarioTacticFrag extends ScreenFragment {
                         .getTechniques()
                         .stream()
                         .filter(this::notInTactic)
-                        .sorted(comparing(Technique::getCode, String.CASE_INSENSITIVE_ORDER))
+                        .sorted()
                         .map(this::techniqueToBtn)
                         .collect(vBoxCollector)
         );

@@ -4,7 +4,7 @@
         focusComponent="usersTable">
     <data readOnly="true">
         <collection id="usersDc"
-                    class="ru.sstu.ifbs.entity.User">
+                    class="ru.sstu.ifbs.entity.project.User">
             <fetchPlan extends="_base"/>
             <loader id="usersDl">
                 <query>

@@ -1,21 +1,24 @@
-package ru.sstu.ifbs.entity;
+package ru.sstu.ifbs.entity.storage.tactic;
 
 import io.jmix.core.metamodel.annotation.JmixEntity;
+import ru.sstu.ifbs.entity.DefaultNamedEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.util.ArrayList;
 import java.util.List;
 
 @JmixEntity
 @Table(name = "GWF_TACTIC")
 @Entity(name = "gwf_Tactic")
-public class Tactic extends DefaultNamedEntity {
+public class Tactic extends DefaultNamedEntity implements HasOrderedCode {
 
     @Column(name = "CODE", nullable = false, unique = true)
+    @Pattern(message = "{msg://ru.sstu.ifbs.entity.storage.tactic/Tactic.code.validation.Pattern}", regexp = "[a-zA-Z\\d]+\\.[\\d.]+")
     @NotNull
     private String code;
 

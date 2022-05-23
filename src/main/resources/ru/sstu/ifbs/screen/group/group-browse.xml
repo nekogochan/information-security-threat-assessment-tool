@@ -5,7 +5,7 @@
         focusComponent="groupsTable">
     <data readOnly="true">
         <collection id="groupsDc"
-                    class="ru.sstu.ifbs.entity.Group">
+                    class="ru.sstu.ifbs.entity.project.Group">
             <fetchPlan extends="_base">
                 <property name="users" fetchPlan="_base"/>
             </fetchPlan>

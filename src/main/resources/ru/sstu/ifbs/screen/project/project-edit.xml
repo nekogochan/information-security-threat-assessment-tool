@@ -4,7 +4,7 @@
         focusComponent="form">
     <data>
         <instance id="projectDc"
-                  class="ru.sstu.ifbs.entity.Project">
+                  class="ru.sstu.ifbs.entity.project.Project">
             <fetchPlan extends="_base">
                 <property name="impactSources" fetchPlan="_base"/>
                 <property name="impactTargets" fetchPlan="_base"/>
@@ -52,7 +52,7 @@
                         </column>
                     </form>
                 </tab>
-                <tab id="impactTargetsTab" caption="msg://ru.sstu.ifbs.entity/Project.impactTargets"
+                <tab id="impactTargetsTab" caption="msg://ru.sstu.ifbs.entity.project/Project.impactTargets"
                      spacing="true" margin="true">
                     <table id="impactTargetsTable" dataContainer="impactTargetsDc" width="100%">
                         <actions>
@@ -68,7 +68,7 @@
                         </buttonsPanel>
                     </table>
                 </tab>
-                <tab id="impactSourcesTab" caption="msg://ru.sstu.ifbs.entity/Project.impactSources"
+                <tab id="impactSourcesTab" caption="msg://ru.sstu.ifbs.entity.project/Project.impactSources"
                      spacing="true" margin="true">
                     <table id="impactSourcesTable" dataContainer="impactSourcesDc" width="100%">
                         <actions>
@@ -86,7 +86,7 @@
                         </buttonsPanel>
                     </table>
                 </tab>
-                <tab id="actualThreatsTab" caption="msg://ru.sstu.ifbs.entity/Project.actualThreats"
+                <tab id="actualThreatsTab" caption="msg://ru.sstu.ifbs.entity.project/Project.actualThreats"
                      spacing="true" margin="true">
                     <table id="actualThreatsTable" dataContainer="actualThreatsDc" width="100%">
                         <actions>

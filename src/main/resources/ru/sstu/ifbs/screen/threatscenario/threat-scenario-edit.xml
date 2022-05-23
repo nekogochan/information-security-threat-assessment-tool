@@ -2,7 +2,7 @@
 <window xmlns="http://jmix.io/schema/ui/window"
         caption="msg://threatScenarioEdit.caption">
     <data>
-        <instance id="threatScenarioDc" class="ru.sstu.ifbs.entity.ThreatScenario">
+        <instance id="threatScenarioDc" class="ru.sstu.ifbs.entity.storage.scenario.ThreatScenario">
             <fetchPlan extends="_base">
                 <property name="threat" fetchPlan="_base"/>
                 <property name="tactics" fetchPlan="_local">
@@ -13,7 +13,7 @@
                 </property>
             </fetchPlan>
         </instance>
-        <collection id="tacticsDc" class="ru.sstu.ifbs.entity.Tactic">
+        <collection id="tacticsDc" class="ru.sstu.ifbs.entity.storage.tactic.Tactic">
             <fetchPlan extends="_local">
                 <property name="techniques" fetchPlan="_local"/>
             </fetchPlan>
@@ -48,7 +48,7 @@
                         <textField property="description"/>
                     </column>
                 </form>
-                <groupBox id="groupBox" caption="msg://ru.sstu.ifbs.entity/Threat.scenarios" expand="tacticsBox">
+                <groupBox id="groupBox" caption="msg://ru.sstu.ifbs.entity.storage/Threat.scenarios" expand="tacticsBox">
                     <popupButton id="addTacticBtn" caption="msg://addTacticBtn.caption" icon="ADD_ACTION"/>
                     <hbox id="tacticsBox" spacing="true"/>
                 </groupBox>

@@ -3,7 +3,7 @@ package ru.sstu.ifbs.screen.project;
 import io.jmix.ui.model.InstanceContainer;
 import io.jmix.ui.screen.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import ru.sstu.ifbs.entity.Project;
+import ru.sstu.ifbs.entity.project.Project;
 import ru.sstu.ifbs.screen.actualthreat.ActualThreatEdit;
 
 @UiController("gwf_Project.edit")

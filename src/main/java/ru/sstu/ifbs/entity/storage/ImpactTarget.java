@@ -1,6 +1,7 @@
-package ru.sstu.ifbs.entity;
+package ru.sstu.ifbs.entity.storage;
 
 import io.jmix.core.metamodel.annotation.JmixEntity;
+import ru.sstu.ifbs.entity.DefaultNamedEntity;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;

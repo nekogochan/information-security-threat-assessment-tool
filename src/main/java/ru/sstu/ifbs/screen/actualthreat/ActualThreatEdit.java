@@ -8,13 +8,12 @@ import io.jmix.ui.model.CollectionContainer;
 import io.jmix.ui.model.InstanceContainer;
 import io.jmix.ui.screen.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import ru.sstu.ifbs.entity.ActualThreat;
+import ru.sstu.ifbs.entity.project.ActualThreat;
 import ru.sstu.ifbs.entity.DefaultEntity;
-import ru.sstu.ifbs.entity.Project;
-import ru.sstu.ifbs.entity.Threat;
+import ru.sstu.ifbs.entity.project.Project;
+import ru.sstu.ifbs.entity.storage.Threat;
 import ru.sstu.ifbs.repository.ThreatRepository;
 
-import static io.jmix.ui.Notifications.NotificationType.TRAY;
 import static io.jmix.ui.Notifications.NotificationType.WARNING;
 import static io.jmix.ui.screen.OpenMode.DIALOG;
 import static java.util.Objects.requireNonNull;

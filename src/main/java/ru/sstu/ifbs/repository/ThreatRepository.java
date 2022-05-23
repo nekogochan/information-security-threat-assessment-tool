@@ -1,7 +1,7 @@
 package ru.sstu.ifbs.repository;
 
 import org.springframework.stereotype.Component;
-import ru.sstu.ifbs.entity.Threat;
+import ru.sstu.ifbs.entity.storage.Threat;
 
 @Component(ThreatRepository.NAME)
 public class ThreatRepository extends DefaultRepository<Threat>  {

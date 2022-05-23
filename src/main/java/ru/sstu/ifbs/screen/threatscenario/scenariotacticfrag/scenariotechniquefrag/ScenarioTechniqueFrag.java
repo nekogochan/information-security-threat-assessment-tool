@@ -3,14 +3,12 @@ package ru.sstu.ifbs.screen.threatscenario.scenariotacticfrag.scenariotechniquef
 import io.jmix.ui.component.Button;
 import io.jmix.ui.component.HBoxLayout;
 import io.jmix.ui.component.Label;
-import io.jmix.ui.component.PopupView;
-import io.jmix.ui.model.InstanceContainer;
 import io.jmix.ui.screen.ScreenFragment;
 import io.jmix.ui.screen.Subscribe;
 import io.jmix.ui.screen.UiController;
 import io.jmix.ui.screen.UiDescriptor;
 import org.springframework.beans.factory.annotation.Autowired;
-import ru.sstu.ifbs.entity.ScenarioTechnique;
+import ru.sstu.ifbs.entity.storage.scenario.ScenarioTechnique;
 
 import static java.util.Objects.requireNonNull;
 

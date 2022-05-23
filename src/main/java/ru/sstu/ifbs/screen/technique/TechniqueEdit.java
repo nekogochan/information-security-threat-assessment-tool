@@ -7,7 +7,7 @@ import io.jmix.ui.component.Validatable;
 import io.jmix.ui.model.InstanceContainer;
 import io.jmix.ui.screen.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import ru.sstu.ifbs.entity.Technique;
+import ru.sstu.ifbs.entity.storage.tactic.Technique;
 
 import java.util.List;
 import java.util.function.Consumer;

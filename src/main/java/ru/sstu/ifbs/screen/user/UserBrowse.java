@@ -5,7 +5,7 @@ import io.jmix.ui.screen.LookupComponent;
 import io.jmix.ui.screen.StandardLookup;
 import io.jmix.ui.screen.UiController;
 import io.jmix.ui.screen.UiDescriptor;
-import ru.sstu.ifbs.entity.User;
+import ru.sstu.ifbs.entity.project.User;
 
 @UiController("gwf_User.browse")
 @UiDescriptor("user-browse.xml")

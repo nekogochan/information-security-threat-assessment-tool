@@ -4,7 +4,7 @@
         focusComponent="form">
     <data>
         <instance id="techniqueDc"
-                  class="ru.sstu.ifbs.entity.Technique">
+                  class="ru.sstu.ifbs.entity.storage.tactic.Technique">
             <fetchPlan extends="_base"/>
         </instance>
     </data>

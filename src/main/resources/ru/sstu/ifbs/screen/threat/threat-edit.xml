@@ -4,7 +4,7 @@
         focusComponent="form">
     <data>
         <instance id="threatDc"
-                  class="ru.sstu.ifbs.entity.Threat">
+                  class="ru.sstu.ifbs.entity.storage.Threat">
             <fetchPlan extends="_base">
                 <property name="sources" fetchPlan="_base"/>
                 <property name="targets" fetchPlan="_base"/>
@@ -49,7 +49,7 @@
                 </column>
             </form>
             <tabSheet id="tablesTabSheet">
-                <tab id="sourcesTab" margin="true" caption="msg://ru.sstu.ifbs.entity/Threat.sources">
+                <tab id="sourcesTab" margin="true" caption="msg://ru.sstu.ifbs.entity.storage/Threat.sources">
                     <table id="sourcesTable" dataContainer="sourcesDc" width="100%">
                         <actions>
                             <action id="add" type="add"/>
@@ -67,7 +67,7 @@
                         </buttonsPanel>
                     </table>
                 </tab>
-                <tab id="targetsTab" margin="true" caption="msg://ru.sstu.ifbs.entity/Threat.targets">
+                <tab id="targetsTab" margin="true" caption="msg://ru.sstu.ifbs.entity.storage/Threat.targets">
                     <table id="targetsTable" dataContainer="targetsDc" width="100%">
                         <actions>
                             <action id="add" type="add"/>
@@ -83,7 +83,7 @@
                         </buttonsPanel>
                     </table>
                 </tab>
-                <tab id="scenariosTab" margin="true" caption="msg://ru.sstu.ifbs.entity/Threat.scenarios">
+                <tab id="scenariosTab" margin="true" caption="msg://ru.sstu.ifbs.entity.storage/Threat.scenarios">
                     <table id="scenariosTable" dataContainer="threatScenariosDc" width="100%">
                         <actions>
                             <action id="create" type="create"/>

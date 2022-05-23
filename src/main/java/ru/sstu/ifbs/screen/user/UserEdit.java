@@ -9,7 +9,7 @@ import io.jmix.ui.navigation.Route;
 import io.jmix.ui.screen.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import ru.sstu.ifbs.entity.User;
+import ru.sstu.ifbs.entity.project.User;
 
 import java.util.Arrays;
 import java.util.Objects;

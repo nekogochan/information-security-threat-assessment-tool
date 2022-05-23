@@ -1,7 +1,6 @@
 package ru.sstu.ifbs.screen.threat;
 
 import io.jmix.core.Metadata;
-import io.jmix.ui.ScreenBuilders;
 import io.jmix.ui.Screens;
 import io.jmix.ui.action.Action;
 import io.jmix.ui.component.Table;
@@ -9,8 +8,8 @@ import io.jmix.ui.model.CollectionPropertyContainer;
 import io.jmix.ui.model.InstanceContainer;
 import io.jmix.ui.screen.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import ru.sstu.ifbs.entity.Threat;
-import ru.sstu.ifbs.entity.ThreatScenario;
+import ru.sstu.ifbs.entity.storage.Threat;
+import ru.sstu.ifbs.entity.storage.scenario.ThreatScenario;
 import ru.sstu.ifbs.screen.threatscenario.ThreatScenarioEdit;
 
 import java.util.function.Consumer;

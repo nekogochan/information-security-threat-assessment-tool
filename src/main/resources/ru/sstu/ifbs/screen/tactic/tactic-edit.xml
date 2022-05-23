@@ -4,7 +4,7 @@
         focusComponent="form">
     <data>
         <instance id="tacticDc"
-                  class="ru.sstu.ifbs.entity.Tactic">
+                  class="ru.sstu.ifbs.entity.storage.tactic.Tactic">
             <fetchPlan extends="_base">
                 <property name="techniques" fetchPlan="_base"/>
             </fetchPlan>
@@ -36,7 +36,7 @@
                     <textArea id="descriptionField" property="description" rows="5"/>
                 </column>
             </form>
-            <label stylename="h2" value="msg://ru.sstu.ifbs.entity/Tactic.techniques"/>
+            <label stylename="h2" value="msg://ru.sstu.ifbs.entity.storage.tactic/Tactic.techniques"/>
             <table id="techniquesTable" dataContainer="techniquesDc" width="100%">
                 <actions>
                     <action id="create" type="create"/>

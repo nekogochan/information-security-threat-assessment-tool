@@ -4,7 +4,7 @@ import io.jmix.ui.screen.LookupComponent;
 import io.jmix.ui.screen.StandardLookup;
 import io.jmix.ui.screen.UiController;
 import io.jmix.ui.screen.UiDescriptor;
-import ru.sstu.ifbs.entity.Threat;
+import ru.sstu.ifbs.entity.storage.Threat;
 
 @UiController("gwf_Threat.browse")
 @UiDescriptor("threat-browse.xml")

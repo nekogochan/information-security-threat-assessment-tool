@@ -4,7 +4,7 @@
         focusComponent="form">
     <data>
         <instance id="impactTargetDc"
-                  class="ru.sstu.ifbs.entity.ImpactTarget">
+                  class="ru.sstu.ifbs.entity.storage.ImpactTarget">
             <fetchPlan extends="_base"/>
             <loader/>
         </instance>

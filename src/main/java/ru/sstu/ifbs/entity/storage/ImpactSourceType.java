@@ -1,4 +1,4 @@
-package ru.sstu.ifbs.entity;
+package ru.sstu.ifbs.entity.storage;
 
 import io.jmix.core.metamodel.datatype.impl.EnumClass;
 

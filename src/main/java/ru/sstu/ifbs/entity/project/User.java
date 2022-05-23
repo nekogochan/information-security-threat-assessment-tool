@@ -1,4 +1,4 @@
-package ru.sstu.ifbs.entity;
+package ru.sstu.ifbs.entity.project;
 
 import io.jmix.core.HasTimeZone;
 import io.jmix.core.annotation.Secret;
