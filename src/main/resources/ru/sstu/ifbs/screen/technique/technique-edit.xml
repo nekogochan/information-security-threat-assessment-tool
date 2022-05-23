@@ -5,10 +5,7 @@
     <data>
         <instance id="techniqueDc"
                   class="ru.sstu.ifbs.entity.Technique">
-            <fetchPlan extends="_base">
-                <property name="tactic" fetchPlan="_instance_name"/>
-            </fetchPlan>
-            <loader/>
+            <fetchPlan extends="_base"/>
         </instance>
     </data>
     <facets>
@@ -30,10 +27,9 @@
         <scrollBox id="scrollBox" spacing="true">
             <form id="form" dataContainer="techniqueDc">
                 <column width="350px">
+                    <textField id="codeField" property="code"/>
                     <textField id="nameField" property="name"/>
                     <textArea id="descriptionField" property="description" rows="5"/>
-                    <textField id="codeField" property="code"/>
-                    <entityPicker id="tacticField" property="tactic" editable="false"/>
                 </column>
             </form>
         </scrollBox>

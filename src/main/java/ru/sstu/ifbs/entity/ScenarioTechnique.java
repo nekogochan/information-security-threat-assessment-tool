@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
         @Index(name = "IDX_SCENARIOTECHNIQUE", columnList = "TACTIC_ID")
 })
 @Entity(name = "gwf_ScenarioTechnique")
-public class ScenarioTechnique extends DefaultNamedEntity {
+public class ScenarioTechnique extends DefaultEntity {
 
     @NotNull
     @JoinColumn(name = "VALUE_ID", nullable = false)

@@ -3,14 +3,13 @@
 
     <menu id="application" caption="msg://ru.sstu.ifbs/menu.application" insertBefore="administration">
         <item screen="gwf_User.browse" caption="msg://ru.sstu.ifbs.screen.user/UserBrowse.caption"/>
-        <item screen="gwf_Project.browse" caption="msg://ru.sstu.ifbs.screen.project/projectBrowse.menu"/>
         <item screen="gwf_Group.browse" caption="msg://ru.sstu.ifbs.screen.group/groupBrowse.menu"/>
+        <item screen="gwf_Project.browse" caption="msg://ru.sstu.ifbs.screen.project/projectBrowse.menu"/>
+        <separator/>
         <menu id="storage" caption="msg://ru.sstu.ifbs/menu.storage">
             <item screen="gwf_ImpactSource.browse" caption="msg://ru.sstu.ifbs.screen.impactsource/impactSourceBrowse.menu"/>
             <item screen="gwf_ImpactTarget.browse" caption="msg://ru.sstu.ifbs.screen.impacttarget/impactTargetBrowse.menu"/>
             <item screen="gwf_Threat.browse" caption="msg://ru.sstu.ifbs.screen.threat/threatBrowse.menu"/>
-            <item screen="gwf_ThreatScenario.browse" caption="msg://ru.sstu.ifbs.screen.threatscenario/threatScenarioBrowse.menu"/>
-            <item screen="gwf_Technique.browse" caption="msg://ru.sstu.ifbs.screen.technique/techniqueBrowse.menu"/>
             <item screen="gwf_Tactic.browse" caption="msg://ru.sstu.ifbs.screen.tactic/tacticBrowse.menu"/>
         </menu>
     </menu>

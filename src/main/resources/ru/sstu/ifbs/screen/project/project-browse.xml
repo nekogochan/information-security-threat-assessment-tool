@@ -36,10 +36,6 @@
     <dialogMode height="600"
                 width="800"/>
     <layout expand="projectsTable" spacing="true">
-        <filter id="filter"
-                dataLoader="projectsDl">
-            <properties include=".*"/>
-        </filter>
         <groupTable id="projectsTable"
                     width="100%"
                     dataContainer="projectsDc">

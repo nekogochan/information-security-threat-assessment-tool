@@ -23,6 +23,17 @@ public class Threat extends DefaultNamedEntity {
     @ManyToMany
     private List<ImpactTarget> targets = new ArrayList<>();
 
+    @OneToMany(mappedBy = "threat")
+    private List<ThreatScenario> scenarios;
+
+    public List<ThreatScenario> getScenarios() {
+        return scenarios;
+    }
+
+    public void setScenarios(List<ThreatScenario> scenarios) {
+        this.scenarios = scenarios;
+    }
+
     public List<ImpactTarget> getTargets() {
         return targets;
     }

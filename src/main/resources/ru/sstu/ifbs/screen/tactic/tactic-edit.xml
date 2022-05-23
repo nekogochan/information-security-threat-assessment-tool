@@ -6,9 +6,10 @@
         <instance id="tacticDc"
                   class="ru.sstu.ifbs.entity.Tactic">
             <fetchPlan extends="_base">
-                <property name="techniques" fetchPlan="_local"/>
+                <property name="techniques" fetchPlan="_base"/>
             </fetchPlan>
             <loader/>
+            <collection id="techniquesDc" property="techniques"/>
         </instance>
     </data>
     <facets>
@@ -28,20 +29,30 @@
                 width="800"/>
     <layout spacing="true" expand="scrollBox">
         <scrollBox id="scrollBox" spacing="true">
-            <vbox expand="techniquesTable">
-                <form id="form" dataContainer="tacticDc">
-                    <column width="350px">
-                        <textField id="nameField" property="name"/>
-                        <textArea id="descriptionField" property="description" rows="5"/>
-                        <textField id="codeField" property="code"/>
-                    </column>
-                </form>
-                <table id="techniquesTable">
-                    <columns>
-                        <column id=""></column>
-                    </columns>
-                </table>
-            </vbox>
+            <form id="form" dataContainer="tacticDc">
+                <column width="350px">
+                    <textField id="codeField" property="code"/>
+                    <textField id="nameField" property="name"/>
+                    <textArea id="descriptionField" property="description" rows="5"/>
+                </column>
+            </form>
+            <label stylename="h2" value="msg://ru.sstu.ifbs.entity/Tactic.techniques"/>
+            <table id="techniquesTable" dataContainer="techniquesDc" width="100%">
+                <actions>
+                    <action id="create" type="create"/>
+                    <action id="edit" type="edit"/>
+                    <action id="remove" type="remove"/>
+                </actions>
+                <columns>
+                    <column id="code"/>
+                    <column id="name"/>
+                </columns>
+                <buttonsPanel>
+                    <button id="createBtn" action="techniquesTable.create"/>
+                    <button id="editBtn" action="techniquesTable.edit"/>
+                    <button id="removeBtn" action="techniquesTable.remove"/>
+                </buttonsPanel>
+            </table>
         </scrollBox>
         <hbox id="editActions" spacing="true">
             <button id="commitAndCloseBtn" action="windowCommitAndClose"/>

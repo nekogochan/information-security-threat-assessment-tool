@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<fragment xmlns="http://jmix.io/schema/ui/fragment">
+    <layout>
+        <vbox spacing="true" expand="addTechniqueBtn" width="200px">
+            <hbox id="mainInfoBox" spacing="true">
+                <label id="header"/>
+                <button id="deleteBtn" icon="MINUS"/>
+            </hbox>
+            <vbox id="techniquesBox" width="100%"/>
+            <popupButton id="addTechniqueBtn" width="100%"/>
+        </vbox>
+    </layout>
+</fragment>

@@ -33,19 +33,17 @@
     <dialogMode height="600"
                 width="800"/>
     <layout expand="groupsTable" spacing="true">
-        <filter id="filter"
-                dataLoader="groupsDl">
-            <properties include=".*"/>
-        </filter>
         <groupTable id="groupsTable"
                     width="100%"
-                    dataContainer="groupsDc">
+                    dataContainer="groupsDc"
+                    multiselect="true">
             <actions>
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
                 <action id="remove" type="remove"/>
             </actions>
             <columns>
+                <column id="name"/>
                 <column id="description"/>
             </columns>
             <simplePagination/>

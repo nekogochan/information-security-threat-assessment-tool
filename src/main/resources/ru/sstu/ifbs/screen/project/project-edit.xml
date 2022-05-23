@@ -26,79 +26,88 @@
                 icon="EDITOR_OK"
                 primary="true"
                 shortcut="${COMMIT_SHORTCUT}"/>
+        <action id="windowCommit" caption="msg:///actions.Save"
+                icon="font-icon:SAVE"/>
         <action id="windowClose"
                 caption="msg:///actions.Close"
                 icon="EDITOR_CANCEL"/>
     </actions>
     <dialogMode height="600"
                 width="800"/>
-    <layout spacing="true" expand="scrollBox">
-        <scrollBox id="scrollBox" spacing="true">
-            <form id="form" dataContainer="projectDc">
-                <column width="350px">
-                    <entityPicker id="groupField" property="group">
+    <layout spacing="true" expand="tabSheet">
+        <scrollBox id="tabSheet" spacing="true">
+            <tabSheet>
+                <tab id="mainInfoTab" caption="msg://ru.sstu.ifbs.screen.project/mainInfo"
+                     spacing="true" margin="true">
+                    <form id="form" dataContainer="projectDc">
+                        <column width="350px">
+                            <entityPicker id="groupField" property="group">
+                                <actions>
+                                    <action id="entityLookup" type="entity_lookup"/>
+                                    <action id="entityClear" type="entity_clear"/>
+                                </actions>
+                            </entityPicker>
+                            <textField id="nameField" property="name"/>
+                            <textArea id="descriptionField" property="description" rows="5"/>
+                        </column>
+                    </form>
+                </tab>
+                <tab id="impactTargetsTab" caption="msg://ru.sstu.ifbs.entity/Project.impactTargets"
+                     spacing="true" margin="true">
+                    <table id="impactTargetsTable" dataContainer="impactTargetsDc" width="100%">
                         <actions>
-                            <action id="entityLookup" type="entity_lookup"/>
-                            <action id="entityClear" type="entity_clear"/>
+                            <action id="add" type="add"/>
+                            <action id="exclude" type="exclude"/>
                         </actions>
-                    </entityPicker>
-                    <textField id="nameField" property="name"/>
-                    <textArea id="descriptionField" property="description" rows="5"/>
-                </column>
-            </form>
-            <groupBox id="impactSourcesBox" caption="msg://ru.sstu.ifbs.entity/Project.impactSources">
-                <table id="impactSourcesTable" dataContainer="impactSourcesDc" width="100%" height="200px">
-                    <actions>
-                        <action id="add" type="add"/>
-                        <action id="exclude" type="exclude"/>
-                    </actions>
-                    <columns>
-                        <column id="name"/>
-                        <column id="type"/>
-                        <column id="level"/>
-                        <column id="description"/>
-                    </columns>
-                    <buttonsPanel>
-                        <button action="impactSourcesTable.add"/>
-                        <button action="impactSourcesTable.exclude"/>
-                    </buttonsPanel>
-                </table>
-            </groupBox>
-            <groupBox id="impactTargetsBox" caption="msg://ru.sstu.ifbs.entity/Project.impactTargets">
-                <table id="impactTargetsTable" dataContainer="impactTargetsDc" width="100%" height="200px">
-                    <actions>
-                        <action id="add" type="add"/>
-                        <action id="exclude" type="exclude"/>
-                    </actions>
-                    <columns>
-                        <column id="name"/>
-                        <column id="description"/>
-                    </columns>
-                    <buttonsPanel>
-                        <button action="impactTargetsTable.add"/>
-                        <button action="impactTargetsTable.exclude"/>
-                    </buttonsPanel>
-                </table>
-            </groupBox>
-            <groupBox id="actualThreatsBox" caption="msg://ru.sstu.ifbs.entity/Project.actualThreats">
-                <table id="actualThreatsTable" dataContainer="actualThreatsDc" width="100%" height="200px">
-                    <actions>
-                        <action id="create" type="create"/>
-                        <action id="edit" type="edit"/>
-                        <action id="remove" type="remove"/>
-                    </actions>
-                    <columns>
-                    </columns>
-                    <buttonsPanel>
-                        <button action="actualThreatsTable.create"/>
-                        <button action="actualThreatsTable.edit"/>
-                        <button action="actualThreatsTable.remove"/>
-                    </buttonsPanel>
-                </table>
-            </groupBox>
+                        <columns>
+                            <column id="name"/>
+                        </columns>
+                        <buttonsPanel>
+                            <button action="impactTargetsTable.add"/>
+                            <button action="impactTargetsTable.exclude"/>
+                        </buttonsPanel>
+                    </table>
+                </tab>
+                <tab id="impactSourcesTab" caption="msg://ru.sstu.ifbs.entity/Project.impactSources"
+                     spacing="true" margin="true">
+                    <table id="impactSourcesTable" dataContainer="impactSourcesDc" width="100%">
+                        <actions>
+                            <action id="add" type="add"/>
+                            <action id="exclude" type="exclude"/>
+                        </actions>
+                        <columns>
+                            <column id="level"/>
+                            <column id="type"/>
+                            <column id="name"/>
+                        </columns>
+                        <buttonsPanel>
+                            <button action="impactSourcesTable.add"/>
+                            <button action="impactSourcesTable.exclude"/>
+                        </buttonsPanel>
+                    </table>
+                </tab>
+                <tab id="actualThreatsTab" caption="msg://ru.sstu.ifbs.entity/Project.actualThreats"
+                     spacing="true" margin="true">
+                    <table id="actualThreatsTable" dataContainer="actualThreatsDc" width="100%">
+                        <actions>
+                            <action id="create" type="create"/>
+                            <action id="edit" type="edit"/>
+                            <action id="remove" type="remove"/>
+                        </actions>
+                        <columns>
+                        </columns>
+                        <buttonsPanel>
+                            <button action="actualThreatsTable.create"/>
+                            <button action="actualThreatsTable.edit"/>
+                            <button action="actualThreatsTable.remove"/>
+                        </buttonsPanel>
+                    </table>
+                </tab>
+            </tabSheet>
         </scrollBox>
         <hbox id="editActions" spacing="true">
             <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="commitBtn" action="windowCommit"/>
             <button id="closeBtn" action="windowClose"/>
         </hbox>
     </layout>

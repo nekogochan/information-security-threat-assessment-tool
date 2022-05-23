@@ -3,16 +3,14 @@
         caption="msg://actualThreatEdit.caption"
         focusComponent="form">
     <data>
-        <instance id="actualThreatDc"
-                  class="ru.sstu.ifbs.entity.ActualThreat">
+        <instance id="actualThreatDc" class="ru.sstu.ifbs.entity.ActualThreat">
             <fetchPlan extends="_base">
-                <property name="threat" fetchPlan="_base"/>
                 <property name="scenarios" fetchPlan="_base"/>
-                <property name="project" fetchPlan="_base"/>
             </fetchPlan>
             <loader/>
             <collection id="scenariosDc" property="scenarios"/>
         </instance>
+        <collection id="unusedThreatsDc" class="ru.sstu.ifbs.entity.Threat"/>
     </data>
     <facets>
         <dataLoadCoordinator auto="true"/>
@@ -34,12 +32,6 @@
             <form id="form" dataContainer="actualThreatDc">
                 <column width="350px">
                     <entityPicker id="threatField" property="threat">
-                        <actions>
-                            <action id="entityLookup" type="entity_lookup"/>
-                            <action id="entityClear" type="entity_clear"/>
-                        </actions>
-                    </entityPicker>
-                    <entityPicker id="projectField" property="project">
                         <actions>
                             <action id="entityLookup" type="entity_lookup"/>
                             <action id="entityClear" type="entity_clear"/>

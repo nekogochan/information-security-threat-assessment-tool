@@ -8,10 +8,21 @@
             <fetchPlan extends="_base">
                 <property name="sources" fetchPlan="_base"/>
                 <property name="targets" fetchPlan="_base"/>
+                <property name="scenarios" fetchPlan="_base">
+                    <property name="threat" fetchPlan="_base"/>
+                    <property name="tactics" fetchPlan="_local">
+                        <property name="value" fetchPlan="_local">
+                            <property name="techniques" fetchPlan="_local"/>
+                        </property>
+                        <property name="techniques" fetchPlan="_base"/>
+                    </property>
+                </property>
             </fetchPlan>
             <loader/>
             <collection id="sourcesDc" property="sources"/>
             <collection id="targetsDc" property="targets"/>
+            <collection id="threatScenariosDc" property="scenarios">
+            </collection>
         </instance>
     </data>
     <facets>
@@ -37,40 +48,60 @@
                     <textArea id="descriptionField" property="description" rows="5"/>
                 </column>
             </form>
-            <groupBox id="sourcesBox" caption="msg://ru.sstu.ifbs.entity/Threat.sources">
-                <table id="sourcesTable" dataContainer="sourcesDc" width="100%" height="200px">
-                    <actions>
-                        <action id="add" type="add"/>
-                        <action id="exclude" type="exclude"/>
-                    </actions>
-                    <columns>
-                        <column id="name"/>
-                        <column id="type"/>
-                        <column id="level"/>
-                        <column id="description"/>
-                    </columns>
-                    <buttonsPanel>
-                        <button action="sourcesTable.add"/>
-                        <button action="sourcesTable.exclude"/>
-                    </buttonsPanel>
-                </table>
-            </groupBox>
-            <groupBox id="targetsBox" caption="msg://ru.sstu.ifbs.entity/Threat.targets">
-                <table id="targetsTable" dataContainer="targetsDc" width="100%" height="200px">
-                    <actions>
-                        <action id="add" type="add"/>
-                        <action id="exclude" type="exclude"/>
-                    </actions>
-                    <columns>
-                        <column id="name"/>
-                        <column id="description"/>
-                    </columns>
-                    <buttonsPanel>
-                        <button action="targetsTable.add"/>
-                        <button action="targetsTable.exclude"/>
-                    </buttonsPanel>
-                </table>
-            </groupBox>
+            <tabSheet id="tablesTabSheet">
+                <tab id="sourcesTab" margin="true" caption="msg://ru.sstu.ifbs.entity/Threat.sources">
+                    <table id="sourcesTable" dataContainer="sourcesDc" width="100%">
+                        <actions>
+                            <action id="add" type="add"/>
+                            <action id="exclude" type="exclude"/>
+                        </actions>
+                        <columns>
+                            <column id="name"/>
+                            <column id="type"/>
+                            <column id="level"/>
+                            <column id="description"/>
+                        </columns>
+                        <buttonsPanel>
+                            <button action="sourcesTable.add"/>
+                            <button action="sourcesTable.exclude"/>
+                        </buttonsPanel>
+                    </table>
+                </tab>
+                <tab id="targetsTab" margin="true" caption="msg://ru.sstu.ifbs.entity/Threat.targets">
+                    <table id="targetsTable" dataContainer="targetsDc" width="100%">
+                        <actions>
+                            <action id="add" type="add"/>
+                            <action id="exclude" type="exclude"/>
+                        </actions>
+                        <columns>
+                            <column id="name"/>
+                            <column id="description"/>
+                        </columns>
+                        <buttonsPanel>
+                            <button action="targetsTable.add"/>
+                            <button action="targetsTable.exclude"/>
+                        </buttonsPanel>
+                    </table>
+                </tab>
+                <tab id="scenariosTab" margin="true" caption="msg://ru.sstu.ifbs.entity/Threat.scenarios">
+                    <table id="scenariosTable" dataContainer="threatScenariosDc" width="100%">
+                        <actions>
+                            <action id="create" type="create"/>
+                            <action id="edit" type="edit"/>
+                            <action id="remove" type="remove"/>
+                        </actions>
+                        <columns>
+                            <column id="name"/>
+                            <column id="description"/>
+                        </columns>
+                        <buttonsPanel>
+                            <button id="createBtn" action="scenariosTable.create"/>
+                            <button id="editBtn" action="scenariosTable.edit"/>
+                            <button id="removeBtn" action="scenariosTable.remove"/>
+                        </buttonsPanel>
+                    </table>
+                </tab>
+            </tabSheet>
         </scrollBox>
         <hbox id="editActions" spacing="true">
             <button id="commitAndCloseBtn" action="windowCommitAndClose"/>

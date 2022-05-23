@@ -7,7 +7,7 @@
         <collection id="tacticsDc"
                     class="ru.sstu.ifbs.entity.Tactic">
             <fetchPlan extends="_base">
-                <property name="techniques" fetchPlan="_instance_name"/>
+                <property name="techniques" fetchPlan="_base"/>
             </fetchPlan>
             <loader id="tacticsDl">
                 <query>
@@ -47,9 +47,8 @@
                 <action id="remove" type="remove"/>
             </actions>
             <columns>
-                <column id="name"/>
-                <column id="description"/>
                 <column id="code"/>
+                <column id="name"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"

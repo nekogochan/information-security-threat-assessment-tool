@@ -15,7 +15,7 @@ import java.util.List;
         @Index(name = "IDX_SCENARIOTACTIC", columnList = "THREAT_SCENARIO_ID")
 })
 @Entity(name = "gwf_ScenarioTactic")
-public class ScenarioTactic extends DefaultNamedEntity {
+public class ScenarioTactic extends DefaultEntity {
 
     @NotNull
     @JoinColumn(name = "VALUE_ID", nullable = false)
