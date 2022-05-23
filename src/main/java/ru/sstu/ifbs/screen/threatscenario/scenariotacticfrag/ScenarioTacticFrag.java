@@ -4,14 +4,13 @@ import io.jmix.ui.Fragments;
 import io.jmix.ui.UiComponents;
 import io.jmix.ui.component.*;
 import io.jmix.ui.model.DataContext;
-import io.jmix.ui.screen.ScreenFragment;
-import io.jmix.ui.screen.Subscribe;
-import io.jmix.ui.screen.UiController;
-import io.jmix.ui.screen.UiDescriptor;
+import io.jmix.ui.model.InstanceContainer;
+import io.jmix.ui.screen.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.sstu.ifbs.backoffice.collectors.VBoxCollector;
 import ru.sstu.ifbs.entity.storage.scenario.ScenarioTactic;
 import ru.sstu.ifbs.entity.storage.scenario.ScenarioTechnique;
+import ru.sstu.ifbs.entity.storage.tactic.Tactic;
 import ru.sstu.ifbs.entity.storage.tactic.Technique;
 import ru.sstu.ifbs.screen.threatscenario.scenariotacticfrag.scenariotechniquefrag.ScenarioTechniqueFrag;
 
@@ -24,11 +23,8 @@ import static java.util.function.Predicate.isEqual;
 public class ScenarioTacticFrag extends ScreenFragment {
 
     private Runnable onDelete;
-    private ScenarioTactic tactic;
     private DataContext dataContext;
 
-    @Autowired
-    private Label<String> header;
     @Autowired
     private UiComponents uiComponents;
     @Autowired
@@ -38,14 +34,16 @@ public class ScenarioTacticFrag extends ScreenFragment {
     @Autowired
     private PopupButton addTechniqueBtn;
     @Autowired
-    private HBoxLayout mainInfoBox;
-    @Autowired
     private VBoxCollector vBoxCollector;
+    @Autowired
+    private InstanceContainer<ScenarioTactic> tacticDc;
+    @Autowired
+    private Label<String> header;
 
     public void init(DataContext parentDataContext, ScenarioTactic tactic, Runnable onDelete) {
         requireNonNull(tactic);
         requireNonNull(onDelete);
-        this.tactic = tactic;
+        tacticDc.setItem(tactic);
         this.onDelete = onDelete;
         this.dataContext = parentDataContext;
     }
@@ -53,10 +51,8 @@ public class ScenarioTacticFrag extends ScreenFragment {
     @Subscribe
     public void onAttach(AttachEvent event) {
         requireNonNull(onDelete, "onDelete is null, maybe forgot to call `init` method?");
-        requireNonNull(tactic, "tactic is null, maybe forgot to call `init` method?");
-        var tactic = this.tactic.getValue();
-        header.setValue(tactic.getCode() + ": " + tactic.getName());
-        mainInfoBox.setContextHelpText(tactic.getDescription());
+        var item = tacticDc.getItem().getValue();
+        header.setValue("%s: %s".formatted(item.getCode(), item.getName()));
         refreshUI();
     }
 
@@ -72,7 +68,7 @@ public class ScenarioTacticFrag extends ScreenFragment {
 
     private void refreshAddButtonPanel() {
         addTechniqueBtn.setPopupContent(
-                tactic.getValue()
+                tacticDc.getItem().getValue()
                         .getTechniques()
                         .stream()
                         .filter(this::notInTactic)
@@ -87,9 +83,9 @@ public class ScenarioTacticFrag extends ScreenFragment {
         button.setCaption(technique.getCode());
         button.addClickListener(ev -> {
             var scenarioTechnique = dataContext.create(ScenarioTechnique.class);
-            scenarioTechnique.setTactic(tactic);
+            scenarioTechnique.setTactic(tacticDc.getItem());
             scenarioTechnique.setValue(technique);
-            tactic.getTechniques().add(scenarioTechnique);
+            tacticDc.getItem().getTechniques().add(scenarioTechnique);
             refreshUI();
         });
         button.setWidthFull();
@@ -98,7 +94,7 @@ public class ScenarioTacticFrag extends ScreenFragment {
 
     private void refreshTechniquesContainer() {
         techniquesBox.removeAll();
-        tactic.getTechniques()
+        tacticDc.getItem().getTechniques()
                 .stream()
                 .sorted(comparing(it -> it.getValue().getCode(), String.CASE_INSENSITIVE_ORDER))
                 .map(this::toTechniqueFrag)
@@ -109,7 +105,7 @@ public class ScenarioTacticFrag extends ScreenFragment {
     private ScenarioTechniqueFrag toTechniqueFrag(ScenarioTechnique technique) {
         var frag = fragments.create(this, ScenarioTechniqueFrag.class);
         frag.init(technique, () -> {
-            tactic.getTechniques().remove(technique);
+            tacticDc.getItem().getTechniques().remove(technique);
             dataContext.remove(technique);
             refreshUI();
         });
@@ -117,7 +113,7 @@ public class ScenarioTacticFrag extends ScreenFragment {
     }
 
     private boolean notInTactic(Technique technique) {
-        return tactic.getTechniques()
+        return tacticDc.getItem().getTechniques()
                 .stream()
                 .map(ScenarioTechnique::getValue)
                 .noneMatch(isEqual(technique));

@@ -82,10 +82,6 @@ public class ThreatScenarioEdit extends Screen {
                     .withCaption(messages.getMessage("scenarioShouldntBeEmpty"))
                     .show();
         } else {
-            var tactics = threatScenarioDc.getItem().getTactics();
-            tactics.stream().map(ScenarioTactic::getTechniques)
-                    .forEach(it -> it.replaceAll(dataContext::merge));
-            tactics.replaceAll(dataContext::merge);
             onCommit.accept(threatScenarioDc.getItem());
             close(CLOSE);
         }

@@ -3,6 +3,7 @@ package ru.sstu.ifbs.entity.storage.scenario;
 import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 import ru.sstu.ifbs.entity.DefaultEntity;
+import ru.sstu.ifbs.entity.storage.tactic.HasOrderedCode;
 import ru.sstu.ifbs.entity.storage.tactic.Technique;
 
 import javax.persistence.*;
@@ -14,7 +15,7 @@ import javax.validation.constraints.NotNull;
         @Index(name = "IDX_SCENARIOTECHNIQUE", columnList = "TACTIC_ID")
 })
 @Entity(name = "gwf_ScenarioTechnique")
-public class ScenarioTechnique extends DefaultEntity {
+public class ScenarioTechnique extends DefaultEntity implements Comparable<ScenarioTechnique> {
 
     @NotNull
     @JoinColumn(name = "VALUE_ID", nullable = false)
@@ -42,4 +43,8 @@ public class ScenarioTechnique extends DefaultEntity {
         this.tactic = tactic;
     }
 
+    @Override
+    public int compareTo(ScenarioTechnique that) {
+        return this.value.compareTo(that.value);
+    }
 }

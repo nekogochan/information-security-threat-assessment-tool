@@ -40,30 +40,21 @@
     <dialogMode height="600"
                 width="800"/>
     <layout spacing="true" expand="scrollBox">
-        <scrollBox id="scrollBox" spacing="true">
-            <vbox expand="groupBox">
+        <scrollBox id="scrollBox">
+            <vbox expand="tacticsTable" spacing="true">
                 <form dataContainer="threatScenarioDc">
                     <column width="350px">
                         <textField property="name"/>
                         <textField property="description"/>
                     </column>
                 </form>
-                <groupBox id="groupBox" caption="msg://ru.sstu.ifbs.entity.storage/Threat.scenarios" expand="tacticsBox">
+                <label value="msg://ru.sstu.ifbs.entity.storage.scenario/ThreatScenario.tactics" stylename="bold h2"/>
+                <vbox id="tacticsTable" expand="tacticsBox" spacing="true">
                     <popupButton id="addTacticBtn" caption="msg://addTacticBtn.caption" icon="ADD_ACTION"/>
                     <hbox id="tacticsBox" spacing="true"/>
-                </groupBox>
+                </vbox>
             </vbox>
         </scrollBox>
-        <popupButton caption="test test">
-            <popup>
-                <vbox>
-                    <button width="100%" caption="button-123"/>
-                    <button width="100%" caption="button-12324353245"/>
-                    <button width="100%" caption="button-12232453"/>
-                    <button width="100%" caption="button-1"/>
-                </vbox>
-            </popup>
-        </popupButton>
         <hbox id="editActions" spacing="true">
             <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
             <button id="closeBtn" action="windowClose"/>

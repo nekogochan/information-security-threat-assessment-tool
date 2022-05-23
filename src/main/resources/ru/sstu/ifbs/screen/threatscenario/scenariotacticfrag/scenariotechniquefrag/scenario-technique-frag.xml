@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <fragment xmlns="http://jmix.io/schema/ui/fragment">
+    <data>
+        <instance id="techniqueDc" class="ru.sstu.ifbs.entity.storage.scenario.ScenarioTechnique"/>
+    </data>
     <layout>
-        <hbox id="mainInfoBox" stylename="technique-box" spacing="true">
-            <label id="header"/>
-            <button id="deleteBtn" icon="MINUS"/>
-        </hbox>
+        <groupBox id="mainInfoBox" spacing="true">
+            <label width="100%" id="header"/>
+            <popupView minimizedValue="msg://descriptionPopup.caption">
+                <button id="deleteBtn" width="100%" icon="MINUS" caption="msg:///actions.Remove"/>
+                <label id="description" width="100%" dataContainer="techniqueDc" property="value.description"/>
+            </popupView>
+        </groupBox>
     </layout>
 </fragment>
