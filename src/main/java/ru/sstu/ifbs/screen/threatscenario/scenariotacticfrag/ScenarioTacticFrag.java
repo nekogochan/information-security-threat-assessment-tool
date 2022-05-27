@@ -7,6 +7,7 @@ import io.jmix.ui.model.DataContext;
 import io.jmix.ui.model.InstanceContainer;
 import io.jmix.ui.screen.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import ru.sstu.ifbs.backoffice.collectors.ScrollBoxCollector;
 import ru.sstu.ifbs.backoffice.collectors.VBoxCollector;
 import ru.sstu.ifbs.entity.storage.scenario.ScenarioTactic;
 import ru.sstu.ifbs.entity.storage.scenario.ScenarioTechnique;
@@ -17,6 +18,7 @@ import ru.sstu.ifbs.screen.threatscenario.scenariotacticfrag.scenariotechniquefr
 import static java.util.Comparator.comparing;
 import static java.util.Objects.requireNonNull;
 import static java.util.function.Predicate.isEqual;
+import static java.util.stream.Collectors.collectingAndThen;
 
 @UiController("gwf_ScenarioTacticFrag")
 @UiDescriptor("scenario-tactic-frag.xml")
@@ -39,6 +41,8 @@ public class ScenarioTacticFrag extends ScreenFragment {
     private InstanceContainer<ScenarioTactic> tacticDc;
     @Autowired
     private Label<String> header;
+    @Autowired
+    private ScrollBoxCollector scrollBoxCollector;
 
     public void init(DataContext parentDataContext, ScenarioTactic tactic, Runnable onDelete) {
         requireNonNull(tactic);
@@ -74,8 +78,7 @@ public class ScenarioTacticFrag extends ScreenFragment {
                         .filter(this::notInTactic)
                         .sorted()
                         .map(this::techniqueToBtn)
-                        .collect(vBoxCollector)
-        );
+                        .collect(scrollBoxCollector.wrap(vBoxCollector)));
     }
 
     private Button techniqueToBtn(Technique technique) {
@@ -96,7 +99,7 @@ public class ScenarioTacticFrag extends ScreenFragment {
         techniquesBox.removeAll();
         tacticDc.getItem().getTechniques()
                 .stream()
-                .sorted(comparing(it -> it.getValue().getCode(), String.CASE_INSENSITIVE_ORDER))
+                .sorted()
                 .map(this::toTechniqueFrag)
                 .map(ScreenFragment::getFragment)
                 .forEach(techniquesBox::add);

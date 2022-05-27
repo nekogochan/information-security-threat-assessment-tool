@@ -1,7 +1,6 @@
 package ru.sstu.ifbs.backoffice.collectors;
 
 import io.jmix.ui.UiComponents;
-import io.jmix.ui.component.BoxLayout;
 import io.jmix.ui.component.Component;
 import io.jmix.ui.component.ComponentContainer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +13,13 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collector;
 
-public abstract class BoxCollector<B extends BoxLayout> implements Collector<Component, B, B> {
+public abstract class ComponentCollector<B extends ComponentContainer> implements Collector<Component, B, B> {
 
     @Autowired
     private UiComponents uiComponents;
     private final Class<B> boxClass;
 
-    public BoxCollector(Class<B> boxClass) {
+    public ComponentCollector(Class<B> boxClass) {
         this.boxClass = boxClass;
     }
 

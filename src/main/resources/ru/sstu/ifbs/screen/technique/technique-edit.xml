@@ -26,10 +26,10 @@
     <layout spacing="true" expand="scrollBox">
         <scrollBox id="scrollBox" spacing="true">
             <form id="form" dataContainer="techniqueDc">
-                <column width="350px">
+                <column width="600px">
                     <textField id="codeField" property="code"/>
                     <textField id="nameField" property="name"/>
-                    <textArea id="descriptionField" property="description" rows="5"/>
+                    <textArea id="descriptionField" property="description" rows="10"/>
                 </column>
             </form>
         </scrollBox>
