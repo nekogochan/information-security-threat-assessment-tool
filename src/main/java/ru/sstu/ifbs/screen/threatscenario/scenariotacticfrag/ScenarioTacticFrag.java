@@ -15,6 +15,11 @@ import ru.sstu.ifbs.entity.storage.tactic.Tactic;
 import ru.sstu.ifbs.entity.storage.tactic.Technique;
 import ru.sstu.ifbs.screen.threatscenario.scenariotacticfrag.scenariotechniquefrag.ScenarioTechniqueFrag;
 
+import java.util.Arrays;
+import java.util.IntSummaryStatistics;
+import java.util.List;
+import java.util.function.Function;
+
 import static java.util.Comparator.comparing;
 import static java.util.Objects.requireNonNull;
 import static java.util.function.Predicate.isEqual;
