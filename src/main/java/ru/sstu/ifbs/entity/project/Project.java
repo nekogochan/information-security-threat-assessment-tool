@@ -5,6 +5,7 @@ import io.jmix.core.entity.annotation.OnDelete;
 import io.jmix.core.metamodel.annotation.Composition;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 import ru.sstu.ifbs.entity.DefaultNamedEntity;
+import ru.sstu.ifbs.entity.project.securityinfo.ProjectSecurityInfo;
 import ru.sstu.ifbs.entity.storage.ImpactSource;
 import ru.sstu.ifbs.entity.storage.ImpactTarget;
 
@@ -15,7 +16,8 @@ import java.util.List;
 
 @JmixEntity
 @Table(name = "GWF_PROJECT", indexes = {
-        @Index(name = "IDX_PROJECT_GROUP_ID", columnList = "GROUP_ID")
+        @Index(name = "IDX_PROJECT_GROUP_ID", columnList = "GROUP_ID"),
+        @Index(name = "IDX_PROJECT_SECURITY_INFO_ID", columnList = "SECURITY_INFO_ID")
 })
 @Entity(name = "gwf_Project")
 public class Project extends DefaultNamedEntity {
@@ -41,6 +43,20 @@ public class Project extends DefaultNamedEntity {
     @Composition
     @OneToMany(mappedBy = "project")
     private List<ActualThreat> actualThreats = new ArrayList<>();
+
+    @OnDelete(DeletePolicy.CASCADE)
+    @JoinColumn(name = "SECURITY_INFO_ID", nullable = false)
+    @NotNull
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    private ProjectSecurityInfo securityInfo;
+
+    public ProjectSecurityInfo getSecurityInfo() {
+        return securityInfo;
+    }
+
+    public void setSecurityInfo(ProjectSecurityInfo securityInfo) {
+        this.securityInfo = securityInfo;
+    }
 
     public List<ImpactSource> getImpactSources() {
         return impactSources;

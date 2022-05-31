@@ -12,5 +12,6 @@
             <item screen="gwf_Threat.browse" caption="msg://ru.sstu.ifbs.screen.threat/threatBrowse.menu"/>
             <item screen="gwf_Tactic.browse" caption="msg://ru.sstu.ifbs.screen.tactic/tacticBrowse.menu"/>
         </menu>
+        <item screen="gwf_Technique.browse" caption="msg://ru.sstu.ifbs.screen.technique/techniqueBrowse.menu"/>
     </menu>
 </menu-config>
