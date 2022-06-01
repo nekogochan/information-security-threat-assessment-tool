@@ -12,6 +12,7 @@ import javax.persistence.*;
 @JmixEntity
 @Table(name = "GWF_ISPDN_SECURITY_INFO")
 @Entity(name = "gwf_IspdnSecurityInfo")
+@DiscriminatorValue("ISPDN")
 public class IspdnSecurityInfo extends ProjectSecurityInfo {
 
     @Column(name = "SYSTEM_SCALE")
@@ -35,19 +36,19 @@ public class IspdnSecurityInfo extends ProjectSecurityInfo {
     @EmbeddedParameters(nullAllowed = false)
     @Embedded
     @AttributeOverrides({
-            @AttributeOverride(name = "protectionLevel", column = @Column(name = "PERSIONAL_DATA_PROTECTION_LEVEL")),
-            @AttributeOverride(name = "category", column = @Column(name = "PERSIONAL_DATA_CATEGORY")),
-            @AttributeOverride(name = "subjectType", column = @Column(name = "PERSIONAL_DATA_SUBJECT_TYPE")),
-            @AttributeOverride(name = "count", column = @Column(name = "PERSIONAL_DATA_COUNT_"))
+            @AttributeOverride(name = "protectionLevel", column = @Column(name = "PERSONAL_DATA_PROTECTION_LEVEL")),
+            @AttributeOverride(name = "category", column = @Column(name = "PERSONAL_DATA_CATEGORY")),
+            @AttributeOverride(name = "subjectType", column = @Column(name = "PERSONAL_DATA_SUBJECT_TYPE")),
+            @AttributeOverride(name = "count", column = @Column(name = "PERSONAL_DATA_COUNT_"))
     })
-    private PersionalData persionalData;
+    private PersonalData personalData;
 
-    public PersionalData getPersionalData() {
-        return persionalData;
+    public PersonalData getPersonalData() {
+        return personalData;
     }
 
-    public void setPersionalData(PersionalData persionalData) {
-        this.persionalData = persionalData;
+    public void setPersonalData(PersonalData personalData) {
+        this.personalData = personalData;
     }
 
     public ActualThreatsType getActualThreatsType() {

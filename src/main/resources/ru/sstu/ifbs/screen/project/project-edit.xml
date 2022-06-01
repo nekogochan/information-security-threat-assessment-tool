@@ -10,15 +10,17 @@
                 <property name="impactTargets" fetchPlan="_base"/>
                 <property name="group" fetchPlan="_base"/>
                 <property name="actualThreats" fetchPlan="_base"/>
+                <property name="securityInfo">
+                    <property name="id"/>
+                </property>
             </fetchPlan>
-            <loader/>
             <collection id="impactSourcesDc" property="impactSources"/>
             <collection id="impactTargetsDc" property="impactTargets"/>
             <collection id="actualThreatsDc" property="actualThreats"/>
+            <loader id="projectDl"/>
         </instance>
     </data>
     <facets>
-        <dataLoadCoordinator auto="true"/>
         <screenSettings id="settingsFacet" auto="true"/>
     </facets>
     <actions>
@@ -39,18 +41,28 @@
             <tabSheet>
                 <tab id="mainInfoTab" caption="msg://ru.sstu.ifbs.screen.project/mainInfo"
                      spacing="true" margin="true">
-                    <form id="form" dataContainer="projectDc">
-                        <column width="350px">
-                            <entityPicker id="groupField" property="group">
-                                <actions>
-                                    <action id="entityLookup" type="entity_lookup"/>
-                                    <action id="entityClear" type="entity_clear"/>
-                                </actions>
-                            </entityPicker>
-                            <textField id="nameField" property="name"/>
-                            <textArea id="descriptionField" property="description" rows="5"/>
-                        </column>
-                    </form>
+                    <vbox spacing="true">
+                        <form id="form" dataContainer="projectDc">
+                            <column width="500px">
+                                <entityPicker id="groupField" property="group">
+                                    <actions>
+                                        <action id="entityLookup" type="entity_lookup"/>
+                                        <action id="entityClear" type="entity_clear"/>
+                                    </actions>
+                                </entityPicker>
+                                <textField id="nameField" property="name"/>
+                                <textArea id="descriptionField" property="description" rows="5"/>
+                                <comboBox id="projectSecurityInfoMapper"
+                                          optionsEnum="ru.sstu.ifbs.entity.project.securityinfo.ProjectSecurityInfoMapper"
+                                          nullOptionVisible="false"
+                                          caption="msg://ru.sstu.ifbs.entity.project.securityinfo/ProjectSecurityInfoMapper"
+                                          width="100%"/>
+                            </column>
+                        </form>
+                        <groupBox id="securityInfoContainer" spacing="true">
+
+                        </groupBox>
+                    </vbox>
                 </tab>
                 <tab id="impactTargetsTab" caption="msg://ru.sstu.ifbs.entity.project/Project.impactTargets"
                      spacing="true" margin="true">
@@ -93,6 +105,7 @@
                             <action id="create" type="create"/>
                             <action id="edit" type="edit"/>
                             <action id="remove" type="remove"/>
+                            <action id="generate" caption="msg://actions.Generate"/>
                         </actions>
                         <columns>
                         </columns>
@@ -100,6 +113,7 @@
                             <button action="actualThreatsTable.create"/>
                             <button action="actualThreatsTable.edit"/>
                             <button action="actualThreatsTable.remove"/>
+                            <button action="actualThreatsTable.generate"/>
                         </buttonsPanel>
                     </table>
                 </tab>

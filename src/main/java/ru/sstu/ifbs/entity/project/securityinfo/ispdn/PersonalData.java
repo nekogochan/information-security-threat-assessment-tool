@@ -8,7 +8,7 @@ import javax.validation.constraints.PositiveOrZero;
 
 @JmixEntity(name = "gwf_PersionalData")
 @Embeddable
-public class PersionalData {
+public class PersonalData {
 
     @Column(name = "PROTECTION_LEVEL")
     private String protectionLevel;
@@ -39,11 +39,11 @@ public class PersionalData {
         this.subjectType = subjectType == null ? null : subjectType.getId();
     }
 
-    public PersionalDataCategory getCategory() {
-        return category == null ? null : PersionalDataCategory.fromId(category);
+    public PersonalDataCategory getCategory() {
+        return category == null ? null : PersonalDataCategory.fromId(category);
     }
 
-    public void setCategory(PersionalDataCategory category) {
+    public void setCategory(PersonalDataCategory category) {
         this.category = category == null ? null : category.getId();
     }
 

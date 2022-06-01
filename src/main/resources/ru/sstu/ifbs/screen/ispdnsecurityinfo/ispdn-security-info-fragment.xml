@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<fragment xmlns="http://jmix.io/schema/ui/fragment">
+    <data>
+        <instance id="ispdnSecurityInfoDc"
+                  class="ru.sstu.ifbs.entity.project.securityinfo.ispdn.IspdnSecurityInfo">
+            <fetchPlan extends="_base">
+                <property name="possibleDamageDegree" fetchPlan="_base"/>
+                <property name="personalData" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader/>
+        </instance>
+    </data>
+    <layout>
+        <form dataContainer="ispdnSecurityInfoDc">
+            <column width="350px">
+                <field id="possibleDamageDegreeConfidentiality" property="possibleDamageDegree.confidentiality"/>
+                <field id="possibleDamageDegreeAccessibility" property="possibleDamageDegree.accessibility"/>
+                <field id="possibleDamageDegreeIntegrity" property="possibleDamageDegree.integrity"/>
+                <field id="systemScale" property="systemScale"/>
+                <field id="securityClass" property="securityClass" editable="false"/>
+
+                <field id="personalDataCategory" property="personalData.category"/>
+                <field id="personalDataSubjectType" property="personalData.subjectType"/>
+                <field id="personalDataCount" property="personalData.count"/>
+                <field id="actualThreatsType" property="actualThreatsType"/>
+                <field id="personalDataProtectionLevel" property="personalData.protectionLevel" editable="false"/>
+            </column>
+        </form>
+    </layout>
+</fragment>
+

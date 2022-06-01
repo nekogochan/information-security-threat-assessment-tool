@@ -2,22 +2,19 @@ package ru.sstu.ifbs.serivce.project.securityinfo.impl;
 
 import org.springframework.stereotype.Component;
 import ru.sstu.ifbs.entity.project.securityinfo.common.DamageDegreeLevel;
-import ru.sstu.ifbs.entity.project.securityinfo.common.PossibleDamageDegree;
 import ru.sstu.ifbs.entity.project.securityinfo.common.SecurityClass;
 import ru.sstu.ifbs.entity.project.securityinfo.common.SystemScale;
 import ru.sstu.ifbs.entity.project.securityinfo.gis.SignificanceLevel;
-import ru.sstu.ifbs.serivce.project.securityinfo.GisSecurityClassCalcService;
+import ru.sstu.ifbs.serivce.project.securityinfo.GisSecClassCalcService;
 
-import java.util.Arrays;
-import java.util.Map;
-import java.util.StringJoiner;
 import java.util.stream.Stream;
 
+import static ru.sstu.ifbs.entity.project.securityinfo.common.DamageDegreeLevel.HIGH;
 import static ru.sstu.ifbs.entity.project.securityinfo.common.SecurityClass.*;
-import static ru.sstu.ifbs.entity.project.securityinfo.common.SystemScale.*;
+import static ru.sstu.ifbs.entity.project.securityinfo.common.SystemScale.FEDERAL;
 
-@Component(GisSecurityClassCalcService.NAME)
-public class GisSecurityClassCalcServiceImpl implements GisSecurityClassCalcService {
+@Component(GisSecClassCalcService.NAME)
+public class GisSecClassCalcServiceImpl implements GisSecClassCalcService {
 
     @Override
     public SecurityClass getSecClass(SystemScale systemScale, SignificanceLevel significanceLevel) {
@@ -29,17 +26,18 @@ public class GisSecurityClassCalcServiceImpl implements GisSecurityClassCalcServ
     }
 
     @Override
-    public SignificanceLevel getSignificanceLevel(PossibleDamageDegree possibleDamageDegree) {
-        return Stream.of(
-                        possibleDamageDegree.getIntegrity(),
-                        possibleDamageDegree.getAccessibility(),
-                        possibleDamageDegree.getConfidentiality())
+    public SignificanceLevel getSignificanceLevel(DamageDegreeLevel confidentiality,
+                                                  DamageDegreeLevel integrity,
+                                                  DamageDegreeLevel accessibility) {
+        return Stream.of(integrity,
+                         accessibility,
+                         confidentiality)
                 .peek(it -> {
                     if (it == null) throw new IllegalStateException();
                 })
                 .reduce((a, b) -> switch (a) {
                     case HIGH -> a;
-                    case MEDIUM -> b == DamageDegreeLevel.HIGH ? b : a;
+                    case MEDIUM -> b == HIGH ? b : a;
                     case LOW -> b;
                 })
                 .map(it -> switch (it) {

@@ -50,7 +50,7 @@ public class ActualThreatEdit extends StandardEditor<ActualThreat> {
                 .map(ActualThreat::getThreat)
                 .map(DefaultEntity::getId)
                 .toList();
-        unusedThreatsDc.setItems(threatRepository.getByIdsExcluded(usedThreatIds));
+        unusedThreatsDc.setItems(threatRepository.getByIdsExcluded(usedThreatIds, unusedThreatsDc.getFetchPlan()));
     }
 
     @Subscribe("threatField.entityLookup")

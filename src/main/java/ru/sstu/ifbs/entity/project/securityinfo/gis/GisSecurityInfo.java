@@ -12,6 +12,7 @@ import javax.persistence.*;
 @JmixEntity
 @Table(name = "GWF_GIS_SECURITY_INFO")
 @Entity(name = "gwf_GisSecurityInfo")
+@DiscriminatorValue("GIS")
 public class GisSecurityInfo extends ProjectSecurityInfo {
 
     @EmbeddedParameters(nullAllowed = false)

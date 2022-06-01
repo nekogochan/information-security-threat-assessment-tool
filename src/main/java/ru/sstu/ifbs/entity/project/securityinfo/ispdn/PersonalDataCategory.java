@@ -5,7 +5,7 @@ import io.jmix.core.metamodel.datatype.impl.EnumClass;
 import javax.annotation.Nullable;
 
 
-public enum PersionalDataCategory implements EnumClass<String> {
+public enum PersonalDataCategory implements EnumClass<String> {
 
     SPECIAL("Special"),
     BIOMETRIC("Biometric"),
@@ -14,7 +14,7 @@ public enum PersionalDataCategory implements EnumClass<String> {
 
     private String id;
 
-    PersionalDataCategory(String value) {
+    PersonalDataCategory(String value) {
         this.id = value;
     }
 
@@ -23,8 +23,8 @@ public enum PersionalDataCategory implements EnumClass<String> {
     }
 
     @Nullable
-    public static PersionalDataCategory fromId(String id) {
-        for (PersionalDataCategory at : PersionalDataCategory.values()) {
+    public static PersonalDataCategory fromId(String id) {
+        for (PersonalDataCategory at : PersonalDataCategory.values()) {
             if (at.getId().equals(id)) {
                 return at;
             }
