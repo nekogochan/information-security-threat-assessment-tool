@@ -5,7 +5,7 @@ import io.jmix.core.entity.annotation.OnDelete;
 import io.jmix.core.metamodel.annotation.Composition;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 import ru.sstu.ifbs.entity.DefaultNamedEntity;
-import ru.sstu.ifbs.entity.project.securityinfo.ProjectSecurityInfo;
+import ru.sstu.ifbs.entity.project.securityinfo.ProjectSecurityInfoType;
 import ru.sstu.ifbs.entity.storage.ImpactSource;
 import ru.sstu.ifbs.entity.storage.ImpactTarget;
 
@@ -16,8 +16,7 @@ import java.util.List;
 
 @JmixEntity
 @Table(name = "GWF_PROJECT", indexes = {
-        @Index(name = "IDX_PROJECT_GROUP_ID", columnList = "GROUP_ID"),
-        @Index(name = "IDX_PROJECT_SECURITY_INFO_ID", columnList = "SECURITY_INFO_ID")
+        @Index(name = "IDX_PROJECT_GROUP_ID", columnList = "GROUP_ID")
 })
 @Entity(name = "gwf_Project")
 public class Project extends DefaultNamedEntity {
@@ -47,11 +46,17 @@ public class Project extends DefaultNamedEntity {
     @OneToMany(mappedBy = "project")
     private List<ActualThreat> actualThreats = new ArrayList<>();
 
-    @OnDelete(DeletePolicy.CASCADE)
-    @JoinColumn(name = "SECURITY_INFO_ID", nullable = false)
+    @Column(name = "SECURITY_INFO_TYPE", nullable = false)
     @NotNull
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    private ProjectSecurityInfo securityInfo;
+    private String securityInfoType = ProjectSecurityInfoType.GIS_SECURITY_INFO.getId();
+
+    public ProjectSecurityInfoType getSecurityInfoType() {
+        return securityInfoType == null ? null : ProjectSecurityInfoType.fromId(securityInfoType);
+    }
+
+    public void setSecurityInfoType(ProjectSecurityInfoType securityInfoType) {
+        this.securityInfoType = securityInfoType == null ? null : securityInfoType.getId();
+    }
 
     public List<ActualSecurityMeasure> getActualMeasures() {
         return actualMeasures;
@@ -59,14 +64,6 @@ public class Project extends DefaultNamedEntity {
 
     public void setActualMeasures(List<ActualSecurityMeasure> actualMeasures) {
         this.actualMeasures = actualMeasures;
-    }
-
-    public ProjectSecurityInfo getSecurityInfo() {
-        return securityInfo;
-    }
-
-    public void setSecurityInfo(ProjectSecurityInfo securityInfo) {
-        this.securityInfo = securityInfo;
     }
 
     public List<ImpactSource> getImpactSources() {

@@ -11,9 +11,6 @@
                 <property name="impactTargets" fetchPlan="_base"/>
                 <property name="group" fetchPlan="_base"/>
                 <property name="actualThreats" fetchPlan="_base"/>
-                <property name="securityInfo">
-                    <property name="id"/>
-                </property>
             </fetchPlan>
             <loader id="projectsDl">
                 <query>
@@ -51,7 +48,7 @@
                 <column id="group"/>
                 <column id="name"/>
                 <column id="description"/>
-                <column id="securityInfo"/>
+                <column id="securityInfoType"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"

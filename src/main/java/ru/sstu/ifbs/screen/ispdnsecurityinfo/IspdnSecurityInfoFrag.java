@@ -1,8 +1,6 @@
 package ru.sstu.ifbs.screen.ispdnsecurityinfo;
 
-import io.jmix.ui.component.ComboBox;
 import io.jmix.ui.component.Field;
-import io.jmix.ui.component.TextField;
 import io.jmix.ui.model.InstanceContainer;
 import io.jmix.ui.screen.ScreenFragment;
 import io.jmix.ui.screen.Subscribe;
@@ -15,12 +13,11 @@ import ru.sstu.ifbs.entity.project.securityinfo.common.SystemScale;
 import ru.sstu.ifbs.entity.project.securityinfo.ispdn.*;
 import ru.sstu.ifbs.serivce.project.securityinfo.IspdnSecClassCalcService;
 
-import javax.validation.constraints.PositiveOrZero;
 import java.util.stream.Stream;
 
-@UiController("gwf_IspdnSecurityInfoFragment")
-@UiDescriptor("ispdn-security-info-fragment.xml")
-public class IspdnSecurityInfoFragment extends ScreenFragment {
+@UiController("gwf_IspdnSecurityInfoFrag")
+@UiDescriptor("ispdn-security-info-frag.xml")
+public class IspdnSecurityInfoFrag extends ScreenFragment {
     @Autowired
     private IspdnSecClassCalcService ispdnSecClassCalcService;
 

@@ -10,9 +10,6 @@
                 <property name="impactTargets" fetchPlan="_base"/>
                 <property name="group" fetchPlan="_base"/>
                 <property name="actualThreats" fetchPlan="_base"/>
-                <property name="securityInfo">
-                    <property name="id"/>
-                </property>
             </fetchPlan>
             <collection id="impactSourcesDc" property="impactSources"/>
             <collection id="impactTargetsDc" property="impactTargets"/>
@@ -52,11 +49,7 @@
                                 </entityPicker>
                                 <textField id="nameField" property="name"/>
                                 <textArea id="descriptionField" property="description" rows="5"/>
-                                <comboBox id="projectSecurityInfoMapper"
-                                          optionsEnum="ru.sstu.ifbs.entity.project.securityinfo.ProjectSecurityInfoMapper"
-                                          nullOptionVisible="false"
-                                          caption="msg://ru.sstu.ifbs.entity.project.securityinfo/ProjectSecurityInfoMapper"
-                                          width="100%"/>
+                                <comboBox id="securityInfoType" property="securityInfoType"/>
                             </column>
                         </form>
                         <groupBox id="securityInfoContainer" spacing="true">

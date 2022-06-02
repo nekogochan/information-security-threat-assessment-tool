@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 import java.util.function.Consumer;
 
 public abstract class DefaultRepository<T> {
@@ -19,6 +21,12 @@ public abstract class DefaultRepository<T> {
 
     public FluentLoader<T> load() {
         return dataManager.load(entityClass());
+    }
+
+    public Optional<T> findById(UUID id) {
+        return load()
+                .query("where id = ?", id)
+                .optional();
     }
 
     public List<T> getByIds(Collection<?> ids, FetchPlan fetchPlan) {
