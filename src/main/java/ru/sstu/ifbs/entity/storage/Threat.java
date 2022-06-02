@@ -2,6 +2,7 @@ package ru.sstu.ifbs.entity.storage;
 
 import io.jmix.core.metamodel.annotation.JmixEntity;
 import ru.sstu.ifbs.entity.DefaultNamedEntity;
+import ru.sstu.ifbs.entity.storage.measures.SecurityMeasure;
 import ru.sstu.ifbs.entity.storage.scenario.ThreatScenario;
 
 import javax.persistence.*;
@@ -26,7 +27,18 @@ public class Threat extends DefaultNamedEntity {
     private List<ImpactTarget> targets = new ArrayList<>();
 
     @OneToMany(mappedBy = "threat")
+    private List<SecurityMeasure> securityMeasures;
+
+    @OneToMany(mappedBy = "threat")
     private List<ThreatScenario> scenarios;
+
+    public List<SecurityMeasure> getSecurityMeasures() {
+        return securityMeasures;
+    }
+
+    public void setSecurityMeasures(List<SecurityMeasure> securityMeasures) {
+        this.securityMeasures = securityMeasures;
+    }
 
     public List<ThreatScenario> getScenarios() {
         return scenarios;

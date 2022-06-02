@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1" author="gwf">
+        <addColumn tableName="GWF_SECURITY_MEASURE">
+            <column name="THREAT_ID" type="UUID"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="2" author="gwf">
+        <createIndex indexName="IDX_SECURITYMEASURE_THREAT_ID" tableName="GWF_SECURITY_MEASURE">
+            <column name="THREAT_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="THREAT_ID" baseTableName="GWF_SECURITY_MEASURE"
+                                 constraintName="FK_GWF_SECURITY_MEASURE_ON_THREAT" referencedColumnNames="ID"
+                                 referencedTableName="GWF_THREAT"/>
+    </changeSet>
+    <changeSet id="3" author="gwf">
+        <dropColumn columnName="description" tableName="gwf_threat_impl_method"/>
+    </changeSet>
+</databaseChangeLog>

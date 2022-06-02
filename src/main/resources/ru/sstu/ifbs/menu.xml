@@ -1,17 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <menu-config xmlns="http://jmix.io/schema/ui/menu">
 
-    <menu id="application" caption="msg://ru.sstu.ifbs/menu.application" insertBefore="administration">
-        <item screen="gwf_User.browse" caption="msg://ru.sstu.ifbs.screen.user/UserBrowse.caption"/>
-        <item screen="gwf_Group.browse" caption="msg://ru.sstu.ifbs.screen.group/groupBrowse.menu"/>
-        <item screen="gwf_Project.browse" caption="msg://ru.sstu.ifbs.screen.project/projectBrowse.menu"/>
+    <menu id="application"
+          caption="msg://ru.sstu.ifbs/menu.application"
+          insertBefore="administration">
+        <item screen="gwf_User.browse"
+              caption="msg://ru.sstu.ifbs.screen.user/UserBrowse.caption"/>
+        <item screen="gwf_Group.browse"
+              caption="msg://ru.sstu.ifbs.screen.group/groupBrowse.menu"/>
+        <item screen="gwf_Project.browse"
+              caption="msg://ru.sstu.ifbs.screen.project/projectBrowse.menu"/>
         <separator/>
-        <menu id="storage" caption="msg://ru.sstu.ifbs/menu.storage">
-            <item screen="gwf_ImpactSource.browse" caption="msg://ru.sstu.ifbs.screen.impactsource/impactSourceBrowse.menu"/>
-            <item screen="gwf_ImpactTarget.browse" caption="msg://ru.sstu.ifbs.screen.impacttarget/impactTargetBrowse.menu"/>
-            <item screen="gwf_Threat.browse" caption="msg://ru.sstu.ifbs.screen.threat/threatBrowse.menu"/>
-            <item screen="gwf_Tactic.browse" caption="msg://ru.sstu.ifbs.screen.tactic/tacticBrowse.menu"/>
+        <menu id="storage"
+              caption="msg://ru.sstu.ifbs/menu.storage">
+            <item screen="gwf_ImpactSource.browse"
+                  caption="msg://ru.sstu.ifbs.screen.impactsource/impactSourceBrowse.menu"/>
+            <item screen="gwf_ImpactTarget.browse"
+                  caption="msg://ru.sstu.ifbs.screen.impacttarget/impactTargetBrowse.menu"/>
+            <item screen="gwf_Threat.browse"
+                  caption="msg://ru.sstu.ifbs.screen.threat/threatBrowse.menu"/>
+            <item screen="gwf_Tactic.browse"
+                  caption="msg://ru.sstu.ifbs.screen.tactic/tacticBrowse.menu"/>
+            <item screen="gwf_SecurityMeasures.browse"
+                  caption="msg://ru.sstu.ifbs.screen.securitymeasure/securityMeasureBrowse.menu"/>
+            <item screen="gwf_SecurityMeasureGroup.browse"
+                  caption="msg://ru.sstu.ifbs.screen.securitymeasuregroup/securityMeasureGroupBrowse.menu"/>
+            <item screen="gwf_ThreatImplMethod.browse"
+                  caption="msg://ru.sstu.ifbs.screen.threatimplmethod/threatImplMethodBrowse.menu"/>
         </menu>
-        <item screen="gwf_Technique.browse" caption="msg://ru.sstu.ifbs.screen.technique/techniqueBrowse.menu"/>
     </menu>
 </menu-config>

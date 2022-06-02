@@ -68,7 +68,7 @@
                      spacing="true" margin="true">
                     <table id="impactTargetsTable" dataContainer="impactTargetsDc" width="100%">
                         <actions>
-                            <action id="add" type="add"/>
+                            <action id="add" type="add" primary="true"/>
                             <action id="exclude" type="exclude"/>
                         </actions>
                         <columns>
@@ -84,7 +84,7 @@
                      spacing="true" margin="true">
                     <table id="impactSourcesTable" dataContainer="impactSourcesDc" width="100%">
                         <actions>
-                            <action id="add" type="add"/>
+                            <action id="add" type="add" primary="true"/>
                             <action id="exclude" type="exclude"/>
                         </actions>
                         <columns>
@@ -108,6 +108,7 @@
                             <action id="generate" caption="msg://actions.Generate"/>
                         </actions>
                         <columns>
+                            <column id="threat"/>
                         </columns>
                         <buttonsPanel>
                             <button action="actualThreatsTable.create"/>

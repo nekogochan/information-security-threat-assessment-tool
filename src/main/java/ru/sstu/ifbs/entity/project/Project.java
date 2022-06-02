@@ -28,6 +28,9 @@ public class Project extends DefaultNamedEntity {
     @ManyToMany
     private List<ImpactSource> impactSources = new ArrayList<>();
 
+    @OneToMany(mappedBy = "project")
+    private List<ActualSecurityMeasure> actualMeasures;
+
     @JoinTable(name = "GWF_PROJECT_IMPACT_TARGET_LINK",
             joinColumns = @JoinColumn(name = "PROJECT_ID", referencedColumnName = "ID"),
             inverseJoinColumns = @JoinColumn(name = "IMPACT_TARGET_ID", referencedColumnName = "ID"))
@@ -49,6 +52,14 @@ public class Project extends DefaultNamedEntity {
     @NotNull
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     private ProjectSecurityInfo securityInfo;
+
+    public List<ActualSecurityMeasure> getActualMeasures() {
+        return actualMeasures;
+    }
+
+    public void setActualMeasures(List<ActualSecurityMeasure> actualMeasures) {
+        this.actualMeasures = actualMeasures;
+    }
 
     public ProjectSecurityInfo getSecurityInfo() {
         return securityInfo;

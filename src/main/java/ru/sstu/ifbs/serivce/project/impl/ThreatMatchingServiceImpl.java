@@ -27,10 +27,10 @@ public class ThreatMatchingServiceImpl implements ThreatMatchingService {
     private DataManager dataManager;
 
     @Override
-    public List<ActualThreat> getMatches(Project project, FetchPlan fetchPlan) {
+    public List<ActualThreat> getMatches(Project project, FetchPlan threatFetchPlan, FetchPlan scenarioFetchPlan) {
         return threatRepository.getByImpactSourcesAndTargets(project.getImpactSources(),
                                                              project.getImpactTargets(),
-                                                             fetchPlan)
+                                                             threatFetchPlan)
                 .stream()
                 .map(it -> {
                     var at = dataManager.create(ActualThreat.class);

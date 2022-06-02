@@ -4,13 +4,19 @@
         focusComponent="form">
     <data>
         <instance id="actualThreatDc" class="ru.sstu.ifbs.entity.project.ActualThreat">
-            <fetchPlan extends="_base">
+            <fetchPlan extends="_local">
                 <property name="scenarios" fetchPlan="_base"/>
+                <property name="threat" fetchPlan="_base">
+                    <property name="scenarios">
+                        <property name="id"/>
+                    </property>
+                </property>
             </fetchPlan>
             <loader/>
             <collection id="scenariosDc" property="scenarios"/>
         </instance>
         <collection id="unusedThreatsDc" class="ru.sstu.ifbs.entity.storage.Threat"/>
+        <collection id="unusedThreatScenariosDc" class="ru.sstu.ifbs.entity.storage.scenario.ThreatScenario"/>
     </data>
     <facets>
         <dataLoadCoordinator auto="true"/>
@@ -42,7 +48,7 @@
             <groupBox id="scenariosBox" caption="msg://ru.sstu.ifbs.entity.project/ActualThreat.scenarios">
                 <table id="scenariosTable" dataContainer="scenariosDc" width="100%" height="200px">
                     <actions>
-                        <action id="add" type="add"/>
+                        <action id="add" type="add" primary="true"/>
                         <action id="exclude" type="exclude"/>
                     </actions>
                     <columns>

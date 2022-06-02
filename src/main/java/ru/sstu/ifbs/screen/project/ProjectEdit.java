@@ -16,6 +16,7 @@ import ru.sstu.ifbs.entity.project.securityinfo.ProjectSecurityInfoMapper;
 import ru.sstu.ifbs.entity.project.securityinfo.gis.GisSecurityInfo;
 import ru.sstu.ifbs.entity.project.securityinfo.ispdn.IspdnSecurityInfo;
 import ru.sstu.ifbs.entity.storage.Threat;
+import ru.sstu.ifbs.entity.storage.scenario.ThreatScenario;
 import ru.sstu.ifbs.screen.actualthreat.ActualThreatEdit;
 import ru.sstu.ifbs.screen.ispdnsecurityinfo.IspdnSecurityInfoFragment;
 import ru.sstu.ifbs.screen.project.securityinfo.gissecurityinfo.GisSecurityInfoFrag;
@@ -113,8 +114,8 @@ public class ProjectEdit extends StandardEditor<Project> {
         var dc = frag.getIspdnSecurityInfoDc();
         if (needReload) {
             entity = dataContext.merge(dataManager.load(Id.of(entity))
-                    .fetchPlan(dc.getFetchPlan())
-                    .one());
+                                               .fetchPlan(dc.getFetchPlan())
+                                               .one());
         }
         dc.setItem(entity);
         drawFrag(frag.getFragment(), messageTools.getEntityCaption(metadata.getClass(entity)));
@@ -140,7 +141,9 @@ public class ProjectEdit extends StandardEditor<Project> {
     public void onActualThreatsTableGenerate(Action.ActionPerformedEvent event) {
         var project = getEditedEntity();
         var actualThreats = threatMatchingService.getMatches(
-                project, fetchPlans.builder(Threat.class).addFetchPlan(FetchPlan.BASE).build());
+                project,
+                fetchPlans.builder(Threat.class).addFetchPlan(FetchPlan.BASE).build(),
+                fetchPlans.builder(ThreatScenario.class).addFetchPlan(FetchPlan.BASE).build());
 
         actualThreats.forEach(it -> actualThreatsDc.getMutableItems().add(dataContext.merge(it)));
     }

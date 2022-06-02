@@ -11,7 +11,12 @@
                     </property>
                     <property name="techniques" fetchPlan="_base"/>
                 </property>
+                <property name="implMethods" fetchPlan="_base">
+                    <property name="source" fetchPlan="_instance_name"/>
+                    <property name="target" fetchPlan="_instance_name"/>
+                </property>
             </fetchPlan>
+            <collection id="implMethodsDc" property="implMethods"/>
         </instance>
         <collection id="tacticsDc" class="ru.sstu.ifbs.entity.storage.tactic.Tactic">
             <fetchPlan extends="_local">
@@ -41,18 +46,40 @@
                 width="800"/>
     <layout spacing="true" expand="scrollBox">
         <scrollBox id="scrollBox">
-            <vbox expand="tacticsTable" spacing="true">
+            <vbox expand="tabSheet" spacing="true" height="100%">
                 <form dataContainer="threatScenarioDc">
                     <column width="350px">
                         <textField property="name"/>
                         <textField property="description"/>
                     </column>
                 </form>
-                <label value="msg://ru.sstu.ifbs.entity.storage.scenario/ThreatScenario.tactics" stylename="bold h2"/>
-                <vbox id="tacticsTable" expand="tacticsBox" spacing="true">
-                    <popupButton id="addTacticBtn" caption="msg://addTacticBtn.caption" icon="ADD_ACTION"/>
-                    <hbox id="tacticsBox" spacing="true"/>
-                </vbox>
+                <tabSheet id="tabSheet">
+                    <tab id="tacticsTab" expand="tacticsTable" margin="true"
+                         caption="msg://ru.sstu.ifbs.entity.storage.scenario/ThreatScenario.tactics">
+                        <vbox id="tacticsTable" expand="tacticsBox" spacing="true" width="100%">
+                            <popupButton id="addTacticBtn" caption="msg://addTacticBtn.caption" icon="ADD_ACTION"/>
+                            <hbox id="tacticsBox" spacing="true"/>
+                        </vbox>
+                    </tab>
+                    <tab id="measuresTab" expand="implMethodsTable" margin="true"
+                         caption="msg://ru.sstu.ifbs.entity.storage.scenario/ThreatScenario.implMethods">
+                        <groupTable id="implMethodsTable" dataContainer="implMethodsDc" width="100%">
+                            <actions>
+                                <action id="add" type="add" primary="true"/>
+                                <action id="exclude" type="exclude"/>
+                            </actions>
+                            <columns>
+                                <column id="name"/>
+                                <column id="source"/>
+                                <column id="target"/>
+                            </columns>
+                            <buttonsPanel>
+                                <button id="addBtn" action="implMethodsTable.add"/>
+                                <button id="excludeBtn" action="implMethodsTable.exclude"/>
+                            </buttonsPanel>
+                        </groupTable>
+                    </tab>
+                </tabSheet>
             </vbox>
         </scrollBox>
         <hbox id="editActions" spacing="true">

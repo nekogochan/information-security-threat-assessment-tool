@@ -13,7 +13,7 @@ import javax.validation.constraints.Pattern;
 public class Technique extends DefaultNamedEntity implements HasOrderedCode {
 
     @Column(name = "CODE", nullable = false, unique = true)
-    @Pattern(message = "{msg://ru.sstu.ifbs.entity.storage.tactic/Technique.code.validation.Pattern}", regexp = "[a-zA-Z\\d]+\\.[\\d.]+")
+    @Pattern(message = "{msg://ru.sstu.ifbs.entity.storage.tactic/Technique.code.validation.Pattern}", regexp = "[a-zA-Zа-яА-Я\\d]+\\.[\\d.]+")
     @NotNull
     private String code;
 

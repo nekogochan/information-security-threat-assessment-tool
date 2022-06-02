@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        xmlns:c="http://jmix.io/schema/ui/jpql-condition"
+        caption="msg://threatImplMethodBrowse.caption"
+        focusComponent="threatImplMethodsTable">
+    <data readOnly="true">
+        <collection id="threatImplMethodsDc"
+                    class="ru.sstu.ifbs.entity.storage.ThreatImplMethod">
+            <fetchPlan extends="_base">
+                <property name="source" fetchPlan="_base"/>
+                <property name="target" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader id="threatImplMethodsDl">
+                <query>
+                    <![CDATA[select e from gwf_ThreatImplMethod e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <screenSettings id="settingsFacet" auto="true"/>
+    </facets>
+    <actions>
+        <action id="lookupSelectAction"
+                caption="msg:///actions.Select"
+                icon="LOOKUP_OK"
+                primary="true"
+                shortcut="${COMMIT_SHORTCUT}"/>
+        <action id="lookupCancelAction"
+                caption="msg:///actions.Cancel"
+                icon="LOOKUP_CANCEL"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="threatImplMethodsTable" spacing="true">
+        <filter id="filter"
+                dataLoader="threatImplMethodsDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="threatImplMethodsTable"
+                    width="100%"
+                    dataContainer="threatImplMethodsDc"
+                    multiselect="true">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="name"/>
+                <column id="source"/>
+                <column id="target"/>
+            </columns>
+            <simplePagination/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="threatImplMethodsTable.create"/>
+                <button id="editBtn" action="threatImplMethodsTable.edit"/>
+                <button id="removeBtn" action="threatImplMethodsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

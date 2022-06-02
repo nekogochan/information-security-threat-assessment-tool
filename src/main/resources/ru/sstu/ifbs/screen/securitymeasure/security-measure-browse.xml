@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        xmlns:c="http://jmix.io/schema/ui/jpql-condition"
+        caption="msg://securityMeasureBrowse.caption"
+        focusComponent="securityMeasuresTable">
+    <data readOnly="true">
+        <collection id="securityMeasuresDc"
+                    class="ru.sstu.ifbs.entity.storage.measures.SecurityMeasure">
+            <fetchPlan extends="_base">
+                <property name="securityMeasureGroup" fetchPlan="_instance_name"/>
+            </fetchPlan>
+            <loader id="securityMeasuresDl">
+                <query>
+                    <![CDATA[select e from gwf_SecurityMeasures e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <screenSettings id="settingsFacet" auto="true"/>
+    </facets>
+    <actions>
+        <action id="lookupSelectAction"
+                caption="msg:///actions.Select"
+                icon="LOOKUP_OK"
+                primary="true"
+                shortcut="${COMMIT_SHORTCUT}"/>
+        <action id="lookupCancelAction"
+                caption="msg:///actions.Cancel"
+                icon="LOOKUP_CANCEL"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="securityMeasuresTable" spacing="true">
+        <filter id="filter"
+                dataLoader="securityMeasuresDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="securityMeasuresTable"
+                    width="100%"
+                    dataContainer="securityMeasuresDc"
+                    multiselect="true">
+            <columns>
+                <column id="name"/>
+                <column id="code"/>
+                <column id="protectionLevel"/>
+                <column id="securityMeasureGroup"/>
+            </columns>
+            <simplePagination/>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        caption="msg://securityMeasureGroupEdit.caption"
+        focusComponent="form">
+    <data>
+        <instance id="securityMeasureGroupDc"
+                  class="ru.sstu.ifbs.entity.storage.measures.SecurityMeasureGroup">
+            <fetchPlan extends="_base">
+                <property name="measures" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader/>
+            <collection id="measuresDc" property="measures"/>
+        </instance>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <screenSettings id="settingsFacet" auto="true"/>
+    </facets>
+    <actions>
+        <action id="windowCommitAndClose" caption="msg:///actions.Ok"
+                icon="EDITOR_OK"
+                primary="true"
+                shortcut="${COMMIT_SHORTCUT}"/>
+        <action id="windowClose"
+                caption="msg:///actions.Close"
+                icon="EDITOR_CANCEL"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout spacing="true" expand="scrollBox">
+        <scrollBox id="scrollBox" spacing="true">
+            <vbox expand="measuresTable" height="100%">
+                <form id="form" dataContainer="securityMeasureGroupDc">
+                    <column width="350px">
+                        <textField id="nameField" property="name"/>
+                        <textField id="orderNumberField" property="orderNumber"/>
+                    </column>
+                </form>
+                <label stylename="h2 bold"
+                       value="msg://ru.sstu.ifbs.entity.storage.measures/SecurityMeasureGroup.measures"/>
+                <table id="measuresTable" dataContainer="measuresDc" width="100%">
+                    <actions>
+                        <action id="create" type="create"/>
+                        <action id="edit" type="edit"/>
+                        <action id="remove" type="remove"/>
+                    </actions>
+                    <columns>
+                        <column id="code"/>
+                        <column id="name"/>
+                        <column id="protectionLevel"/>
+                    </columns>
+                    <buttonsPanel>
+                        <button action="measuresTable.create"/>
+                        <button action="measuresTable.edit"/>
+                        <button action="measuresTable.remove"/>
+                    </buttonsPanel>
+                </table>
+            </vbox>
+        </scrollBox>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

@@ -18,7 +18,7 @@ import java.util.List;
 public class Tactic extends DefaultNamedEntity implements HasOrderedCode {
 
     @Column(name = "CODE", nullable = false, unique = true)
-    @Pattern(message = "{msg://ru.sstu.ifbs.entity.storage.tactic/Tactic.code.validation.Pattern}", regexp = "[a-zA-Z\\d]+\\.[\\d.]+")
+    @Pattern(message = "{msg://ru.sstu.ifbs.entity.storage.tactic/Tactic.code.validation.Pattern}", regexp = "[a-zA-Zа-яА-Я\\d]+\\.[\\d.]+")
     @NotNull
     private String code;
 

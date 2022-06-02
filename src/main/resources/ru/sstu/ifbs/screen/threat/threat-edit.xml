@@ -17,12 +17,13 @@
                         <property name="techniques" fetchPlan="_base"/>
                     </property>
                 </property>
+                <property name="securityMeasures" fetchPlan="_base"/>
             </fetchPlan>
             <loader/>
             <collection id="sourcesDc" property="sources"/>
             <collection id="targetsDc" property="targets"/>
-            <collection id="threatScenariosDc" property="scenarios">
-            </collection>
+            <collection id="threatScenariosDc" property="scenarios"/>
+            <collection id="securityMeasuresDc" property="securityMeasures"/>
         </instance>
     </data>
     <facets>
@@ -52,7 +53,7 @@
                 <tab id="sourcesTab" margin="true" caption="msg://ru.sstu.ifbs.entity.storage/Threat.sources">
                     <table id="sourcesTable" dataContainer="sourcesDc" width="100%">
                         <actions>
-                            <action id="add" type="add"/>
+                            <action id="add" type="add" primary="true"/>
                             <action id="exclude" type="exclude"/>
                         </actions>
                         <columns>
@@ -70,7 +71,7 @@
                 <tab id="targetsTab" margin="true" caption="msg://ru.sstu.ifbs.entity.storage/Threat.targets">
                     <table id="targetsTable" dataContainer="targetsDc" width="100%">
                         <actions>
-                            <action id="add" type="add"/>
+                            <action id="add" type="add" primary="true"/>
                             <action id="exclude" type="exclude"/>
                         </actions>
                         <columns>
@@ -98,6 +99,22 @@
                             <button id="createBtn" action="scenariosTable.create"/>
                             <button id="editBtn" action="scenariosTable.edit"/>
                             <button id="removeBtn" action="scenariosTable.remove"/>
+                        </buttonsPanel>
+                    </table>
+                </tab>
+                <tab id="securityMeasuresTab" margin="true" caption="msg://ru.sstu.ifbs.entity.storage/Threat.securityMeasures">
+                    <table id="securityMeasuresTable" dataContainer="securityMeasuresDc">
+                        <actions>
+                            <action id="add" type="add" primary="true"/>
+                            <action id="exclude" type="exclude"/>
+                        </actions>
+                        <columns>
+                            <column id="code"/>
+                            <column id="name"/>
+                        </columns>
+                        <buttonsPanel>
+                            <button id="addBtn" action="securityMeasuresTable.add"/>
+                            <button id="excludeBtn" action="securityMeasuresTable.exclude"/>
                         </buttonsPanel>
                     </table>
                 </tab>

@@ -12,7 +12,7 @@ public enum PersonalDataProtectionLevel implements EnumClass<String> {
     PL3("PL3"),
     PL4("PL4");
 
-    private String id;
+    private final String id;
 
     PersonalDataProtectionLevel(String value) {
         this.id = value;
