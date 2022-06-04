@@ -1,17 +1,19 @@
 package ru.sstu.ifbs.entity.storage;
 
+import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
-import ru.sstu.ifbs.entity.DefaultNamedEntity;
+import ru.sstu.ifbs.entity.DefaultEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @JmixEntity
 @Table(name = "GWF_IMPACT_SOURCE")
 @Entity(name = "gwf_ImpactSource")
-public class ImpactSource extends DefaultNamedEntity {
+public class ImpactSource extends DefaultEntity {
 
     @NotNull
     @Column(name = "TYPE_", nullable = false)
@@ -20,6 +22,31 @@ public class ImpactSource extends DefaultNamedEntity {
     @NotNull
     @Column(name = "LEVEL_", nullable = false)
     private Integer level;
+
+    @NotNull
+    @InstanceName
+    @Column(name = "NAME", nullable = false)
+    private String name;
+
+    @Column(name = "DESCRIPTION")
+    @Lob
+    private String description;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public Integer getLevel() {
         return level;

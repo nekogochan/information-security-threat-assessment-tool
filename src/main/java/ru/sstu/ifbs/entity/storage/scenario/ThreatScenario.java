@@ -6,7 +6,7 @@ import io.jmix.core.metamodel.annotation.Composition;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 import ru.sstu.ifbs.entity.DefaultNamedEntity;
 import ru.sstu.ifbs.entity.storage.Threat;
-import ru.sstu.ifbs.entity.storage.ThreatImplMethod;
+import ru.sstu.ifbs.entity.storage.ThreatImplMethodsLink;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -29,18 +29,18 @@ public class ThreatScenario extends DefaultNamedEntity {
             joinColumns = @JoinColumn(name = "THREAT_SCENARIO_ID", referencedColumnName = "ID"),
             inverseJoinColumns = @JoinColumn(name = "THREAT_IMPL_METHOD_ID", referencedColumnName = "ID"))
     @ManyToMany
-    private List<ThreatImplMethod> implMethods;
+    private List<ThreatImplMethodsLink> implMethods;
 
     @OnDelete(DeletePolicy.CASCADE)
     @Composition
     @OneToMany(mappedBy = "threatScenario")
     private List<ScenarioTactic> tactics = new ArrayList<>();
 
-    public List<ThreatImplMethod> getImplMethods() {
+    public List<ThreatImplMethodsLink> getImplMethods() {
         return implMethods;
     }
 
-    public void setImplMethods(List<ThreatImplMethod> implMethods) {
+    public void setImplMethods(List<ThreatImplMethodsLink> implMethods) {
         this.implMethods = implMethods;
     }
 

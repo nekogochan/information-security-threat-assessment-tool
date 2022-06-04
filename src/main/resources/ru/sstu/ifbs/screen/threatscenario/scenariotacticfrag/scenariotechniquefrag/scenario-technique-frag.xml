@@ -7,8 +7,10 @@
         <groupBox id="mainInfoBox" spacing="true">
             <label width="100%" id="header"/>
             <popupView minimizedValue="msg://descriptionPopup.caption">
-                <button id="deleteBtn" width="100%" icon="MINUS" caption="msg:///actions.Remove"/>
-                <label id="description" width="100%" dataContainer="techniqueDc" property="value.description"/>
+                <vbox>
+                    <button id="deleteBtn" width="100%" icon="MINUS" caption="msg:///actions.Remove"/>
+                    <label id="description" width="100%" dataContainer="techniqueDc" property="value.description"/>
+                </vbox>
             </popupView>
         </groupBox>
     </layout>

@@ -1,54 +1,13 @@
 package ru.sstu.ifbs.entity.storage;
 
 import io.jmix.core.metamodel.annotation.JmixEntity;
-import ru.sstu.ifbs.entity.DefaultEntity;
+import ru.sstu.ifbs.entity.DefaultNamedEntity;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @JmixEntity
-@Table(name = "GWF_THREAT_IMPL_METHOD", indexes = {
-        @Index(name = "IDX_THREATIMPLMETHOD", columnList = "SOURCE_ID"),
-        @Index(name = "IDX_THREATIMPLMETHOD", columnList = "TARGET_ID")
-})
+@Table(name = "GWF_THREAT_IMPL_METHOD")
 @Entity(name = "gwf_ThreatImplMethod")
-public class ThreatImplMethod extends DefaultEntity {
-
-    @JoinColumn(name = "SOURCE_ID", nullable = false)
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    private ImpactSource source;
-
-    @JoinColumn(name = "TARGET_ID", nullable = false)
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    private ImpactTarget target;
-
-    @NotNull
-    @Column(name = "NAME")
-    private String name;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public ImpactTarget getTarget() {
-        return target;
-    }
-
-    public void setTarget(ImpactTarget target) {
-        this.target = target;
-    }
-
-    public ImpactSource getSource() {
-        return source;
-    }
-
-    public void setSource(ImpactSource source) {
-        this.source = source;
-    }
+public class ThreatImplMethod extends DefaultNamedEntity {
 }

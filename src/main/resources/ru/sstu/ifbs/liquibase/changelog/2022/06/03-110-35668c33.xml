@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1" author="gwf" dbms="postgresql">
+        <createIndex indexName="IDX_UC_GWF_THREAT_IMPL_METHOD_NAME" tableName="GWF_THREAT_IMPL_METHOD" unique="true">
+            <column name="NAME"/>
+        </createIndex>
+
+        <modifySql>
+            <append value="where DELETED_DATE is null"/>
+        </modifySql>
+    </changeSet>
+    <changeSet id="2" author="gwf">
+        <addForeignKeyConstraint baseColumnNames="THREAT_IMPL_METHOD_ID" baseTableName="GWF_THR_IMPL_METH_LINKS_LINK"
+                                 constraintName="FK_GWFTHRIMPMETLIN_ON_THREAT_IMPL_METHOD" referencedColumnNames="ID"
+                                 referencedTableName="GWF_THREAT_IMPL_METHOD"/>
+    </changeSet>
+    <changeSet id="3" author="gwf">
+        <addForeignKeyConstraint baseColumnNames="THREAT_IMPL_METHODS_LINK_ID"
+                                 baseTableName="GWF_THR_IMPL_METH_LINKS_LINK"
+                                 constraintName="FK_GWFTHRIMPMETLIN_ON_THREAT_IMPL_METHODS_LINK"
+                                 referencedColumnNames="ID" referencedTableName="GWF_THREAT_IMPL_METHODS_LINK"/>
+    </changeSet>
+</databaseChangeLog>

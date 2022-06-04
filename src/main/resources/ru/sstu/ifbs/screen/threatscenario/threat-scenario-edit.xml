@@ -44,44 +44,43 @@
     </actions>
     <dialogMode height="600"
                 width="800"/>
-    <layout spacing="true" expand="scrollBox">
-        <scrollBox id="scrollBox">
-            <vbox expand="tabSheet" spacing="true" height="100%">
-                <form dataContainer="threatScenarioDc">
-                    <column width="350px">
-                        <textField property="name"/>
-                        <textField property="description"/>
-                    </column>
-                </form>
-                <tabSheet id="tabSheet">
-                    <tab id="tacticsTab" expand="tacticsTable" margin="true"
-                         caption="msg://ru.sstu.ifbs.entity.storage.scenario/ThreatScenario.tactics">
-                        <vbox id="tacticsTable" expand="tacticsBox" spacing="true" width="100%">
-                            <popupButton id="addTacticBtn" caption="msg://addTacticBtn.caption" icon="ADD_ACTION"/>
+    <layout spacing="true" expand="mainInfoBox">
+        <vbox id="mainInfoBox" expand="tabSheet" spacing="true" height="100%">
+            <form dataContainer="threatScenarioDc">
+                <column width="350px">
+                    <textField property="name"/>
+                    <textField property="description"/>
+                </column>
+            </form>
+            <tabSheet id="tabSheet">
+                <tab id="tacticsTab" expand="tacticsTable" margin="true"
+                     caption="msg://ru.sstu.ifbs.entity.storage.scenario/ThreatScenario.tactics">
+                    <vbox id="tacticsTable" expand="tacticsBoxScrollWrapper" spacing="true" width="100%">
+                        <popupButton id="addTacticBtn" caption="msg://addTacticBtn.caption" icon="ADD_ACTION"/>
+                        <scrollBox id="tacticsBoxScrollWrapper">
                             <hbox id="tacticsBox" spacing="true"/>
-                        </vbox>
-                    </tab>
-                    <tab id="measuresTab" expand="implMethodsTable" margin="true"
-                         caption="msg://ru.sstu.ifbs.entity.storage.scenario/ThreatScenario.implMethods">
-                        <groupTable id="implMethodsTable" dataContainer="implMethodsDc" width="100%">
-                            <actions>
-                                <action id="add" type="add" primary="true"/>
-                                <action id="exclude" type="exclude"/>
-                            </actions>
-                            <columns>
-                                <column id="name"/>
-                                <column id="source"/>
-                                <column id="target"/>
-                            </columns>
-                            <buttonsPanel>
-                                <button id="addBtn" action="implMethodsTable.add"/>
-                                <button id="excludeBtn" action="implMethodsTable.exclude"/>
-                            </buttonsPanel>
-                        </groupTable>
-                    </tab>
-                </tabSheet>
-            </vbox>
-        </scrollBox>
+                        </scrollBox>
+                    </vbox>
+                </tab>
+                <tab id="measuresTab" expand="implMethodsTable" margin="true"
+                     caption="msg://ru.sstu.ifbs.entity.storage.scenario/ThreatScenario.implMethods">
+                    <groupTable id="implMethodsTable" dataContainer="implMethodsDc" width="100%">
+                        <actions>
+                            <action id="add" type="add" primary="true"/>
+                            <action id="exclude" type="exclude"/>
+                        </actions>
+                        <columns>
+                            <column id="source"/>
+                            <column id="target"/>
+                        </columns>
+                        <buttonsPanel>
+                            <button id="addBtn" action="implMethodsTable.add"/>
+                            <button id="excludeBtn" action="implMethodsTable.exclude"/>
+                        </buttonsPanel>
+                    </groupTable>
+                </tab>
+            </tabSheet>
+        </vbox>
         <hbox id="editActions" spacing="true">
             <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
             <button id="closeBtn" action="windowClose"/>

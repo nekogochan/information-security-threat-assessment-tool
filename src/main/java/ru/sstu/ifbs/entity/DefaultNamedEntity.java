@@ -17,8 +17,7 @@ public class DefaultNamedEntity extends DefaultEntity {
     @Column(name = "NAME", nullable = false, unique = true)
     private String name;
 
-    @NotNull
-    @Column(name = "DESCRIPTION", nullable = false)
+    @Column(name = "DESCRIPTION")
     @Lob
     private String description;
 

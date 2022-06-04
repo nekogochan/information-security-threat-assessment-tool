@@ -10,10 +10,16 @@
                 <property name="impactTargets" fetchPlan="_base"/>
                 <property name="group" fetchPlan="_base"/>
                 <property name="actualThreats" fetchPlan="_base"/>
+                <property name="actualMeasures" fetchPlan="_base">
+                    <property name="value" fetchPlan="_base">
+                        <property name="securityMeasureGroup" fetchPlan="_base"/>
+                    </property>
+                </property>
             </fetchPlan>
             <collection id="impactSourcesDc" property="impactSources"/>
             <collection id="impactTargetsDc" property="impactTargets"/>
             <collection id="actualThreatsDc" property="actualThreats"/>
+            <collection id="actualMeasuresDc" property="actualMeasures"/>
             <loader id="projectDl"/>
         </instance>
     </data>
@@ -99,6 +105,7 @@
                             <action id="edit" type="edit"/>
                             <action id="remove" type="remove"/>
                             <action id="generate" caption="msg://actions.Generate"/>
+                            <action id="actualize" caption="msg://actions.Actualize"/>
                         </actions>
                         <columns>
                             <column id="threat"/>
@@ -108,8 +115,31 @@
                             <button action="actualThreatsTable.edit"/>
                             <button action="actualThreatsTable.remove"/>
                             <button action="actualThreatsTable.generate"/>
+                            <button action="actualThreatsTable.actualize"/>
                         </buttonsPanel>
                     </table>
+                </tab>
+                <tab id="securityMeasuresTab" caption="msg://ru.sstu.ifbs.entity.project/Project.actualMeasures"
+                     spacing="true" margin="true">
+                    <groupTable id="actualMeasuresTable" dataContainer="actualMeasuresDc" width="100%" sortable="false">
+                        <actions>
+                            <action id="add" type="add"/>
+                            <action id="exclude" type="exclude"/>
+                            <action id="generate" caption="msg://actions.Generate"/>
+                        </actions>
+                        <columns>
+                            <group>
+                                <column id="value.securityMeasureGroup"/>
+                            </group>
+                            <column id="value.code"/>
+                            <column id="value.name"/>
+                        </columns>
+                        <buttonsPanel>
+                            <button id="addBtn" action="actualMeasuresTable.add"/>
+                            <button id="excludeBtn" action="actualMeasuresTable.exclude"/>
+                            <button id="generateBtn" action="actualMeasuresTable.generate"/>
+                        </buttonsPanel>
+                    </groupTable>
                 </tab>
             </tabSheet>
         </scrollBox>

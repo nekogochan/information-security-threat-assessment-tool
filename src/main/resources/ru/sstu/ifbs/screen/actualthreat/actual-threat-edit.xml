@@ -49,6 +49,7 @@
                 <table id="scenariosTable" dataContainer="scenariosDc" width="100%" height="200px">
                     <actions>
                         <action id="add" type="add" primary="true"/>
+                        <action id="view" type="view"/>
                         <action id="exclude" type="exclude"/>
                     </actions>
                     <columns>

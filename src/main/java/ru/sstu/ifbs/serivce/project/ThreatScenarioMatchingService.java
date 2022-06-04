@@ -11,5 +11,5 @@ import java.util.Map;
 public interface ThreatScenarioMatchingService {
     String NAME = "gwf_ThreatScenarioMatchingService";
 
-    Map<Threat, ThreatScenario> getMatches(Project project, List<Threat> threatList, FetchPlan scenarioFetchPlan);
+    Map<Threat, List<ThreatScenario>> getMatches(Project project, FetchPlan scenarioFetchPlan);
 }

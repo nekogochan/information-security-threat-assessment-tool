@@ -83,12 +83,18 @@ public class ScenarioTacticFrag extends ScreenFragment {
                         .filter(this::notInTactic)
                         .sorted()
                         .map(this::techniqueToBtn)
-                        .collect(scrollBoxCollector.wrap(vBoxCollector)));
+                        .collect(collectingAndThen(
+                                scrollBoxCollector.wrap(vBoxCollector),
+                                it -> {
+                                    it.setWidth("500px");
+                                    return it;
+                                }
+                        )));
     }
 
     private Button techniqueToBtn(Technique technique) {
-        var button = uiComponents.create(Button.class);
-        button.setCaption(technique.getCode());
+        var button = uiComponents.create(LinkButton.class);
+        button.setCaption("%s: %s".formatted(technique.getCode(), technique.getName()));
         button.addClickListener(ev -> {
             var scenarioTechnique = dataContext.create(ScenarioTechnique.class);
             scenarioTechnique.setTactic(tacticDc.getItem());

@@ -6,6 +6,9 @@ import ru.sstu.ifbs.entity.storage.measures.SecurityMeasure;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Comparator;
+
+import static java.util.Comparator.comparing;
 
 @JmixEntity
 @Table(name = "GWF_ACTUAL_SECURITY_MEASURE", indexes = {
@@ -15,10 +18,14 @@ import javax.validation.constraints.NotNull;
 @Entity(name = "gwf_ActualSecurityMeasure")
 public class ActualSecurityMeasure extends DefaultEntity implements Comparable<ActualSecurityMeasure> {
 
+    public final static Comparator<ActualSecurityMeasure> COMPARATOR =
+            comparing(ActualSecurityMeasure::getValue, SecurityMeasure.COMPARATOR);
+
     @JoinColumn(name = "VALUE_ID", nullable = false)
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private SecurityMeasure value;
+
     @JoinColumn(name = "PROJECT_ID", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private Project project;

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1" author="gwf">
+        <createTable tableName="GWF_THREAT_SECURITY_MEASURE_LINK">
+            <column name="SECURITY_MEASURE_ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_GWF_THREAT_SECURITY_MEASURE_LINK"/>
+            </column>
+            <column name="THREAT_ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_GWF_THREAT_SECURITY_MEASURE_LINK"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="2" author="gwf">
+        <addForeignKeyConstraint baseColumnNames="SECURITY_MEASURE_ID" baseTableName="GWF_THREAT_SECURITY_MEASURE_LINK"
+                                 constraintName="FK_GWFTHRSECMEA_ON_SECURITY_MEASURE" referencedColumnNames="ID"
+                                 referencedTableName="GWF_SECURITY_MEASURE"/>
+    </changeSet>
+    <changeSet id="3" author="gwf">
+        <addForeignKeyConstraint baseColumnNames="THREAT_ID" baseTableName="GWF_THREAT_SECURITY_MEASURE_LINK"
+                                 constraintName="FK_GWFTHRSECMEA_ON_THREAT" referencedColumnNames="ID"
+                                 referencedTableName="GWF_THREAT"/>
+    </changeSet>
+    <changeSet id="4" author="gwf">
+        <dropForeignKeyConstraint baseTableName="gwf_security_measure"
+                                  constraintName="fk_gwf_security_measure_on_threat"/>
+    </changeSet>
+</databaseChangeLog>

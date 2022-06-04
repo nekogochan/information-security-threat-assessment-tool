@@ -2,7 +2,6 @@ package ru.sstu.ifbs.repository;
 
 import io.jmix.core.DataManager;
 import io.jmix.core.FetchPlan;
-import io.jmix.core.FetchPlanBuilder;
 import io.jmix.core.FluentLoader;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -10,7 +9,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.function.Consumer;
 
 public abstract class DefaultRepository<T> {
 
@@ -43,5 +41,9 @@ public abstract class DefaultRepository<T> {
                 .parameter("ids", ids)
                 .fetchPlan(fetchPlan)
                 .list();
+    }
+
+    public Collection<T> getAll(FetchPlan fetchPlan) {
+        return load().all().fetchPlan(fetchPlan).list();
     }
 }

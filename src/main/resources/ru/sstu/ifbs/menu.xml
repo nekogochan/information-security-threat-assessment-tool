@@ -21,12 +21,12 @@
                   caption="msg://ru.sstu.ifbs.screen.threat/threatBrowse.menu"/>
             <item screen="gwf_Tactic.browse"
                   caption="msg://ru.sstu.ifbs.screen.tactic/tacticBrowse.menu"/>
-            <item screen="gwf_SecurityMeasures.browse"
-                  caption="msg://ru.sstu.ifbs.screen.securitymeasure/securityMeasureBrowse.menu"/>
             <item screen="gwf_SecurityMeasureGroup.browse"
                   caption="msg://ru.sstu.ifbs.screen.securitymeasuregroup/securityMeasureGroupBrowse.menu"/>
             <item screen="gwf_ThreatImplMethod.browse"
                   caption="msg://ru.sstu.ifbs.screen.threatimplmethod/threatImplMethodBrowse.menu"/>
+            <item screen="gwf_ThreatImplMethodsLink.browse"
+                  caption="msg://ru.sstu.ifbs.screen.threatimplmethodslink/threatImplMethodsLinkBrowse.menu"/>
         </menu>
     </menu>
 </menu-config>

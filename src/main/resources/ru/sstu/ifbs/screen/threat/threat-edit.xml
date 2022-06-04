@@ -102,8 +102,9 @@
                         </buttonsPanel>
                     </table>
                 </tab>
-                <tab id="securityMeasuresTab" margin="true" caption="msg://ru.sstu.ifbs.entity.storage/Threat.securityMeasures">
-                    <table id="securityMeasuresTable" dataContainer="securityMeasuresDc">
+                <tab id="securityMeasuresTab" margin="true" expand="securityMeasuresTable"
+                     caption="msg://ru.sstu.ifbs.entity.storage/Threat.securityMeasures">
+                    <table id="securityMeasuresTable" dataContainer="securityMeasuresDc" width="100%">
                         <actions>
                             <action id="add" type="add" primary="true"/>
                             <action id="exclude" type="exclude"/>

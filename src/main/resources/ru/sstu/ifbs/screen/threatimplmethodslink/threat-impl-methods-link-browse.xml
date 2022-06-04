@@ -5,11 +5,15 @@
         focusComponent="threatImplMethodsTable">
     <data readOnly="true">
         <collection id="threatImplMethodsDc"
-                    class="ru.sstu.ifbs.entity.storage.ThreatImplMethod">
-            <fetchPlan extends="_base"/>
+                    class="ru.sstu.ifbs.entity.storage.ThreatImplMethodsLink">
+            <fetchPlan extends="_base">
+                <property name="source" fetchPlan="_base"/>
+                <property name="target" fetchPlan="_base"/>
+                <property name="implMethods" fetchPlan="_base"/>
+            </fetchPlan>
             <loader id="threatImplMethodsDl">
                 <query>
-                    <![CDATA[select e from gwf_ThreatImplMethod e]]>
+                    <![CDATA[select e from gwf_ThreatImplMethodsLink e]]>
                 </query>
             </loader>
         </collection>
@@ -45,8 +49,11 @@
                 <action id="remove" type="remove"/>
             </actions>
             <columns>
-                <column id="name"/>
-                <column id="description"/>
+                <column id="source"/>
+                <column id="source.type"/>
+                <column id="source.level"/>
+                <column id="target"/>
+                <column id="values"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"

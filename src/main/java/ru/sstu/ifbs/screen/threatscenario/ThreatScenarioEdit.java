@@ -5,10 +5,7 @@ import io.jmix.ui.Fragments;
 import io.jmix.ui.Notifications;
 import io.jmix.ui.UiComponents;
 import io.jmix.ui.action.Action;
-import io.jmix.ui.component.Button;
-import io.jmix.ui.component.HBoxLayout;
-import io.jmix.ui.component.PopupButton;
-import io.jmix.ui.component.ScrollBoxLayout;
+import io.jmix.ui.component.*;
 import io.jmix.ui.model.CollectionContainer;
 import io.jmix.ui.model.CollectionLoader;
 import io.jmix.ui.model.DataContext;
@@ -107,9 +104,15 @@ public class ThreatScenarioEdit extends Screen {
         addTacticBtn.setPopupContent(
                 tacticsDc.getItems().stream()
                         .filter(this::notInScenario)
-                        .sorted(comparing(Tactic::getCode, String.CASE_INSENSITIVE_ORDER))
+                        .sorted()
                         .map(this::tacticToAddBtn)
-                        .collect(scrollBoxCollector.wrap(vBoxCollector)));
+                        .collect(collectingAndThen(
+                                scrollBoxCollector.wrap(vBoxCollector),
+                                it -> {
+                                    it.setWidth("500px");
+                                    return it;
+                                }
+                        )));
     }
 
     private void refreshTacticsContainer() {
@@ -124,7 +127,7 @@ public class ThreatScenarioEdit extends Screen {
     }
 
     private Button tacticToAddBtn(Tactic tactic) {
-        var button = uiComponents.create(Button.class);
+        var button = uiComponents.create(LinkButton.class);
         button.setCaption("%s: %s".formatted(tactic.getCode(), tactic.getName()));
         button.addClickListener(ev -> {
             var scenarioTactic = dataContext.create(ScenarioTactic.class);
@@ -133,6 +136,7 @@ public class ThreatScenarioEdit extends Screen {
             threatScenarioDc.getItem().getTactics().add(scenarioTactic);
             refreshUI();
         });
+        button.setAlignment(Component.Alignment.MIDDLE_LEFT);
         button.setWidthFull();
         return button;
     }
