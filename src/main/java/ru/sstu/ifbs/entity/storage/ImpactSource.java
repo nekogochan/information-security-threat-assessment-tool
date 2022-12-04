@@ -32,6 +32,16 @@ public class ImpactSource extends DefaultEntity {
     @Lob
     private String description;
 
+    @InstanceName
+    public String instanceName() {
+        return "%s (%s H%s)".formatted(name,
+                                       (switch (getType()) {
+                                           case INNER -> "Внутренний";
+                                           case OUTER -> "Внешний";
+                                       }),
+                                       level);
+    }
+
     public String getDescription() {
         return description;
     }

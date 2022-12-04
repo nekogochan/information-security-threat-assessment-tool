@@ -51,7 +51,7 @@
             </form>
             <tabSheet id="tablesTabSheet">
                 <tab id="sourcesTab" margin="true" caption="msg://ru.sstu.ifbs.entity.storage/Threat.sources">
-                    <table id="sourcesTable" dataContainer="sourcesDc" width="100%">
+                    <table id="sourcesTable" multiselect="true" dataContainer="sourcesDc" width="100%">
                         <actions>
                             <action id="add" type="add" primary="true"/>
                             <action id="exclude" type="exclude"/>
@@ -69,7 +69,7 @@
                     </table>
                 </tab>
                 <tab id="targetsTab" margin="true" caption="msg://ru.sstu.ifbs.entity.storage/Threat.targets">
-                    <table id="targetsTable" dataContainer="targetsDc" width="100%">
+                    <table id="targetsTable" multiselect="true" dataContainer="targetsDc" width="100%">
                         <actions>
                             <action id="add" type="add" primary="true"/>
                             <action id="exclude" type="exclude"/>
@@ -85,7 +85,7 @@
                     </table>
                 </tab>
                 <tab id="scenariosTab" margin="true" caption="msg://ru.sstu.ifbs.entity.storage/Threat.scenarios">
-                    <table id="scenariosTable" dataContainer="threatScenariosDc" width="100%">
+                    <table id="scenariosTable" multiselect="true" dataContainer="threatScenariosDc" width="100%">
                         <actions>
                             <action id="create" type="create"/>
                             <action id="edit" type="edit"/>
@@ -104,7 +104,7 @@
                 </tab>
                 <tab id="securityMeasuresTab" margin="true" expand="securityMeasuresTable"
                      caption="msg://ru.sstu.ifbs.entity.storage/Threat.securityMeasures">
-                    <table id="securityMeasuresTable" dataContainer="securityMeasuresDc" width="100%">
+                    <table id="securityMeasuresTable" multiselect="true" dataContainer="securityMeasuresDc" width="100%">
                         <actions>
                             <action id="add" type="add" primary="true"/>
                             <action id="exclude" type="exclude"/>

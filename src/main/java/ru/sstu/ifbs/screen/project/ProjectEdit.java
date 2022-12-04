@@ -1,6 +1,8 @@
 package ru.sstu.ifbs.screen.project;
 
-import io.jmix.core.*;
+import io.jmix.core.EntityStates;
+import io.jmix.core.FetchPlan;
+import io.jmix.core.FetchPlans;
 import io.jmix.ui.Fragments;
 import io.jmix.ui.ScreenBuilders;
 import io.jmix.ui.action.Action;
@@ -35,13 +37,14 @@ import ru.sstu.ifbs.serivce.project.ThreatMatchingService;
 import ru.sstu.ifbs.serivce.project.ThreatScenarioMatchingService;
 
 import javax.inject.Named;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-import static io.jmix.ui.screen.OpenMode.*;
-import static java.util.Comparator.comparing;
+import static io.jmix.ui.screen.OpenMode.THIS_TAB;
 import static java.util.function.Predicate.not;
-import static java.util.stream.Collectors.*;
+import static java.util.stream.Collectors.toMap;
+import static java.util.stream.Collectors.toSet;
 
 @UiController("gwf_Project.edit")
 @UiDescriptor("project-edit.xml")
@@ -88,6 +91,7 @@ public class ProjectEdit extends StandardEditor<Project> {
     @Subscribe
     public void onBeforeShow(BeforeShowEvent event) {
         projectDl.load();
+        sortMeasures();
     }
 
     @Subscribe("securityInfoType")
@@ -128,12 +132,29 @@ public class ProjectEdit extends StandardEditor<Project> {
                 project,
                 fetchPlans.builder(ThreatScenario.class).addFetchPlan(FetchPlan.BASE).build());
 
-        actualScenarios.forEach((k, v) -> projectThreats.get(k).setScenarios(v));
+        actualScenarios.forEach((k, v) -> {
+            var actualThreat = projectThreats.get(k);
+            actualThreat.setScenarios(v);
+        });
 
-        actualThreatsDc.setItems(
-                projectThreats.values().stream()
-                        .filter(it -> it.getScenarios().size() > 0)
-                        .collect(toList()));
+        var updatedThreats = new ArrayList<ActualThreat>();
+        var oldThreats = new ArrayList<ActualThreat>();
+
+        projectThreats.forEach((k, v) -> {
+            if (actualScenarios.containsKey(k)) {
+                v.setScenarios(actualScenarios.get(k));
+                updatedThreats.add(v);
+            } else {
+                oldThreats.add(v);
+            }
+        });
+
+        oldThreats.forEach(it -> {
+            dataContext.remove(it);
+            actualThreatsDc.getMutableItems().remove(it);
+        });
+        updatedThreats.replaceAll(dataContext::merge);
+        updatedThreats.forEach(actualThreatsDc::replaceItem);
     }
 
     @Subscribe("actualMeasuresTable.generate")
@@ -191,7 +212,6 @@ public class ProjectEdit extends StandardEditor<Project> {
         } else {
             throw new IllegalStateException();
         }
-
     }
 
     private boolean isActualMeasuresTableGenerateShouldBeEnable() {

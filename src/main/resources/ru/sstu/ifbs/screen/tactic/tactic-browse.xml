@@ -44,7 +44,7 @@
             <actions>
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
-                <action id="remove" type="remove"/>
+                <action id="remove" type="remove"/>я
             </actions>
             <columns>
                 <column id="code"/>

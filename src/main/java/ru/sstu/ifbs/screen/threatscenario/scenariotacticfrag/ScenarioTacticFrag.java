@@ -13,12 +13,15 @@ import ru.sstu.ifbs.entity.storage.scenario.ScenarioTactic;
 import ru.sstu.ifbs.entity.storage.scenario.ScenarioTechnique;
 import ru.sstu.ifbs.entity.storage.tactic.Tactic;
 import ru.sstu.ifbs.entity.storage.tactic.Technique;
+import ru.sstu.ifbs.gui.HideItemsToggle;
+import ru.sstu.ifbs.gui.Toggle;
 import ru.sstu.ifbs.screen.threatscenario.scenariotacticfrag.scenariotechniquefrag.ScenarioTechniqueFrag;
 
 import java.util.Arrays;
 import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.function.Function;
+import java.util.stream.Stream;
 
 import static java.util.Comparator.comparing;
 import static java.util.Objects.requireNonNull;
@@ -48,6 +51,14 @@ public class ScenarioTacticFrag extends ScreenFragment {
     private Label<String> header;
     @Autowired
     private ScrollBoxCollector scrollBoxCollector;
+    @Autowired
+    private PopupView descriptionPopup;
+
+    private Toggle viewModeToggle;
+
+    public Toggle getViewModeToggle() {
+        return viewModeToggle;
+    }
 
     public void init(DataContext parentDataContext, ScenarioTactic tactic, Runnable onDelete) {
         requireNonNull(tactic);
@@ -55,6 +66,20 @@ public class ScenarioTacticFrag extends ScreenFragment {
         tacticDc.setItem(tactic);
         this.onDelete = onDelete;
         this.dataContext = parentDataContext;
+    }
+
+    @Subscribe
+    public void onInit(InitEvent event) {
+        var toggle = new HideItemsToggle(descriptionPopup, addTechniqueBtn);
+        toggle.addOnOnListener(() -> {
+            getTechniquesFragments().forEach(it -> it.getViewModeToggle().setOn(true));
+            this.getFragment().setWidth("165px");
+        });
+        toggle.addOnOffListener(() -> {
+            getTechniquesFragments().forEach(it -> it.getViewModeToggle().setOn(false));
+            this.getFragment().setWidth("200px");
+        });
+        this.viewModeToggle = toggle;
     }
 
     @Subscribe
@@ -104,6 +129,13 @@ public class ScenarioTacticFrag extends ScreenFragment {
         });
         button.setWidthFull();
         return button;
+    }
+
+    private Stream<ScenarioTechniqueFrag> getTechniquesFragments() {
+        return techniquesBox.getOwnComponentsStream()
+                .map(Fragment.class::cast)
+                .map(Fragment::getFrameOwner)
+                .map(ScenarioTechniqueFrag.class::cast);
     }
 
     private void refreshTechniquesContainer() {

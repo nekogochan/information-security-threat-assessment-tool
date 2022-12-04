@@ -3,7 +3,8 @@ package ru.sstu.ifbs.entity.storage.measures;
 import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 import ru.sstu.ifbs.entity.DefaultEntity;
-import ru.sstu.ifbs.entity.project.securityinfo.ispdn.PersonalDataProtectionLevel;
+import ru.sstu.ifbs.entity.project.securityinfo.common.SecurityClass;
+import ru.sstu.ifbs.entity.storage.Threat;
 import ru.sstu.ifbs.entity.storage.tactic.HasOrderedCode;
 
 import javax.persistence.*;
@@ -34,12 +35,32 @@ public class SecurityMeasure extends DefaultEntity implements HasOrderedCode {
     @NotNull
     private String code;
 
-    @Column(name = "PROTECTION_LEVEL")
-    private String protectionLevel;
+    @Column(name = "SECURITY_CLASS")
+    private String securityClass;
 
     @JoinColumn(name = "SECURITY_MEASURE_GROUP_ID", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private SecurityMeasureGroup securityMeasureGroup;
+
+    @JoinColumn(name = "THREAT_ID")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Threat threat;
+
+    public Threat getThreat() {
+        return threat;
+    }
+
+    public void setThreat(Threat threat) {
+        this.threat = threat;
+    }
+
+    public void setSecurityClass(SecurityClass securityClass) {
+        this.securityClass = securityClass == null ? null : securityClass.getId();
+    }
+
+    public SecurityClass getSecurityClass() {
+        return securityClass == null ? null : SecurityClass.fromId(securityClass);
+    }
 
     public SecurityMeasureGroup getSecurityMeasureGroup() {
         return securityMeasureGroup;
@@ -47,14 +68,6 @@ public class SecurityMeasure extends DefaultEntity implements HasOrderedCode {
 
     public void setSecurityMeasureGroup(SecurityMeasureGroup securityMeasureGroup) {
         this.securityMeasureGroup = securityMeasureGroup;
-    }
-
-    public void setProtectionLevel(PersonalDataProtectionLevel protectionLevel) {
-        this.protectionLevel = protectionLevel == null ? null : protectionLevel.getId();
-    }
-
-    public PersonalDataProtectionLevel getProtectionLevel() {
-        return protectionLevel == null ? null : PersonalDataProtectionLevel.fromId(protectionLevel);
     }
 
     public String getCode() {

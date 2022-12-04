@@ -34,8 +34,6 @@ public class ActualThreatEdit extends StandardEditor<ActualThreat> {
     private ScreenBuilders screenBuilders;
     @Autowired
     private CollectionContainer<Threat> unusedThreatsDc;
-
-    private Project project;
     @Autowired
     private InstanceContainer<ActualThreat> actualThreatDc;
     @Autowired
@@ -46,6 +44,8 @@ public class ActualThreatEdit extends StandardEditor<ActualThreat> {
     private ThreatScenarioRepository threatScenarioRepository;
     @Autowired
     private CollectionPropertyContainer<ThreatScenario> scenariosDc;
+
+    private Project project;
 
     public void init(Project project) {
         this.project = project;

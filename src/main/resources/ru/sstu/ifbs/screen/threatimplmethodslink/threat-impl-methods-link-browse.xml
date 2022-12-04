@@ -8,7 +8,7 @@
                     class="ru.sstu.ifbs.entity.storage.ThreatImplMethodsLink">
             <fetchPlan extends="_base">
                 <property name="source" fetchPlan="_base"/>
-                <property name="target" fetchPlan="_base"/>
+                <property name="targets" fetchPlan="_base"/>
                 <property name="implMethods" fetchPlan="_base"/>
             </fetchPlan>
             <loader id="threatImplMethodsDl">
@@ -52,7 +52,7 @@
                 <column id="source"/>
                 <column id="source.type"/>
                 <column id="source.level"/>
-                <column id="target"/>
+                <column id="targets"/>
                 <column id="values"/>
             </columns>
             <simplePagination/>

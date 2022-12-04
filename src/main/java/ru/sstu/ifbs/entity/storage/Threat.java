@@ -27,8 +27,8 @@ public class Threat extends DefaultNamedEntity {
     private List<ImpactTarget> targets = new ArrayList<>();
 
     @JoinTable(name = "GWF_THREAT_SECURITY_MEASURE_LINK",
-            joinColumns = @JoinColumn(name = "THREAT_ID"),
-            inverseJoinColumns = @JoinColumn(name = "SECURITY_MEASURE_ID"))
+            joinColumns = @JoinColumn(name = "THREAT_ID", referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(name = "SECURITY_MEASURE_ID", referencedColumnName = "ID"))
     @ManyToMany
     private List<SecurityMeasure> securityMeasures;
 

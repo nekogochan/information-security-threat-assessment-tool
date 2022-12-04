@@ -6,8 +6,8 @@
     <layout expand="techniquesBox" width="200px">
         <groupBox spacing="true">
             <label width="100%" id="header"/>
-            <popupView minimizedValue="msg://descriptionPopup.caption">
-                <vbox expand="description" width="200px">
+            <popupView id="descriptionPopup" minimizedValue="msg://descriptionPopup.caption">
+                <vbox expand="description" width="300px">
                     <button id="deleteBtn" width="100%" icon="MINUS" caption="msg:///actions.Remove"/>
                     <label id="description" width="100%" dataContainer="tacticDc" property="value.description"/>
                 </vbox>

@@ -3,11 +3,13 @@ package ru.sstu.ifbs.screen.threatscenario.scenariotacticfrag.scenariotechniquef
 import io.jmix.ui.component.Button;
 import io.jmix.ui.component.HBoxLayout;
 import io.jmix.ui.component.Label;
+import io.jmix.ui.component.PopupView;
 import io.jmix.ui.model.InstanceContainer;
 import io.jmix.ui.screen.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.sstu.ifbs.entity.storage.scenario.ScenarioTechnique;
 import ru.sstu.ifbs.entity.storage.tactic.Technique;
+import ru.sstu.ifbs.gui.Toggle;
 
 import static java.util.Objects.requireNonNull;
 
@@ -18,9 +20,29 @@ public class ScenarioTechniqueFrag extends ScreenFragment {
     private Runnable onDelete;
 
     @Autowired
+    private PopupView descriptionPopup;
+    @Autowired
     private InstanceContainer<ScenarioTechnique> techniqueDc;
     @Autowired
     private Label<String> header;
+
+    private Toggle viewModeToggle = new Toggle() {
+        @Override
+        public void onToggleOn() {
+            descriptionPopup.setVisible(false);
+            getFragment().setWidth("165px");
+        }
+
+        @Override
+        public void onToggleOff() {
+            descriptionPopup.setVisible(true);
+            getFragment().setWidth("200px");
+        }
+    };
+
+    public Toggle getViewModeToggle() {
+        return viewModeToggle;
+    }
 
     public void init(ScenarioTechnique technique, Runnable onDelete) {
         requireNonNull(technique);

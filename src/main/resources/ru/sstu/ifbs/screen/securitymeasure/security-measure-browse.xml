@@ -39,7 +39,7 @@
                 </group>
                 <column id="name"/>
                 <column id="code"/>
-                <column id="protectionLevel"/>
+                <column id="securityClass"/>
             </columns>
             <simplePagination/>
         </groupTable>

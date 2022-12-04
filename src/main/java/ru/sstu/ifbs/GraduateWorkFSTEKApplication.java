@@ -46,8 +46,4 @@ public class GraduateWorkFSTEKApplication {
                 + environment.getProperty("local.server.port")
                 + Strings.nullToEmpty(environment.getProperty("server.servlet.context-path")));
     }
-
-    @EventListener
-    public void onApplicationStarted(ApplicationStartedEvent event) {
-    }
 }

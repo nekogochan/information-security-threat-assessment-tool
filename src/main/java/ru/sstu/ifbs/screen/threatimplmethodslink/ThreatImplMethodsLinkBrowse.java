@@ -29,4 +29,14 @@ public class ThreatImplMethodsLinkBrowse extends StandardLookup<ThreatImplMethod
         label.setValue(value);
         return label;
     }
+
+    @Install(to = "threatImplMethodsTable.targets", subject = "columnGenerator")
+    private Component threatImplMethodsTableTargetsColumnGenerator(ThreatImplMethodsLink threatImplMethodsLink) {
+        var value = threatImplMethodsLink.getTargets().stream()
+                .map(DefaultNamedEntity::getName)
+                .collect(joining(", "));
+        var label = uiComponents.create(Label.TYPE_STRING);
+        label.setValue(value);
+        return label;
+    }
 }

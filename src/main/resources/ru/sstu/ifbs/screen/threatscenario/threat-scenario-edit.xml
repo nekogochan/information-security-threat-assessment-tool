@@ -5,18 +5,18 @@
         <instance id="threatScenarioDc" class="ru.sstu.ifbs.entity.storage.scenario.ThreatScenario">
             <fetchPlan extends="_base">
                 <property name="threat" fetchPlan="_base"/>
+                <property name="implMethod" fetchPlan="_base"/>
                 <property name="tactics" fetchPlan="_local">
                     <property name="value" fetchPlan="_local">
-                        <property name="techniques" fetchPlan="_local"/>
+                        <property name="techniques" fetchPlan="_base"/>
                     </property>
-                    <property name="techniques" fetchPlan="_base"/>
+                    <property name="techniques" fetchPlan="_base">
+                        <property name="tactic" fetchPlan="_base"/>
+                    </property>
                 </property>
-                <property name="implMethods" fetchPlan="_base">
-                    <property name="source" fetchPlan="_instance_name"/>
-                    <property name="target" fetchPlan="_instance_name"/>
-                </property>
+                <property name="sources" fetchPlan="_base"/>
             </fetchPlan>
-            <collection id="implMethodsDc" property="implMethods"/>
+            <collection id="sourcesDc" property="sources"/>
         </instance>
         <collection id="tacticsDc" class="ru.sstu.ifbs.entity.storage.tactic.Tactic">
             <fetchPlan extends="_local">
@@ -34,24 +34,42 @@
         <screenSettings id="settingsFacet" auto="true"/>
     </facets>
     <actions>
-        <action id="windowCommitAndClose" caption="msg:///actions.Ok"
+        <action id="windowCommitAndClose"
+                caption="msg:///actions.Ok"
                 icon="EDITOR_OK"
-                primary="true"
-                shortcut="${COMMIT_SHORTCUT}"/>
+                shortcut="${COMMIT_SHORTCUT}"
+                primary="true"/>
         <action id="windowClose"
                 caption="msg:///actions.Close"
                 icon="EDITOR_CANCEL"/>
+        <action id="copy"
+                caption="msg:///actions.Copy"
+                icon="COPY"/>
+        <action id="toggleViewMode"
+                caption="msg:///actions.ViewMode.On"
+                icon="EYE"/>
     </actions>
     <dialogMode height="600"
                 width="800"/>
     <layout spacing="true" expand="mainInfoBox">
-        <vbox id="mainInfoBox" expand="tabSheet" spacing="true" height="100%">
-            <form dataContainer="threatScenarioDc">
-                <column width="350px">
-                    <textField property="name"/>
-                    <textField property="description"/>
-                </column>
-            </form>
+        <vbox id="mainInfoBox" expand="tabSheet" spacing="true">
+            <hbox spacing="true">
+                <form dataContainer="threatScenarioDc">
+                    <column width="350px">
+                        <textField property="name"/>
+                        <textField property="description"/>
+                        <field property="implMethod"/>
+                    </column>
+                </form>
+                <vbox id="viewModeSourcesOutBox" spacing="true">
+                    <label stylename="h3 bold" value="msg://ru.sstu.ifbs.entity.storage.scenario/ThreatScenario.sources"/>
+                    <vbox id="viewModeSourcesBox"/>
+                </vbox>
+                <vbox spacing="true">
+                    <button action="toggleViewMode"/>
+                    <button action="copy"/>
+                </vbox>
+            </hbox>
             <tabSheet id="tabSheet">
                 <tab id="tacticsTab" expand="tacticsTable" margin="true"
                      caption="msg://ru.sstu.ifbs.entity.storage.scenario/ThreatScenario.tactics">
@@ -62,22 +80,25 @@
                         </scrollBox>
                     </vbox>
                 </tab>
-                <tab id="measuresTab" expand="implMethodsTable" margin="true"
-                     caption="msg://ru.sstu.ifbs.entity.storage.scenario/ThreatScenario.implMethods">
-                    <groupTable id="implMethodsTable" dataContainer="implMethodsDc" width="100%">
+                <tab id="sources" expand="sourcesTable" margin="true"
+                     caption="msg://ru.sstu.ifbs.entity.storage.scenario/ThreatScenario.sources">
+                    <table id="sourcesTable" dataContainer="sourcesDc" width="100%">
                         <actions>
-                            <action id="add" type="add" primary="true"/>
+                            <action id="add" type="add"/>
+                            <action id="edit" type="edit"/>
                             <action id="exclude" type="exclude"/>
                         </actions>
                         <columns>
-                            <column id="source"/>
-                            <column id="target"/>
+                            <column id="name"/>
+                            <column id="type"/>
+                            <column id="level"/>
                         </columns>
                         <buttonsPanel>
-                            <button id="addBtn" action="implMethodsTable.add"/>
-                            <button id="excludeBtn" action="implMethodsTable.exclude"/>
+                            <button action="sourcesTable.add"/>
+                            <button action="sourcesTable.edit"/>
+                            <button action="sourcesTable.exclude"/>
                         </buttonsPanel>
-                    </groupTable>
+                    </table>
                 </tab>
             </tabSheet>
         </vbox>

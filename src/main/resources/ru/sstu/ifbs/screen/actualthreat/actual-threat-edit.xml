@@ -7,9 +7,7 @@
             <fetchPlan extends="_local">
                 <property name="scenarios" fetchPlan="_base"/>
                 <property name="threat" fetchPlan="_base">
-                    <property name="scenarios">
-                        <property name="id"/>
-                    </property>
+                    <property name="scenarios" fetchPlan="_base"/>
                 </property>
             </fetchPlan>
             <loader/>
@@ -49,7 +47,7 @@
                 <table id="scenariosTable" dataContainer="scenariosDc" width="100%" height="200px">
                     <actions>
                         <action id="add" type="add" primary="true"/>
-                        <action id="view" type="view"/>
+                        <action id="edit" type="edit"/>
                         <action id="exclude" type="exclude"/>
                     </actions>
                     <columns>
@@ -58,6 +56,7 @@
                     </columns>
                     <buttonsPanel>
                         <button action="scenariosTable.add"/>
+                        <button action="scenariosTable.edit"/>
                         <button action="scenariosTable.exclude"/>
                     </buttonsPanel>
                 </table>

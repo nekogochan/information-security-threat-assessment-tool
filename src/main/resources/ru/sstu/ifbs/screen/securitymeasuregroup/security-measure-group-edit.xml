@@ -47,7 +47,7 @@
                     <columns>
                         <column id="code"/>
                         <column id="name"/>
-                        <column id="protectionLevel"/>
+                        <column id="securityClass"/>
                     </columns>
                     <buttonsPanel>
                         <button action="measuresTable.create"/>

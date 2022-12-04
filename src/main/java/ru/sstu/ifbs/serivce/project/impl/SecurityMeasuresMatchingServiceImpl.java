@@ -8,14 +8,12 @@ import ru.sstu.ifbs.entity.project.ActualSecurityMeasure;
 import ru.sstu.ifbs.entity.project.Project;
 import ru.sstu.ifbs.entity.project.securityinfo.gis.GisSecurityInfo;
 import ru.sstu.ifbs.entity.project.securityinfo.ispdn.IspdnSecurityInfo;
-import ru.sstu.ifbs.entity.project.securityinfo.ispdn.PersonalDataProtectionLevel;
 import ru.sstu.ifbs.entity.storage.measures.SecurityMeasure;
 import ru.sstu.ifbs.repository.SecurityMeasureRepository;
 import ru.sstu.ifbs.serivce.project.SecurityMeasuresMatchingService;
 
 import java.util.List;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
@@ -30,12 +28,8 @@ public class SecurityMeasuresMatchingServiceImpl implements SecurityMeasuresMatc
     @Override
     public List<ActualSecurityMeasure> getMatches(Project project, GisSecurityInfo secInfo,
                                                   FetchPlan securityMeasureFetchPlan) {
-        return securityMeasureRepository.getByProtectionLevel(
-                        (switch (secInfo.getSecurityClass()) {
-                            case K1 -> PersonalDataProtectionLevel.PL1;
-                            case K2 -> PersonalDataProtectionLevel.PL2;
-                            case K3 -> PersonalDataProtectionLevel.PL3;
-                        }),
+        return securityMeasureRepository.getBySecurityClass(
+                        secInfo.getSecurityClass(),
                         securityMeasureFetchPlan)
                 .stream()
                 .map(toActual(project))
@@ -45,8 +39,8 @@ public class SecurityMeasuresMatchingServiceImpl implements SecurityMeasuresMatc
     @Override
     public List<ActualSecurityMeasure> getMatches(Project project, IspdnSecurityInfo secInfo,
                                                   FetchPlan securityMeasureFetchPlan) {
-        return securityMeasureRepository.getByProtectionLevel(
-                        secInfo.getPersonalData().getProtectionLevel(),
+        return securityMeasureRepository.getBySecurityClass(
+                        secInfo.getSecurityClass(),
                         securityMeasureFetchPlan)
                 .stream()
                 .map(toActual(project))

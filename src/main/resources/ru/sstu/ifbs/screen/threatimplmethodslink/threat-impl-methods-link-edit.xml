@@ -7,10 +7,11 @@
                   class="ru.sstu.ifbs.entity.storage.ThreatImplMethodsLink">
             <fetchPlan extends="_base">
                 <property name="source" fetchPlan="_base"/>
-                <property name="target" fetchPlan="_base"/>
+                <property name="targets" fetchPlan="_base"/>
                 <property name="implMethods" fetchPlan="_base"/>
             </fetchPlan>
             <collection id="implMethodsDc" property="implMethods"/>
+            <collection id="targetsDc" property="targets"/>
             <loader/>
         </instance>
     </data>
@@ -31,16 +32,10 @@
                 width="800"/>
     <layout spacing="true" expand="scrollBox">
         <scrollBox id="scrollBox" spacing="true">
-            <vbox spacing="true">
+            <vbox height="100%" width="100%" spacing="true" expand="tablesBox">
                 <form id="form" dataContainer="threatImplMethodDc">
-                    <column width="350px">
+                    <column width="600px">
                         <entityPicker id="sourceField" property="source">
-                            <actions>
-                                <action id="entityLookup" type="entity_lookup"/>
-                                <action id="entityClear" type="entity_clear"/>
-                            </actions>
-                        </entityPicker>
-                        <entityPicker id="targetField" property="target">
                             <actions>
                                 <action id="entityLookup" type="entity_lookup"/>
                                 <action id="entityClear" type="entity_clear"/>
@@ -48,20 +43,43 @@
                         </entityPicker>
                     </column>
                 </form>
-                <label stylename="h2 bold" value="msg://ru.sstu.ifbs.entity.storage/ThreatImplMethodsLink.implMethods"/>
-                <groupTable id="implMethodsTable" dataContainer="implMethodsDc" width="100%">
-                    <actions>
-                        <action id="add" type="add"/>
-                        <action id="exclude" type="exclude"/>
-                    </actions>
-                    <columns>
-                        <column id="name"/>
-                    </columns>
-                    <buttonsPanel>
-                        <button id="addBtn" action="implMethodsTable.add"/>
-                        <button id="excludeBtn" action="implMethodsTable.exclude"/>
-                    </buttonsPanel>
-                </groupTable>
+                <hbox width="100%" id="tablesBox">
+                    <vbox height="100%" margin="true" spacing="true" expand="implMethodsTable">
+                        <label stylename="h2 bold" value="msg://ru.sstu.ifbs.entity.storage/ThreatImplMethodsLink.implMethods"/>
+                        <groupTable id="implMethodsTable" dataContainer="implMethodsDc" width="100%">
+                            <actions>
+                                <action id="add" type="add"/>
+                                <action id="edit" type="edit"/>
+                                <action id="exclude" type="exclude"/>
+                            </actions>
+                            <columns>
+                                <column id="name"/>
+                            </columns>
+                            <buttonsPanel>
+                                <button id="addBtn" action="implMethodsTable.add"/>
+                                <button id="excludeBtn" action="implMethodsTable.exclude"/>
+                            </buttonsPanel>
+                        </groupTable>
+                    </vbox>
+                    <vbox height="100%" margin="true" spacing="true" expand="targetsTable">
+                        <label stylename="h2 bold" value="msg://ru.sstu.ifbs.entity.storage/ThreatImplMethodsLink.targets"/>
+                        <groupTable id="targetsTable" dataContainer="targetsDc" width="100%">
+                            <actions>
+                                <action id="add" type="add"/>
+                                <action id="edit" type="edit"/>
+                                <action id="exclude" type="exclude"/>
+                            </actions>
+                            <columns>
+                                <column id="name"/>
+                            </columns>
+                            <buttonsPanel>
+                                <button action="targetsTable.add"/>
+                                <button action="targetsTable.edit"/>
+                                <button action="targetsTable.exclude"/>
+                            </buttonsPanel>
+                        </groupTable>
+                    </vbox>
+                </hbox>
             </vbox>
         </scrollBox>
         <hbox id="editActions" spacing="true">

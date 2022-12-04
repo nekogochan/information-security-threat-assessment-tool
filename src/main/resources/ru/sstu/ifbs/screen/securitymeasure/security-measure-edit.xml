@@ -30,7 +30,7 @@
                 <column id="fields" width="350px">
                     <textField id="nameField" property="name"/>
                     <textField id="codeField" property="code"/>
-                    <comboBox id="protectionLevelField" property="protectionLevel"/>
+                    <comboBox id="protectionLevelField" property="securityClass"/>
                 </column>
             </form>
         </scrollBox>

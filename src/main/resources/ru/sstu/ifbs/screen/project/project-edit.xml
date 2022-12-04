@@ -65,7 +65,7 @@
                 </tab>
                 <tab id="impactTargetsTab" caption="msg://ru.sstu.ifbs.entity.project/Project.impactTargets"
                      spacing="true" margin="true">
-                    <table id="impactTargetsTable" dataContainer="impactTargetsDc" width="100%">
+                    <table multiselect="true" id="impactTargetsTable" dataContainer="impactTargetsDc" width="100%">
                         <actions>
                             <action id="add" type="add" primary="true"/>
                             <action id="exclude" type="exclude"/>
@@ -81,7 +81,7 @@
                 </tab>
                 <tab id="impactSourcesTab" caption="msg://ru.sstu.ifbs.entity.project/Project.impactSources"
                      spacing="true" margin="true">
-                    <table id="impactSourcesTable" dataContainer="impactSourcesDc" width="100%">
+                    <table multiselect="true" id="impactSourcesTable" dataContainer="impactSourcesDc" width="100%">
                         <actions>
                             <action id="add" type="add" primary="true"/>
                             <action id="exclude" type="exclude"/>
@@ -99,13 +99,13 @@
                 </tab>
                 <tab id="actualThreatsTab" caption="msg://ru.sstu.ifbs.entity.project/Project.actualThreats"
                      spacing="true" margin="true">
-                    <table id="actualThreatsTable" dataContainer="actualThreatsDc" width="100%">
+                    <table multiselect="true" id="actualThreatsTable" dataContainer="actualThreatsDc" width="100%">
                         <actions>
                             <action id="create" type="create"/>
                             <action id="edit" type="edit"/>
                             <action id="remove" type="remove"/>
-                            <action id="generate" caption="msg://actions.Generate"/>
-                            <action id="actualize" caption="msg://actions.Actualize"/>
+                            <action id="generate" caption="msg:///actions.Generate"/>
+                            <action id="actualize" caption="msg:///actions.Actualize"/>
                         </actions>
                         <columns>
                             <column id="threat"/>
@@ -121,11 +121,11 @@
                 </tab>
                 <tab id="securityMeasuresTab" caption="msg://ru.sstu.ifbs.entity.project/Project.actualMeasures"
                      spacing="true" margin="true">
-                    <groupTable id="actualMeasuresTable" dataContainer="actualMeasuresDc" width="100%" sortable="false">
+                    <groupTable multiselect="true" id="actualMeasuresTable" dataContainer="actualMeasuresDc" width="100%" sortable="false">
                         <actions>
                             <action id="add" type="add"/>
                             <action id="exclude" type="exclude"/>
-                            <action id="generate" caption="msg://actions.Generate"/>
+                            <action id="generate" caption="msg:///actions.Generate"/>
                         </actions>
                         <columns>
                             <group>
